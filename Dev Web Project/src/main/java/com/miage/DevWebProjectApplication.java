@@ -13,7 +13,8 @@ public class DevWebProjectApplication  extends WebMvcConfigurerAdapter {
 		registry.addViewController("/index").setViewName("index");
 	}
 
-	public static void main(String[] args) {
+	//lance l'application
+	public static void main(String[] args) throws Throwable {
 		SpringApplication.run(DevWebProjectApplication.class, args);
 	}
 }
