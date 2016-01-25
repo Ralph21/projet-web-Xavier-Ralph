@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="Bootstrap/css/bootstrap.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+
+	<h1>Favoris</h1>
+
+	<!-- bouton log out -->
+	<form th:action="@{/logout}" method="post">
+		<div>
+			<button type="submit" value="Sign Out"
+				class="btn btn-danger btn-lg active">logout</button>
+		</div>
+	</form>
+
+
+	<h3>Bookmark list</h3>
+
+	<!-- tableau qui affiche la liste des favoris -->
+	<table class="table table-hover">
+		<tr>
+			<td id="s">ID</td>
+			<td id="s">Name</td>
+			<td id="s">URL</td>
+			<td id="s">Nombre de clicks</td>
+			<td id="s">Tag</td>
+		</tr>
+		<!--  affiche les données de chaque favoris -->
+		<tr th:each="f : ${favoris_list}">
+			<td th:text="${f.getId()}"></td>
+			<td th:text="${f.getName()}"></td>
+			<td><a th:href="@{'/nbclick/'+${f.getId()}}"
+				th:text="${f.getUrl()}"></a></td>
+			<td th:text="${f.getNbclick()}"></td>
+			<td>
+				<table class="table table-hover">
+					<tr th:each="t : ${f.getTags()}">
+						<td th:text="${t.getNom()}"></td>
+					</tr>
+				</table>
+			</td>
+			<td><a th:href="@{'/remove/'+${f.getId()}}"><button
+						type="button" class="btn btn-primary btn-lg active">Delete</button></a></td>
+			<td><a th:href="@{'/modif?id='+${f.getId()}}"><button
+						type="button" class="btn btn-primary btn-lg active">Modify</button></a></td>
+		</tr>
+	</table>
+
+	<a th:href="@{/create}">
+		<button type="button" class="btn btn-info btn-lg active">Add
+			Bookmark</button>
+	</a>
+
+	<p></p>
+	<p></p>
+	<h3>Panier</h3>
+
+	<!-- affiche le panier entier depuis la session "panier" -->
+	<table class="table table-hover">
+		<tr th:each="p : ${session.panier}">
+			<td th:text="${p.getName()}"></td>
+		</tr>
+	</table>
+
+	<a th:href="@{/panier}">
+		<button type="button" class="btn btn-warning btn-lg active">Create
+			Panier</button>
+	</a>
+
+
+</body>
+</html>
