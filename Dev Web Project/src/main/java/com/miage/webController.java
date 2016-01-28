@@ -27,5 +27,16 @@ public class webController {
 	    {
 	    	return "index";
 	    }
+	    
+		/**
+		 * Lors de l'appel du chemin /index, lance index.html
+		 */
+		@RequestMapping(value = "/contact")
+		public String AccessContact() 
+		{				
+			return "contact";
+		}
+		
+
 	
 }

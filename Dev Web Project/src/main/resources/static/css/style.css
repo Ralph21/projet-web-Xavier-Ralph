@@ -78,12 +78,17 @@ textarea {
 #logo a .min {
 	font-size:31px;
 	line-height:31px;
-	position:relative;
-	top:-9px;
+	
+
 }
 #logo a .red {
 	color:#ed1c24;
 }
+
+#logo a .white {
+	color:#ffffff;
+}
+
 #navigation {
 	height:74px;
 	padding:0 0 0 266px;
