@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 
 <meta charset="utf-8" />
@@ -131,23 +130,31 @@
 	<!-- Page Content -->
 	<div class="container">
 
+	
+	 <!--  <ul th:each="c : ${car_list}">
+		<li th:text="${c.getId()}"></li>
+		<li th:text="${c.getMarque()}"></li>
+		<li th:text="${c.getModele()}"></li>
+	</ul> -->
+
+
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Welcome to Modern Business</h1>
+				<h1 class="page-header">Bienvenu</h1>
 			</div>
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-check"></i> Bootstrap v3.2.0
+							L'application
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque, optio corporis quae nulla aspernatur in alias at numquam
-							rerum ea excepturi expedita tenetur assumenda voluptatibus
-							eveniet incidunt dicta nostrum quod?</p>
-						<a href="#" class="btn btn-default">Learn More</a>
+						<p>L'objectif de cette application web est de vous permettre de sélectionner
+						   un de nos modèles de véhicules et de pouvoir ensuite le personnalisé selon vos désirs. 
+						   Vous pourrez également faire une réservation qui vous permettra de venir essayer le modèle
+						   correspondant au votre choix dans un de nos garages constructeurs.</p>
+						<!-- <a href="#" class="btn btn-default">Learn More</a> -->
 					</div>
 				</div>
 			</div>
@@ -155,15 +162,16 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-gift"></i> Free &amp; Open Source
+							 Qui sommes nous?
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque, optio corporis quae nulla aspernatur in alias at numquam
-							rerum ea excepturi expedita tenetur assumenda voluptatibus
-							eveniet incidunt dicta nostrum quod?</p>
-						<a href="#" class="btn btn-default">Learn More</a>
+						<p>Le groupe Volkswagen qui possège également le groupe Audi
+						   a décidé, sous l'initiative de deux jeunes développeurs web, de
+						   créer une application web permettant aux clients de pouvoir commander
+						   des véhicules qu'ils peuvent au préalable personnaliser mais également
+						   de faire des réservations pour faire un essaie au garage.</p>
+						<a href="informations.html" class="btn btn-default">Plus d'infos</a>
 					</div>
 				</div>
 			</div>
@@ -171,15 +179,14 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-compass"></i> Easy to Use
+							Aide?
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque, optio corporis quae nulla aspernatur in alias at numquam
-							rerum ea excepturi expedita tenetur assumenda voluptatibus
-							eveniet incidunt dicta nostrum quod?</p>
-						<a href="#" class="btn btn-default">Learn More</a>
+						<p>N'hésitez pas à nous contacter en cas de besoin.
+						   Nos équipes sont à votre disposition pour répondre à vos questions.
+						 </p>
+						<a href="contact.html" class="btn btn-default">Contactez nous</a>
 					</div>
 				</div>
 			</div>
@@ -187,7 +194,7 @@
 		<!-- /.row -->
 
 		<!-- Portfolio Section -->
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">Portfolio Heading</h2>
 			</div>
@@ -227,31 +234,33 @@
 					src="http://placehold.it/700x450" alt="" />
 				</a>
 			</div>
-		</div>
+		</div> -->
 		<!-- /.row -->
 
 		<!-- Features Section -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">Modern Business Features</h2>
+				<h2 class="page-header">Audi RS3 Sportback</h2>
 			</div>
 			<div class="col-md-6">
-				<p>The Modern Business template by Start Bootstrap includes:</p>
+				<p>La nouvelle audi RS3, digne héritière de la Audi R8 :</p>
 				<ul>
-					<li><strong>Bootstrap v3.2.0</strong></li>
-					<li>jQuery v1.11.0</li>
-					<li>Font Awesome v4.1.0</li>
-					<li>Working PHP contact form with validation</li>
-					<li>Unstyled page elements for easy customization</li>
-					<li>17 HTML pages</li>
+					<li><strong>Audi RS3</strong></li>
+					<li>Vitesse maximale : 250 km/h</li>
+					<li>0 à 100 km/h en 4,3s</li>
+					<li>Poids : 1520 kg</li>
+					<li>Puissance maximale : 367 ch</li>
 				</ul>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Corporis, omnis doloremque non cum id reprehenderit, quisquam totam
-					aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis
-					quia dolorum ducimus unde.</p>
+				<p>Afin de fêter la naissance de la RS3 Sportback, Audi vient de réaliser un 
+				   clip mettant en scène l'accouchement de son coupé R8. Une séquence exceptionnelle
+				   et particulièrement bien filmée, qui nous rappelle avec brio que sa nouvelle 
+				   petite sportive hérite des gênes haute performance de son aînée. 
+				   L'Audi RS3 Sportback est ainsi née le 16 avril 2015, pèse 1 520 kg 
+				   et développe 362 ch !</p>
 			</div>
+			
 			<div class="col-md-6">
-				<img class="img-responsive" src="http://placehold.it/700x450" alt="" />
+				<iframe width="600" height="450" src="http://www.youtube.com/embed/MDNmVzggrk0?autoplay=1"> </iframe>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -281,9 +290,9 @@
 		//changes the speed
 		})
 	</script>
-	<!-- 	<script> -->
+	<!-- 	<script> 
 	// $('a').mouseover(function() { // $(this).dropdown('toggle'); // });
-	<!-- 	</script> -->
+	</script> -->
 
 </body>
 
