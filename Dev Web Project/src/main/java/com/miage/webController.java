@@ -47,5 +47,10 @@ public class webController {
 	public String AccessContact() {
 		return "contact";
 	}
+	
+	@RequestMapping(value = "/informations")
+	public String AccessInformations() {
+		return "informations";
+	}
 
 }
