@@ -26,6 +26,8 @@ public class Utilisateur {
     // TODO: add validation annotation
     private String sexe;
 
+    private String email;
+    private String pwd;
     
 
     public String getFirstName() {
@@ -59,6 +61,24 @@ public class Utilisateur {
     public void setAge(Integer age) {
         this.age = age;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+    
+    
 
 
 }

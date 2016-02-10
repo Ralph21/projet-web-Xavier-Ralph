@@ -11,7 +11,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
-
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -49,29 +49,51 @@
 						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-header">Volkswagen</li>
-							<li><a href="">Volkswagen Golf<br />
-								<img src="css/images/vwx5.jpg" /></a></li>
+							<li><a href="">Volkswagen Golf<br /> <img
+									src="css/images/vwx5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Volkswagen Tiguan<br />
-								<img src="css/images/vwx6.jpg" /></a></li>
+							<li><a href="">Volkswagen Tiguan<br /> <img
+									src="css/images/vwx6.jpg" /></a></li>
 							<li></li>
 							<li class="divider"></li>
 							<li class="dropdown-header">Audi</li>
-							<li><a href="">Audi A3<br />
-								<img src="css/images/audix5.jpg" /></a></li>
+							<li><a href="">Audi A3<br /> <img
+									src="css/images/audix5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Audi Q5<br />
-								<img src="css/images/audix6.jpg" /></a></li>
+							<li><a href="">Audi Q5<br /> <img
+									src="css/images/audix6.jpg" /></a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Espace client <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-left">
 							<!--  je modifie le menu déroulant car je compte faire un truc du genre inscription connection -->
-							<li><a href="inscription">Connexion/Inscription</a></li>
+							<li><a href="inscription.html">Connexion</a></li>
 							<!-- et je ferais en sorte que ça apparaisse si le mec est connecté  -->
 							<li><a href="">Déconnexion</a></li>
 						</ul></li>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Login <span
+								class="glyphicon glyphicon-log-in"></span></a>
+							<div class="dropdown-menu">
+								<form id="formLogin" class="form container-fluid">
+									<div class="form-group">
+										<label for="usr">Email :</label> <input type="text"
+											class="form-control" id="usr" placeholder="Entrer un email"/>
+									</div>
+									<div class="form-group">
+										<label for="pwd">Mot de passe :</label> <input type="password"
+											class="form-control" id="pwd" placeholder="Mot de passe"/>
+									</div>
+									<button type="button" id="btnLogin" class="btn btn-default">Connexion</button>
+								</form>
+								<div class="container-fluid">
+									<br/> <a class="small" href="inscription.html">Nouveau client ? Créez un compte</a>
+								</div>
+							</div></li>
+					</ul>
 
 					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -127,8 +149,8 @@
 	<!-- Page Content -->
 	<div class="container">
 
-	
-	 <!--  <ul th:each="c : ${car_list}">
+
+		<!--  <ul th:each="c : ${car_list}">
 		<li th:text="${c.getId()}"></li>
 		<li th:text="${c.getMarque()}"></li>
 		<li th:text="${c.getModele()}"></li>
@@ -142,15 +164,15 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4>
-							L'application
-						</h4>
+						<h4>L'application</h4>
 					</div>
 					<div class="panel-body">
-						<p>L'objectif de cette application web est de vous permettre de sélectionner
-						   un de nos modèles de véhicules et de pouvoir ensuite le personnaliser selon vos désirs. 
-						   Vous pourrez également faire une réservation qui vous permettra de venir essayer le modèle
-						   correspondant au votre choix dans un de nos garages constructeurs.</p>
+						<p>L'objectif de cette application web est de vous permettre
+							de sélectionner un de nos modèles de véhicules et de pouvoir
+							ensuite le personnaliser selon vos désirs. Vous pourrez également
+							faire une réservation qui vous permettra de venir essayer le
+							modèle correspondant au votre choix dans un de nos garages
+							constructeurs.</p>
 						<!-- <a href="#" class="btn btn-default">Learn More</a> -->
 					</div>
 				</div>
@@ -158,31 +180,28 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4>
-							 Qui sommes nous?
-						</h4>
+						<h4>Qui sommes nous?</h4>
 					</div>
 					<div class="panel-body">
-						<p>Le groupe Volkswagen qui possège également le groupe Audi
-						   a décidé, sous l'initiative de deux jeunes développeurs web, de
-						   créer une application web permettant aux clients de pouvoir commander
-						   des véhicules qu'ils peuvent au préalable personnaliser mais également
-						   de faire des réservations pour faire un essaie au garage.</p>
-						<a href="informations.html" class="btn btn-default">Plus d'infos</a>
+						<p>Le groupe Volkswagen qui possège également le groupe Audi a
+							décidé, sous l'initiative de deux jeunes développeurs web, de
+							créer une application web permettant aux clients de pouvoir
+							commander des véhicules qu'ils peuvent au préalable personnaliser
+							mais également de faire des réservations pour faire un essaie au
+							garage.</p>
+						<a href="informations.html" class="btn btn-default">Plus
+							d'infos</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4>
-							Aide?
-						</h4>
+						<h4>Aide?</h4>
 					</div>
 					<div class="panel-body">
-						<p>N'hésitez pas à nous contacter en cas de besoin.
-						   Nos équipes sont à votre disposition pour répondre à vos questions.
-						 </p>
+						<p>N'hésitez pas à nous contacter en cas de besoin. Nos
+							équipes sont à votre disposition pour répondre à vos questions.</p>
 						<a href="contact.html" class="btn btn-default">Contactez nous</a>
 					</div>
 				</div>
@@ -248,16 +267,17 @@
 					<li>Poids : 1520 kg</li>
 					<li>Puissance maximale : 367 ch</li>
 				</ul>
-				<p>Afin de fêter la naissance de la RS3 Sportback, Audi vient de réaliser un 
-				   clip mettant en scène l'accouchement de son coupé R8. Une séquence exceptionnelle
-				   et particulièrement bien filmée, qui nous rappelle avec brio que sa nouvelle 
-				   petite sportive hérite des gênes haute performance de son aînée. 
-				   L'Audi RS3 Sportback est ainsi née le 16 avril 2015, pèse 1 520 kg 
-				   et développe 362 ch !</p>
+				<p>Afin de fêter la naissance de la RS3 Sportback, Audi vient de
+					réaliser un clip mettant en scène l'accouchement de son coupé R8.
+					Une séquence exceptionnelle et particulièrement bien filmée, qui
+					nous rappelle avec brio que sa nouvelle petite sportive hérite des
+					gênes haute performance de son aînée. L'Audi RS3 Sportback est
+					ainsi née le 16 avril 2015, pèse 1 520 kg et développe 362 ch !</p>
 			</div>
-			
+
 			<div class="col-md-6">
-				<iframe width="600" height="450" src="http://www.youtube.com/embed/MDNmVzggrk0"> </iframe>
+				<iframe width="600" height="450"
+					src="http://www.youtube.com/embed/MDNmVzggrk0"> </iframe>
 			</div>
 		</div>
 		<!-- /.row -->

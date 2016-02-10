@@ -1,27 +1,175 @@
- <html>
-    <body>
-        <form action="#" th:action="@{/inscription}" th:object="${utilisateur}" method="post">
-            <table>
-                <tr>
-                    <td>Prénom : </td>
-                    <td><input type="text" th:field="*{firstName}" /></td>
-                    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Nom : </td>
-                    <td><input type="text" th:field="*{lastName}" /></td>
-                    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>
-                </tr>
-                <tr>
-                    <td>Age : </td>
-                    <td><input type="text" th:field="*{age}" /></td>
-                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
-                </tr>
-<!--                 ajouter reste des champs -->
-                <tr>
-                    <td><button type="submit">Valider</button></td>
-                </tr>
-            </table>
-        </form>
-    </body>
+
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="PROJECT DEV WEB" />
+<meta name="author" content="Xavier SIMON / Ralph GAUME" />
+
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link href="css/modern-business.css" rel="stylesheet" />
+
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<title>VA</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="css/images/icon_red.png" />
+
+
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<h1 id="logo">
+					<a href="index.html"> <span class="min"> <span
+							class="white">Volkswagen</span><span class="red">&nbsp;&amp;&nbsp;Audi</span></span>
+					</a>
+				</h1>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li class="dropdown-header">Volkswagen</li>
+							<li><a href="">Volkswagen Golf<br /> <img
+									src="css/images/vwx5.jpg" /></a></li>
+							<li></li>
+							<li><a href="">Volkswagen Tiguan<br /> <img
+									src="css/images/vwx6.jpg" /></a></li>
+							<li></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Audi</li>
+							<li><a href="">Audi A3<br /> <img
+									src="css/images/audix5.jpg" /></a></li>
+							<li></li>
+							<li><a href="">Audi Q5<br /> <img
+									src="css/images/audix6.jpg" /></a></li>
+						</ul></li>
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Espace client <b class="caret"></b></a>
+						<ul class="dropdown-menu dropdown-menu-left">
+							<!--  je modifie le menu déroulant car je compte faire un truc du genre inscription connection -->
+							<li><a href="inscription.html">Connexion</a></li>
+							<!-- et je ferais en sorte que ça apparaisse si le mec est connecté  -->
+							<li><a href="">Déconnexion</a></li>
+						</ul></li>
+
+					<li><a href="informations.html">Informations</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="page-header">
+					Nouveau client? <small>Créez un compte</small>
+				</h2>
+			</div>
+		</div>
+
+		<form action="#" th:action="@{/inscription}"
+			th:object="${utilisateur}" method="post">
+			<table>
+				<tr>
+					<td>Civilité :</td>
+					<td><input type="text" th:field="*{pwd}" class="form-control"
+						placeholder="Entrez mot de passe" /></td>
+					<td th:if="${#fields.hasErrors('pwd')}" th:errors="*{lastName}">Name
+						Error</td>
+				</tr>
+				<tr>
+					<td>Prénom :</td>
+					<td><input type="text" class="form-control"
+						th:field="*{firstName}" placeholder="Entrez prénom" /></td>
+					<td th:if="${#fields.hasErrors('firstName')}"
+						th:errors="*{firstName}">Name Error</td>
+				</tr>
+				<tr>
+					<td>Nom :</td>
+					<td><input type="text" th:field="*{lastName}"
+						class="form-control" placeholder="Entrez nom" /></td>
+					<td th:if="${#fields.hasErrors('lastName')}"
+						th:errors="*{lastName}">Name Error</td>
+				</tr>
+				<tr>
+					<td>Age :</td>
+					<td><input type="text" th:field="*{age}" /></td>
+					<td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name
+						Error</td>
+				</tr>
+				<tr>
+					<td>Email :</td>
+					<td><input type="text" th:field="*{email}"
+						class="form-control" placeholder="Entrez email" /></td>
+					<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
+						Error</td>
+				</tr>
+				<tr>
+					<td>Mot de passe :</td>
+					<td><input type="text" th:field="*{pwd}" class="form-control"
+						placeholder="Entrez mot de passe" /></td>
+					<td th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}">Name
+						Error</td>
+				</tr>
+				<!--                 ajouter reste des champs -->
+				<tr>
+					<td><button type="submit" value="Sign In"
+							class="btn btn-default">Valider</button></td>
+				</tr>
+			</table>
+		</form>
+
+
+		<!-- Footer -->
+		<footer>
+			<div class="footer">
+				<p class="lf">Copyright &copy; 2016 - All Rights Reserved</p>
+				<p class="rf">Design by Ralph GAUME / Xavier SIMON</p>
+				<div style="clear: both;"></div>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- 	<script> 
+	// $('a').mouseover(function() { // $(this).dropdown('toggle'); // });
+	</script> -->
+
+</body>
+
 </html>
