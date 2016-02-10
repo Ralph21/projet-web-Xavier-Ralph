@@ -1,4 +1,4 @@
-package com.miage;
+package com.miage.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
