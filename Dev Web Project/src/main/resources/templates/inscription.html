@@ -13,6 +13,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <title>VA</title>
@@ -70,10 +71,33 @@
 						data-toggle="dropdown">Espace client <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-left">
 							<!--  je modifie le menu déroulant car je compte faire un truc du genre inscription connection -->
-							<li><a href="inscription.html">Connexion</a></li>
+							<li><a href="inscription.html">Inscription</a></li>
 							<!-- et je ferais en sorte que ça apparaisse si le mec est connecté  -->
 							<li><a href="">Déconnexion</a></li>
 						</ul></li>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Login <span
+								class="glyphicon glyphicon-log-in"></span></a>
+							<div class="dropdown-menu">
+								<form id="formLogin" class="form container-fluid">
+									<div class="form-group">
+										<label for="usr">Email :</label> <input type="text"
+											class="form-control" id="usr" placeholder="Entrer un email" />
+									</div>
+									<div class="form-group">
+										<label for="pwd">Mot de passe :</label> <input type="password"
+											class="form-control" id="pwd" placeholder="Mot de passe" />
+									</div>
+									<button type="button" id="btnLogin" class="btn btn-default">Connexion</button>
+								</form>
+								<div class="container-fluid">
+									<br /> <a class="small" href="inscription.html">Nouveau
+										client ? Créez un compte</a>
+								</div>
+							</div></li>
+					</ul>
 
 					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -102,11 +126,12 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="email">Civilité :</label>
 				<div class="col-sm-4">
-					<label for="male">Homme&nbsp;&nbsp;</label><input type="radio" value="homme" th:field="*{firstName}" /> <br/>
-					<label for="female">Femme&nbsp;&nbsp;</label><input type="radio" value="femme" th:field="*{firstName}" />
-				</div>	
-				<div th:if="${#fields.hasErrors('firstName')}"
-					th:errors="*{firstName}">Erreur prénom</div>
+					<label for="male">Homme&nbsp;&nbsp;</label><input type="radio"
+						value="homme" th:field="*{sexe}" /> <br /> <label for="female">Femme&nbsp;&nbsp;</label><input
+						type="radio" value="femme" th:field="*{sexe}" />
+				</div>
+				<div th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}">Erreur
+					civilité</div>
 			</div>
 
 			<div class="form-group">
@@ -130,6 +155,16 @@
 			</div>
 
 			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">Age :</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" th:field="*{age}"
+						placeholder="Entrez age" />
+				</div>
+				<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Erreur
+					âge</div>
+			</div>
+
+			<div class="form-group">
 				<label class="control-label col-sm-2" for="email">E-mail :</label>
 				<div class="col-sm-4">
 					<input type="text" th:field="*{email}" class="form-control"
@@ -140,7 +175,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">Mot de
+				<label class="control-label col-sm-2" for="pwd">Mot de
 					passe :</label>
 				<div class="col-sm-4">
 					<input type="text" th:field="*{pwd}" class="form-control"
@@ -151,20 +186,10 @@
 			</div>
 
 			<div class="form-group">
+				<div class="col-sm-3"></div>
 				<button type="submit" value="Sign In" class="btn btn-default">Valider</button>
 			</div>
 
-
-			<table>
-
-				<tr>
-					<td>Age :</td>
-					<td><input type="text" th:field="*{age}" /></td>
-					<td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name
-						Error</td>
-				</tr>
-
-			</table>
 		</form>
 
 

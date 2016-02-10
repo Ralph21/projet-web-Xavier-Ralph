@@ -3,9 +3,9 @@
 
 <head>
 
-<meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="PROJECT DEV WEB" />
 <meta name="author" content="Xavier SIMON / Ralph GAUME" />
 
@@ -13,10 +13,12 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="css/images/icon_red.png" />
-<link href="css/round-about.css" rel="stylesheet"/>
+<link href="css/round-about.css" rel="stylesheet" />
 
 </head>
 
@@ -67,12 +69,35 @@
 						data-toggle="dropdown">Espace client <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-left">
 							<!--  je modifie le menu déroulant car je compte faire un truc du genre inscription connection -->
-							<li><a href="inscription">Connexion/Inscription</a></li>
+							<li><a href="inscription.html">Inscription</a></li>
 							<!-- et je ferais en sorte que ça apparaisse si le mec est connecté  -->
 							<li><a href="">Déconnexion</a></li>
 						</ul></li>
 
-					<li><a href="contact.html">Informations</a></li>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Login <span
+								class="glyphicon glyphicon-log-in"></span></a>
+							<div class="dropdown-menu">
+								<form id="formLogin" class="form container-fluid">
+									<div class="form-group">
+										<label for="usr">Email :</label> <input type="text"
+											class="form-control" id="usr" placeholder="Entrer un email" />
+									</div>
+									<div class="form-group">
+										<label for="pwd">Mot de passe :</label> <input type="password"
+											class="form-control" id="pwd" placeholder="Mot de passe" />
+									</div>
+									<button type="button" id="btnLogin" class="btn btn-default">Connexion</button>
+								</form>
+								<div class="container-fluid">
+									<br /> <a class="small" href="inscription.html">Nouveau
+										client ? Créez un compte</a>
+								</div>
+							</div></li>
+					</ul>
+
+					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
 				</ul>
 			</div>
@@ -87,20 +112,16 @@
 		<!-- Introduction Row -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">
-					A propos de nous
-				</h1>
-				<p>
-				Volkswagen est une marque automobile allemande créée en 1937. Elle appartient 
-				au groupe Volkswagen AG tout comme la marque Porsche, Lamborghini et plus 
-				particulièrement Audi, un autre constructeur automobile allemand créée en 1909.
-				
-				Ainsi pour renforcer les liens entre les deux marques et au vue de leur succès
-				à l'échelle mondiale, le groupe Volkswagen a décidé de développer une application web 
-				permettant aux clients de pouvoir commander des véhicules qu'ils peuvent au 
-				préalable personnaliser mais également de faire des réservations pour faire 
-				un essaie au garage.		   
-						   </p>
+				<h1 class="page-header">A propos de nous</h1>
+				<p>Volkswagen est une marque automobile allemande créée en 1937.
+					Elle appartient au groupe Volkswagen AG tout comme la marque
+					Porsche, Lamborghini et plus particulièrement Audi, un autre
+					constructeur automobile allemand créée en 1909. Ainsi pour
+					renforcer les liens entre les deux marques et au vue de leur succès
+					à l'échelle mondiale, le groupe Volkswagen a décidé de développer
+					une application web permettant aux clients de pouvoir commander des
+					véhicules qu'ils peuvent au préalable personnaliser mais également
+					de faire des réservations pour faire un essaie au garage.</p>
 			</div>
 		</div>
 
@@ -111,7 +132,7 @@
 			</div>
 			<div class="col-lg-6 col-sm-6 text-center">
 				<img class="img-circle img-responsive img-center"
-					src="css/images/xavier 2.jpg" alt=""/>
+					src="css/images/xavier 2.jpg" alt="" />
 				<h3>
 					Xavier SIMON<small> Master MIAGE</small>
 				</h3>
@@ -119,7 +140,7 @@
 			</div>
 			<div class="col-lg-6 col-sm-6 text-center">
 				<img class="img-circle img-responsive img-center"
-					src="css/images/ralph 3.jpg" alt=""/>
+					src="css/images/ralph 3.jpg" alt="" />
 				<h3>
 					Ralph GAUME<small> Maste MIAGE</small>
 				</h3>
@@ -128,7 +149,7 @@
 
 		</div>
 
-		<hr/>
+		<hr />
 
 		<!-- Footer -->
 		<footer>

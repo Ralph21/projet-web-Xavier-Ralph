@@ -12,6 +12,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <title>VA</title>
@@ -22,7 +23,7 @@
 
 <body>
 
-		<!-- Navigation -->
+	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -48,29 +49,52 @@
 						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-header">Volkswagen</li>
-							<li><a href="">Volkswagen Golf<br />
-								<img src="css/images/vwx5.jpg" /></a></li>
+							<li><a href="">Volkswagen Golf<br /> <img
+									src="css/images/vwx5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Volkswagen Tiguan<br />
-								<img src="css/images/vwx6.jpg" /></a></li>
+							<li><a href="">Volkswagen Tiguan<br /> <img
+									src="css/images/vwx6.jpg" /></a></li>
 							<li></li>
 							<li class="divider"></li>
 							<li class="dropdown-header">Audi</li>
-							<li><a href="">Audi A3<br />
-								<img src="css/images/audix5.jpg" /></a></li>
+							<li><a href="">Audi A3<br /> <img
+									src="css/images/audix5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Audi Q5<br />
-								<img src="css/images/audix6.jpg" /></a></li>
+							<li><a href="">Audi Q5<br /> <img
+									src="css/images/audix6.jpg" /></a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Espace client <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-left">
 							<!--  je modifie le menu déroulant car je compte faire un truc du genre inscription connection -->
-							<li><a href="inscription">Connexion</a></li>
+							<li><a href="inscription.html">Inscription</a></li>
 							<!-- et je ferais en sorte que ça apparaisse si le mec est connecté  -->
 							<li><a href="">Déconnexion</a></li>
 						</ul></li>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Login <span
+								class="glyphicon glyphicon-log-in"></span></a>
+							<div class="dropdown-menu">
+								<form id="formLogin" class="form container-fluid">
+									<div class="form-group">
+										<label for="usr">Email :</label> <input type="text"
+											class="form-control" id="usr" placeholder="Entrer un email" />
+									</div>
+									<div class="form-group">
+										<label for="pwd">Mot de passe :</label> <input type="password"
+											class="form-control" id="pwd" placeholder="Mot de passe" />
+									</div>
+									<button type="button" id="btnLogin" class="btn btn-default">Connexion</button>
+								</form>
+								<div class="container-fluid">
+									<br /> <a class="small" href="inscription.html">Nouveau
+										client ? Créez un compte</a>
+								</div>
+							</div></li>
+					</ul>
 
 					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -108,10 +132,10 @@
 				<p>
 					Avenue Pierre Pflimlin<br />Sausheim, 68390<br />
 				</p>
-				
+
 				<p>
-					 <h5>Horraires :</h5>Lundi-Vendredi 9:00 - 19:00<br />Samedi 9:00 -
-					15:00<br />
+				<h5>Horraires :</h5>
+				Lundi-Vendredi 9:00 - 19:00<br />Samedi 9:00 - 15:00<br />
 				</p>
 				<p>
 					<img src="css/images/phone.png" /><abbr title="Phone">
@@ -123,7 +147,8 @@
 				</p>
 				<p>
 					<img src="css/images/post.png" /> <abbr title="Post">
-						Adresse</abbr> : <br/>Volkswagen - Audi, France Inc. <br/> Rue des Postes <br/> Departement des lettres <br/> Paris, 00000
+						Adresse</abbr> : <br />Volkswagen - Audi, France Inc. <br /> Rue des
+					Postes <br /> Departement des lettres <br /> Paris, 00000
 				</p>
 			</div>
 		</div>
@@ -190,9 +215,6 @@
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-	<!-- 	<script> -->
-	// $('a').mouseover(function() { // $(this).dropdown('toggle'); // });
-	<!-- 	</script> -->
 
 </body>
 

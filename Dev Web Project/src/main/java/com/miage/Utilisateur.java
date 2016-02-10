@@ -26,7 +26,10 @@ public class Utilisateur {
     // TODO: add validation annotation
     private String sexe;
 
+    @NotNull
     private String email;
+    
+    @NotNull
     private String pwd;
     
 
