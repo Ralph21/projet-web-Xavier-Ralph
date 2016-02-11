@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 
 <meta charset="utf-8" />
@@ -78,7 +79,7 @@
 							data-toggle="dropdown" href="#">Login <span
 								class="glyphicon glyphicon-log-in"></span></a>
 							<div class="dropdown-menu">
-								<form id="formLogin" class="form container-fluid">
+								<form id="formLogin" class="form container-fluid" th:action="@{/login}" method="post">
 									<div class="form-group">
 										<label for="usr">Email :</label> <input type="text"
 											class="form-control" id="usr" placeholder="Entrer un email"/>
@@ -87,7 +88,7 @@
 										<label for="pwd">Mot de passe :</label> <input type="password"
 											class="form-control" id="pwd" placeholder="Mot de passe"/>
 									</div>
-									<button type="button" id="btnLogin" class="btn btn-default">Connexion</button>
+									<button type="submit" id="btnLogin" class="btn btn-default">Connexion</button>
 								</form>
 								<div class="container-fluid">
 									<br/> <a class="small" href="inscription.html">Nouveau client ? Créez un compte</a>
