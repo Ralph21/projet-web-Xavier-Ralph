@@ -21,11 +21,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             	.antMatchers("/", "/index").permitAll()
                 .and()
             .formLogin()
-                .loginPage("/index");
-//                .permitAll()
-//                .and()
-//            .logout()
-//                .permitAll();
+                .loginPage("/index")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
     }
 
     @Autowired

@@ -10,13 +10,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class webController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String AccessIndex(Model model,RedirectAttributes redirectAttributes) {		
+	public String AccessIndex(Model model,RedirectAttributes redirectAttributes) {
 		return "index";
 	}
 
 
 	@RequestMapping("/")
 	public String retourIndex(Model model,RedirectAttributes redirectAttributes) {
+		redirectAttributes.addAttribute("login");
 		return "index";
 	}
 
