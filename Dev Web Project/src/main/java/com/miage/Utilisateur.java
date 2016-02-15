@@ -80,8 +80,6 @@ public class Utilisateur {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-    
-    
 
 
 }
