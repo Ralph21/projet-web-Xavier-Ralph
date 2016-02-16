@@ -61,14 +61,22 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Espace client <b class="caret"></b>
+					<!--  Seul un administrateur verra ce menu -->
+                    <li  sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">Administration<b class="caret"></b>
 					</a>
                         <ul class="dropdown-menu dropdown-menu-left">
-                            <!--  je modifie le menu déroulant car je compte faire un truc du genre inscription connection -->
-                            <li><a href="inscription.html">Inscription</a></li>
-                            <!-- et je ferais en sorte que ça apparaisse si le mec est connecté  -->
-                            <li><a href="">Déconnexion</a></li>
+                            <li><a href="gestionUsers.html">Gestion Utilisateurs</a></li>
+                            <li><a href="gestionInfos.html">Informations Admin.</a></li>
+                        </ul>
+                    </li>
+					<!--  Seul un utilisateur (client) verra ce menu -->
+                    <li  sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">Compte<b class="caret"></b>
+					</a>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <li><a href="gestionUsers.html">Mes essais</a></li>
+                            <li><a href="gestionInfos.html">Mes informations</a></li>
                         </ul>
                     </li>
                         <ul class="nav navbar-nav navbar-right" th:if="not ${#authorization.expression('isAuthenticated()')}">

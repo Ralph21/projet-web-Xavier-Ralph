@@ -15,10 +15,8 @@ CREATE TABLE user_roles (
   CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
 
 INSERT INTO users(username,password,enabled)
-VALUES ('user','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', true);
+VALUES ('administrateur','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', true);
 
 INSERT INTO user_roles (username, role)
-VALUES ('mkyong', 'ROLE_USER');
-INSERT INTO user_roles (username, role)
-VALUES ('mkyong', 'ROLE_ADMIN');
+VALUES ('administrateur', 'ROLE_ADMIN');
 
