@@ -26,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		driverManagerDataSource.setPassword("root");
 		return driverManagerDataSource;
 	}
+	
+	
 
 	@Autowired
 	DataSource dataSource;
@@ -44,12 +46,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;
 	}
-
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**","/contact.html", "/informations.html", "/inscription.html").permitAll().anyRequest().authenticated().and()
 				.formLogin().loginPage("/index").permitAll().and().logout().logoutUrl("/logout")
 				.logoutSuccessUrl("/logout").permitAll();
+		http.csrf().disable();
 
 	}
 

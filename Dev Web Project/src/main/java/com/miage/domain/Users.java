@@ -8,6 +8,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 public class Users {
 
@@ -36,6 +38,26 @@ public class Users {
 	private String email;
 
 	private String password;
+
+	
+	
+	
+	public Users() {
+		super();
+	}
+
+	public Users(String firstName, String lastName, Integer age, String sexe,
+			String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.username = email;
+		this.enabled = 1;
+		this.sexe = sexe;
+		this.email = email;
+		this.password = encodeMDP(password);
+	}
 
 	public Integer getIdUtilisateur() {
 		return idUtilisateur;
@@ -100,7 +122,7 @@ public class Users {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = encodeMDP(password);
 	}
 
 	public int getEnabled() {
@@ -110,5 +132,11 @@ public class Users {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
+	
+    private String encodeMDP(String mdp) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.encode(mdp);
+    }
+
 
 }

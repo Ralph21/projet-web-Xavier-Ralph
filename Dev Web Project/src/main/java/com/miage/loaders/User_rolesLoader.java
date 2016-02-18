@@ -21,7 +21,6 @@ public class User_rolesLoader implements ApplicationListener<ContextRefreshedEve
 		    public void onApplicationEvent(ContextRefreshedEvent event) {
 
 		    	User_roles administrateur = new User_roles();
-		    	administrateur.setIdRole(1);
 		    	administrateur.setRole("ROLE_ADMIN");
 		    	administrateur.setUtilisateur(1);
 		    	administrateur.setUsername("ralph.gaume@gmail.com");

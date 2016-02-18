@@ -3,7 +3,6 @@ package com.miage.loaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.miage.domain.Users;
@@ -29,7 +28,7 @@ public class UsersLoader implements ApplicationListener<ContextRefreshedEvent>{
 	        ralph.setEmail("ralph.gaume@gmail.com");
 	        ralph.setSexe("Homme");
 	        ralph.setUsername("ralph.gaume@gmail.com");
-	        ralph.setPassword(encodeMDP("ralph"));
+	        ralph.setPassword("ralph");
 	        ralph.setEnabled(1);
 	        usersRepository.save(ralph);
 //
@@ -45,9 +44,5 @@ public class UsersLoader implements ApplicationListener<ContextRefreshedEvent>{
 	    }
 	    
 	    
-	    private String encodeMDP(String mdp) {
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			return passwordEncoder.encode(mdp);
-	    }
 
 }
