@@ -21,9 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public DriverManagerDataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 		driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/testbase");
+		driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/basedetest");
 		driverManagerDataSource.setUsername("root");
-		// driverManagerDataSource.setPassword("password");
+		driverManagerDataSource.setPassword("root");
 		return driverManagerDataSource;
 	}
 
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**").permitAll().anyRequest().authenticated().and()
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**","/contact.html", "/informations.html", "/inscription.html").permitAll().anyRequest().authenticated().and()
 				.formLogin().loginPage("/index").permitAll().and().logout().logoutUrl("/logout")
 				.logoutSuccessUrl("/logout").permitAll();
 

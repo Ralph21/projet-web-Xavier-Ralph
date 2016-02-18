@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
 
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="PROJECT DEV WEB" />
-    <meta name="author" content="Xavier SIMON / Ralph GAUME" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="PROJECT DEV WEB" />
+<meta name="author" content="Xavier SIMON / Ralph GAUME" />
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-    <link href="css/modern-business.css" rel="stylesheet" />
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <title>VA</title>
-    <link rel="shortcut icon" type="image/x-icon" href="css/images/icon_red.png" />
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link href="css/modern-business.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<title>VA</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="css/images/icon_red.png" />
 
 
 
@@ -25,209 +29,232 @@
 
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                </button>
-                <h1 id="logo">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<h1 id="logo">
 					<a href="index.html"> <span class="min"> <span
 							class="white">Volkswagen</span><span class="red">&nbsp;&amp;&nbsp;Audi</span></span>
 					</a>
 				</h1>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
 
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Véhicules <b class="caret"></b></a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-header">Volkswagen</li>
-                            <li><a href="">Volkswagen Golf<br /> <img
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li class="dropdown-header">Volkswagen</li>
+							<li><a href="">Volkswagen Golf<br /> <img
 									src="css/images/vwx5.jpg" /></a></li>
-                            <li></li>
-                            <li><a href="">Volkswagen Tiguan<br /> <img
+							<li></li>
+							<li><a href="">Volkswagen Tiguan<br /> <img
 									src="css/images/vwx6.jpg" /></a></li>
-                            <li></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Audi</li>
-                            <li><a href="">Audi A3<br /> <img
+							<li></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Audi</li>
+							<li><a href="">Audi A3<br /> <img
 									src="css/images/audix5.jpg" /></a></li>
-                            <li></li>
-                            <li><a href="">Audi Q5<br /> <img
+							<li></li>
+							<li><a href="">Audi Q5<br /> <img
 									src="css/images/audix6.jpg" /></a></li>
-                        </ul>
-                    </li>
+						</ul></li>
 
 					<!--  Seul un administrateur verra ce menu -->
-                    <li  sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Administration<b class="caret"></b>
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b
+							class="caret"></b>
 					</a>
-                        <ul class="dropdown-menu dropdown-menu-left">
-                            <li><a href="gestionUsers.html">Gestion Utilisateurs</a></li>
-                            <li><a href="gestionInfos.html">Informations Admin.</a></li>
-                        </ul>
-                    </li>
+						<ul class="dropdown-menu dropdown-menu-left">
+							<li><a href="gestionUsers.html">Gestion Utilisateurs</a></li>
+							<li><a href="gestionInfos.html">Informations Admin.</a></li>
+						</ul></li>
 					<!--  Seul un utilisateur (client) verra ce menu -->
-                    <li  sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Compte<b class="caret"></b>
+					<li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Compte<b
+							class="caret"></b>
 					</a>
-                        <ul class="dropdown-menu dropdown-menu-left">
-                            <li><a href="gestionUsers.html">Mes essais</a></li>
-                            <li><a href="gestionInfos.html">Mes informations</a></li>
-                        </ul>
-                    </li>
-                        <ul class="nav navbar-nav navbar-right" th:if="not ${#authorization.expression('isAuthenticated()')}">
-                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Login 
-					<span class="glyphicon glyphicon-log-in"></span></a>
-                                <div class="dropdown-menu">
-                                    <!-- 								<form id="formLogin" class="form container-fluid" -->
-                                    <!-- 									th:action="@{/index}" method="post"> -->
-                                    <!-- 									<div> -->
-                                    <!-- 										<label for="usr"> E-mail:</label> <input class="form-control" -->
-                                    <!-- 											id="usr" placeholder="Entrer un email" type="text" -->
-                                    <!-- 											name="mail" /> <label for="pwd"> Password: </label> <input -->
-                                    <!-- 											class="form-control" id="pwd" placeholder="Mot de passe" -->
-                                    <!-- 											type="password" name="password" /> -->
-                                    <!-- 									</div> -->
-                                    <!-- 									<input type="submit" value="Sign In" id="btnLogin" -->
-                                    <!-- 										class="btn btn-default" /> -->
-                                    <!-- 								</form> -->
-                                    <form th:action="@{/index}" id="formLogin" class="form container-fluid" method="post">
-                                        <div>
-                                            <label> User Name :
-                                                <input type="text" name="username" />
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label> Password:
-                                                <input type="password" name="password" />
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <input type="submit" value="Sign In" />
-                                        </div>
-                                    </form>
-                                    <div class="container-fluid">
-                                        <br /> <a class="small" href="inscription.html">Nouveau
-									client ? Créez un compte</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-						<ul class="nav navbar-nav navbar-right" th:if="${#authorization.expression('isAuthenticated()')}">
-                            <li><a th:href="@{/logout}">Déconnexion</a></li>
-                        </ul>
-                    <li><a href="informations.html">Informations</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+						<ul class="dropdown-menu dropdown-menu-left">
+							<li><a href="gestionUsers.html">Mes essais</a></li>
+							<li><a href="gestionInfos.html">Mes informations</a></li>
+						</ul></li>
+					<ul class="nav navbar-nav navbar-right"
+						th:if="not ${#authorization.expression('isAuthenticated()')}">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#"> Login <span
+								class="glyphicon glyphicon-log-in"></span></a>
+							<div class="dropdown-menu" style="width: 230px;">
+								<!-- 								<form id="formLogin" class="form container-fluid" -->
+								<!-- 									th:action="@{/index}" method="post"> -->
+								<!-- 									<div> -->
+								<!-- 										<label for="usr"> E-mail:</label> <input class="form-control" -->
+								<!-- 											id="usr" placeholder="Entrer un email" type="text" -->
+								<!-- 											name="mail" /> <label for="pwd"> Password: </label> <input -->
+								<!-- 											class="form-control" id="pwd" placeholder="Mot de passe" -->
+								<!-- 											type="password" name="password" /> -->
+								<!-- 									</div> -->
+								<!-- 									<input type="submit" value="Sign In" id="btnLogin" -->
+								<!-- 										class="btn btn-default" /> -->
+								<!-- 								</form> -->
+								<form id="formLogin" class="form container-fluid"
+									th:action="@{/index}" method="post">
+									<div class="form-group">
+										<label for="usr"> User Name : </label> <input type="text"
+											class="form-control" id="usr"
+											placeholder="Entrer un user name" name="username" />
 
-    <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel slide">
-        <!--         Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-        </ol>
+									</div>
+									<div class="form-group">
+										<label for="pwd"> Password :</label> <input type="password"
+											class="form-control" id="pwd" placeholder="Mot de passe"
+											name="password" />
 
-        <!--         Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <div class="fill" style="background-image: url('css/images/vwx1.jpeg');"></div>
-                <!-- <div class="carousel-caption">
+									</div>
+									<div>
+										<!-- <input type="submit" value="Sign In" /> -->
+										<button type="submit" id="btnLogin" class="btn btn-default">Connexion</button>
+									</div>
+								</form>
+								<div class="container-fluid">
+									<br /> <a class="small" href="inscription.html">Nouveau
+										client ? Créez un compte</a>
+								</div>
+							</div></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right"
+						th:if="${#authorization.expression('isAuthenticated()')}">
+						<li><a th:href="@{/logout}">Déconnexion</a></li>
+					</ul>
+					<li><a href="informations.html">Informations</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+	<!-- Header Carousel -->
+	<header id="myCarousel" class="carousel slide">
+		<!--         Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>
+
+		<!--         Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<div class="fill"
+					style="background-image: url('css/images/vwx1.jpeg');"></div>
+				<!-- <div class="carousel-caption">
                     <h2>Caption 1</h2>
                 </div> -->
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image: url('css/images/audix1.jpg');"></div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image: url('css/images/vwx4.jpg');"></div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image: url('css/images/audix3.jpeg');"></div>
-            </div>
-        </div>
+			</div>
+			<div class="item">
+				<div class="fill"
+					style="background-image: url('css/images/audix1.jpg');"></div>
+			</div>
+			<div class="item">
+				<div class="fill"
+					style="background-image: url('css/images/vwx4.jpg');"></div>
+			</div>
+			<div class="item">
+				<div class="fill"
+					style="background-image: url('css/images/audix3.jpeg');"></div>
+			</div>
+		</div>
 
 
-        <!--         Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next"> <span class="icon-next"></span>
-        </a>
-    </header>
+		<!--         Controls -->
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			<span class="icon-prev"></span>
+		</a> <a class="right carousel-control" href="#myCarousel"
+			data-slide="next"> <span class="icon-next"></span>
+		</a>
+	</header>
 
-    <!-- Page Content -->
-    <div class="container">
+	<!-- Page Content -->
+	<div class="container">
 
 
-        <!--  <ul th:each="c : ${car_list}">
+		<!--  <ul th:each="c : ${car_list}">
 		<li th:text="${c.getId()}"></li>
 		<li th:text="${c.getMarque()}"></li>
 		<li th:text="${c.getModele()}"></li>
 	</ul> -->
 
-        <!--         <div th:if="${param.error}"> -->
-        <!--             Invalid username and password. -->
-        <!--         </div> -->
-        <!--         <div th:if="${param.logout}"> -->
-        <!--             You have been logged out. -->
-        <!--         </div> -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Bienvenue</h1>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>L'application</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>L'objectif de cette application web est de vous permettre de sélectionner un de nos modèles de véhicules et de pouvoir ensuite le personnaliser selon vos désirs. Vous pourrez également faire une réservation qui vous permettra de venir essayer le modèle correspondant au votre choix dans un de nos garages constructeurs.
-                        </p>
-                        <!-- <a href="#" class="btn btn-default">Learn More</a> -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Qui sommes nous?</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Le groupe Volkswagen qui possège également le groupe Audi a décidé, sous l'initiative de deux jeunes développeurs web, de créer une application web permettant aux clients de pouvoir commander des véhicules qu'ils peuvent au préalable personnaliser mais également de faire des réservations pour faire un essaie au garage.
-                        </p>
-                        <a href="informations.html" class="btn btn-default">Plus
+		<!--         <div th:if="${param.error}"> -->
+		<!--             Invalid username and password. -->
+		<!--         </div> -->
+		<!--         <div th:if="${param.logout}"> -->
+		<!--             You have been logged out. -->
+		<!--         </div> -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Bienvenue</h1>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>L'application</h4>
+					</div>
+					<div class="panel-body">
+						<p>L'objectif de cette application web est de vous permettre
+							de sélectionner un de nos modèles de véhicules et de pouvoir
+							ensuite le personnaliser selon vos désirs. Vous pourrez également
+							faire une réservation qui vous permettra de venir essayer le
+							modèle correspondant au votre choix dans un de nos garages
+							constructeurs.</p>
+						<!-- <a href="#" class="btn btn-default">Learn More</a> -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Qui sommes nous?</h4>
+					</div>
+					<div class="panel-body">
+						<p>Le groupe Volkswagen qui possège également le groupe Audi a
+							décidé, sous l'initiative de deux jeunes développeurs web, de
+							créer une application web permettant aux clients de pouvoir
+							commander des véhicules qu'ils peuvent au préalable personnaliser
+							mais également de faire des réservations pour faire un essaie au
+							garage.</p>
+						<a href="informations.html" class="btn btn-default">Plus
 							d'infos</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Aide?</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>N'hésitez pas à nous contacter en cas de besoin. Nos équipes sont à votre disposition pour répondre à vos questions.</p>
-                        <a href="contact.html" class="btn btn-default">Contactez nous</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Aide?</h4>
+					</div>
+					<div class="panel-body">
+						<p>N'hésitez pas à nous contacter en cas de besoin. Nos
+							équipes sont à votre disposition pour répondre à vos questions.</p>
+						<a href="contact.html" class="btn btn-default">Contactez nous</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
 
-        <!-- Portfolio Section -->
-        <!-- <div class="row">
+		<!-- Portfolio Section -->
+		<!-- <div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">Portfolio Heading</h2>
 			</div>
@@ -268,58 +295,64 @@
 				</a>
 			</div>
 		</div> -->
-        <!-- /.row -->
+		<!-- /.row -->
 
-        <!-- Features Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Audi RS3 Sportback</h2>
-            </div>
-            <div class="col-md-6">
-                <p>La nouvelle audi RS3, digne héritière de la Audi R8 :</p>
-                <ul>
-                    <li><strong>Audi RS3</strong></li>
-                    <li>Vitesse maximale : 250 km/h</li>
-                    <li>0 à 100 km/h en 4,3s</li>
-                    <li>Poids : 1520 kg</li>
-                    <li>Puissance maximale : 367 ch</li>
-                </ul>
-                <p>Afin de fêter la naissance de la RS3 Sportback, Audi vient de réaliser un clip mettant en scène l'accouchement de son coupé R8. Une séquence exceptionnelle et particulièrement bien filmée, qui nous rappelle avec brio que sa nouvelle petite sportive hérite des gênes haute performance de son aînée. L'Audi RS3 Sportback est ainsi née le 16 avril 2015, pèse 1 520 kg et développe 362 ch !</p>
-            </div>
+		<!-- Features Section -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="page-header">Audi RS3 Sportback</h2>
+			</div>
+			<div class="col-md-6">
+				<p>La nouvelle audi RS3, digne héritière de la Audi R8 :</p>
+				<ul>
+					<li><strong>Audi RS3</strong></li>
+					<li>Vitesse maximale : 250 km/h</li>
+					<li>0 à 100 km/h en 4,3s</li>
+					<li>Poids : 1520 kg</li>
+					<li>Puissance maximale : 367 ch</li>
+				</ul>
+				<p>Afin de fêter la naissance de la RS3 Sportback, Audi vient de
+					réaliser un clip mettant en scène l'accouchement de son coupé R8.
+					Une séquence exceptionnelle et particulièrement bien filmée, qui
+					nous rappelle avec brio que sa nouvelle petite sportive hérite des
+					gênes haute performance de son aînée. L'Audi RS3 Sportback est
+					ainsi née le 16 avril 2015, pèse 1 520 kg et développe 362 ch !</p>
+			</div>
 
-            <div class="col-md-6">
-                <iframe width="600" height="450" src="http://www.youtube.com/embed/MDNmVzggrk0"> </iframe>
-            </div>
-        </div>
-        <!-- /.row -->
+			<div class="col-md-6">
+				<iframe width="600" height="450"
+					src="http://www.youtube.com/embed/MDNmVzggrk0"> </iframe>
+			</div>
+		</div>
+		<!-- /.row -->
 
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer">
-                <p class="lf">Copyright &copy; 2016 - All Rights Reserved</p>
-                <p class="rf">Design by Ralph GAUME / Xavier SIMON</p>
-                <div style="clear: both;"></div>
-            </div>
-        </footer>
+		<!-- Footer -->
+		<footer>
+			<div class="footer">
+				<p class="lf">Copyright &copy; 2016 - All Rights Reserved</p>
+				<p class="rf">Design by Ralph GAUME / Xavier SIMON</p>
+				<div style="clear: both;"></div>
+			</div>
+		</footer>
 
-    </div>
-    <div th:if="${param.error}">Invalid username and password.</div>
-    <div th:if="${param.logout}">You have been logged out.</div>
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+	</div>
+	<div th:if="${param.error}">Invalid username and password.</div>
+	<div th:if="${param.logout}">You have been logged out.</div>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 
-    <!-- Script to Activate the Carousel -->
-    <script>
-        $('.carousel').carousel({
-            interval: 5000
-                //changes the speed
-        })
-    </script>
-    <!-- 	<script> 
+	<!-- Script to Activate the Carousel -->
+	<script>
+		$('.carousel').carousel({
+			interval : 5000
+		//changes the speed
+		})
+	</script>
+	<!-- 	<script> 
 	// $('a').mouseover(function() { // $(this).dropdown('toggle'); // });
 	</script> -->
 

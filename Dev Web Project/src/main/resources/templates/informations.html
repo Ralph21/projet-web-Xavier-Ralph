@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -24,7 +25,6 @@
 
 <body>
 
-	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -65,30 +65,60 @@
 									src="css/images/audix6.jpg" /></a></li>
 						</ul></li>
 
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Espace client <b class="caret"></b></a>
+					<!--  Seul un administrateur verra ce menu -->
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b
+							class="caret"></b>
+					</a>
 						<ul class="dropdown-menu dropdown-menu-left">
-							<!--  je modifie le menu déroulant car je compte faire un truc du genre inscription connection -->
-							<li><a href="inscription.html">Inscription</a></li>
-							<!-- et je ferais en sorte que ça apparaisse si le mec est connecté  -->
-							<li><a href="">Déconnexion</a></li>
+							<li><a href="gestionUsers.html">Gestion Utilisateurs</a></li>
+							<li><a href="gestionInfos.html">Informations Admin.</a></li>
 						</ul></li>
-
-					<ul class="nav navbar-nav navbar-right">
+					<!--  Seul un utilisateur (client) verra ce menu -->
+					<li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Compte<b
+							class="caret"></b>
+					</a>
+						<ul class="dropdown-menu dropdown-menu-left">
+							<li><a href="gestionUsers.html">Mes essais</a></li>
+							<li><a href="gestionInfos.html">Mes informations</a></li>
+						</ul></li>
+					<ul class="nav navbar-nav navbar-right"
+						th:if="not ${#authorization.expression('isAuthenticated()')}">
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">Login <span
+							data-toggle="dropdown" href="#"> Login <span
 								class="glyphicon glyphicon-log-in"></span></a>
-							<div class="dropdown-menu">
-								<form id="formLogin" class="form container-fluid">
+							<div class="dropdown-menu" style="width: 230px;">
+								<!-- 								<form id="formLogin" class="form container-fluid" -->
+								<!-- 									th:action="@{/index}" method="post"> -->
+								<!-- 									<div> -->
+								<!-- 										<label for="usr"> E-mail:</label> <input class="form-control" -->
+								<!-- 											id="usr" placeholder="Entrer un email" type="text" -->
+								<!-- 											name="mail" /> <label for="pwd"> Password: </label> <input -->
+								<!-- 											class="form-control" id="pwd" placeholder="Mot de passe" -->
+								<!-- 											type="password" name="password" /> -->
+								<!-- 									</div> -->
+								<!-- 									<input type="submit" value="Sign In" id="btnLogin" -->
+								<!-- 										class="btn btn-default" /> -->
+								<!-- 								</form> -->
+								<form id="formLogin" class="form container-fluid"
+									th:action="@{/index}" method="post">
 									<div class="form-group">
-										<label for="usr">Email :</label> <input type="text"
-											class="form-control" id="usr" placeholder="Entrer un email" />
+										<label for="usr"> User Name : </label> <input type="text"
+											class="form-control" id="usr"
+											placeholder="Entrer un user name" name="username" />
+
 									</div>
 									<div class="form-group">
-										<label for="pwd">Mot de passe :</label> <input type="password"
-											class="form-control" id="pwd" placeholder="Mot de passe" />
+										<label for="pwd"> Password :</label> <input type="password"
+											class="form-control" id="pwd" placeholder="Mot de passe"
+											name="password" />
+
 									</div>
-									<button type="button" id="btnLogin" class="btn btn-default">Connexion</button>
+									<div>
+										<!-- <input type="submit" value="Sign In" /> -->
+										<button type="submit" id="btnLogin" class="btn btn-default">Connexion</button>
+									</div>
 								</form>
 								<div class="container-fluid">
 									<br /> <a class="small" href="inscription.html">Nouveau
@@ -96,7 +126,10 @@
 								</div>
 							</div></li>
 					</ul>
-
+					<ul class="nav navbar-nav navbar-right"
+						th:if="${#authorization.expression('isAuthenticated()')}">
+						<li><a th:href="@{/logout}">Déconnexion</a></li>
+					</ul>
 					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
 				</ul>
