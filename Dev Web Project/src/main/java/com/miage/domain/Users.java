@@ -9,34 +9,40 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Utilisateur {
+public class Users {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer idUtilisateur;
 
-	// Le Prénom doit être relativement long
-	// mais pas trop court non plus.
 	@Size(min = 2, max = 30)
 	private String firstName;
 
-	// Idem pour le Nom.
 	@Size(min = 2, max = 30)
 	private String lastName;
 
-	// L'utilisateur doit spécifier son âge
 	@NotNull
 	@Min(18)
 	private Integer age;
+	
+	
+	private String username;
+
+	private int enabled;
 
 	// TODO: add validation annotation
 	private String sexe;
 
-	public Integer getId() {
-		return id;
+	private String email;
+
+	private String password;
+
+	public Integer getIdUtilisateur() {
+		return idUtilisateur;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdUtilisateur(Integer idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
 	}
 
 	public String getFirstName() {
@@ -45,6 +51,16 @@ public class Utilisateur {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getLastName() {
@@ -69,6 +85,30 @@ public class Utilisateur {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 
 }

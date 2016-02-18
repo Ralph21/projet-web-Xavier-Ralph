@@ -1,22 +1,19 @@
 
-CREATE  TABLE users (
-  username VARCHAR(45) NOT NULL ,
-  password VARCHAR(60) NOT NULL ,
-  enabled TINYINT NOT NULL DEFAULT 1 ,
-  PRIMARY KEY (username));
+CREATE  TABLE utilisateur (
+    idUtilisateur BIGINT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    age TINYINT UNSIGNED NOT NULL,
+    sexe VARCHAR(5) NOT NULL,
+    email VARCHAR(40) NOT NULL,
+    password VARCHAR(60) NOT NULL ,
+    enabled TINYINT NOT NULL DEFAULT 1 ,
+PRIMARY KEY (idUtilisateur));
 
-CREATE TABLE user_roles (
-  user_role_id int(11) NOT NULL AUTO_INCREMENT,
-  username varchar(45) NOT NULL,
-  role varchar(45) NOT NULL,
-  PRIMARY KEY (user_role_id),
-  UNIQUE KEY uni_username_role (role,username),
-  KEY fk_username_idx (username),
-  CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
-
-INSERT INTO users(username,password,enabled)
-VALUES ('administrateur','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', true);
-
-INSERT INTO user_roles (username, role)
-VALUES ('administrateur', 'ROLE_ADMIN');
-
+CREATE TABLE utilisateur_role (
+    idRole int(11) NOT NULL,
+    descriptif varchar(45) NOT NULL,
+    idUtilisateur BIGINT NOT NULL,
+    PRIMARY KEY (idRole),
+    KEY fk_idUtilisateur (idUtilisateur),
+    CONSTRAINT fk_idUtilisateur FOREIGN KEY (idUtilisateur) REFERENCES utilisateur (idUtilisateur));
