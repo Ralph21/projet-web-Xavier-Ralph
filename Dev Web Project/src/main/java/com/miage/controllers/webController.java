@@ -33,6 +33,11 @@ public class webController {
 		return "contact";
 	}
 	
+	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
+	public String AccessInscription() {
+		return "inscription.html";
+	}
+	
 	@RequestMapping(value = "/informations")
 	public String AccessInformations() {
 		return "informations";
