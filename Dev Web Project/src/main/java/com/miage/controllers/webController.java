@@ -46,6 +46,11 @@ public class webController {
 		return "contact";
 	}
 	
+	@RequestMapping(value = "/voiture")
+	public String AccessVoiture() {
+		return "voiture";
+	}
+	
 //	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 //	public String AccessInscription() {
 //		return "inscription.html";
@@ -58,6 +63,8 @@ public class webController {
 		model.addAttribute("user", new Users());
 		return "inscription";
 	}
+	
+	
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
 	public String saveNewUser(Users user, RedirectAttributes redirectAttributes) 

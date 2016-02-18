@@ -16,7 +16,6 @@
 <link href="css/modern-business.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -27,6 +26,8 @@
 </head>
 
 <body>
+
+
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -53,18 +54,18 @@
 						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-header">Volkswagen</li>
-							<li><a href="">Volkswagen Golf<br /> <img
+							<li><a href="voiture.html">Volkswagen Golf<br /> <img
 									src="css/images/vwx5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Volkswagen Tiguan<br /> <img
+							<li><a href="voiture.html">Volkswagen Tiguan<br /> <img
 									src="css/images/vwx6.jpg" /></a></li>
 							<li></li>
 							<li class="divider"></li>
 							<li class="dropdown-header">Audi</li>
-							<li><a href="">Audi A3<br /> <img
+							<li><a href="voiture.html">Audi A3<br /> <img
 									src="css/images/audix5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Audi Q5<br /> <img
+							<li><a href="voiture.html">Audi Q5<br /> <img
 									src="css/images/audix6.jpg" /></a></li>
 						</ul></li>
 
@@ -142,89 +143,192 @@
 		<!-- /.container -->
 	</nav>
 
+	<!-- Header Carousel -->
+	<header id="myCarousel" class="carousel slide">
+		<!--         Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>
+
+		<!--         Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<div class="fill"
+					style="background-image: url('css/images/vwx1.jpeg');"></div>
+				<!-- <div class="carousel-caption">
+                    <h2>Caption 1</h2>
+                </div> -->
+			</div>
+			<div class="item">
+				<div class="fill"
+					style="background-image: url('css/images/audix1.jpg');"></div>
+			</div>
+			<div class="item">
+				<div class="fill"
+					style="background-image: url('css/images/vwx4.jpg');"></div>
+			</div>
+			<div class="item">
+				<div class="fill"
+					style="background-image: url('css/images/audix3.jpeg');"></div>
+			</div>
+		</div>
+
+
+		<!--         Controls -->
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			<span class="icon-prev"></span>
+		</a> <a class="right carousel-control" href="#myCarousel"
+			data-slide="next"> <span class="icon-next"></span>
+		</a>
+	</header>
+
 
 	<!-- Page Content -->
 	<div class="container">
 
+
+
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">
-					Nouveau client? <small>Créez un compte</small>
-				</h2>
+				<h1 class="page-header">Configuration</h1>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Type de carburant</h4>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="carburant">Sélection</label> <select
+								class="form-control" id="sel1">
+								<option selected="selected">Tous</option>
+								<option>Diesel</option>
+								<option>Essence</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Transmission</h4>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="transmission">Sélection</label> <select
+								class="form-control" id="sel1">
+								<option selected="selected">Tous</option>
+								<option>Traction</option>
+								<option>Propulsion</option>
+								<option>Quattro</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Boîte de vitesses</h4>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="boite">Sélection</label> <select class="form-control"
+								id="sel1">
+								<option selected="selected">Tous</option>
+								<option>S Tronic</option>
+								<option>Automatique</option>
+								<option>5 Vitesses</option>
+								<option>6 Vitesses</option>
+							</select>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<form class="form-horizontal" th:object="${user}" method="POST">
 
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="sexe">Civilité :</label>
-				<div class="col-sm-4">
-					<label for="male">Homme&nbsp;&nbsp;</label><input type="radio"
-						value="homme" th:field="*{sexe}" /> <br /> <label for="female">Femme&nbsp;&nbsp;</label><input
-						type="radio" value="femme" th:field="*{sexe}" />
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Puissance</h4>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="carburant">Sélection</label> <select
+								class="form-control" id="sel1">
+								<option selected="selected">Tous</option>
+								<option>150ch</option>
+								<option>200ch</option>
+								<option>...</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}">Erreur
-					civilité</div>
 			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="firstname">Prénom
-					:</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" th:field="*{firstName}"
-						placeholder="Entrez prénom" />
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Taille des jantes</h4>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="transmission">Sélection</label> <select
+								class="form-control" id="sel1">
+								<option selected="selected">Tous</option>
+								<option>16"</option>
+								<option>17"</option>
+								<option>18"</option>
+								<option>19"</option>
+								<option>20"</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div th:if="${#fields.hasErrors('firstName')}"
-					th:errors="*{firstName}">Erreur prénom</div>
 			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="lastname">Nom :</label>
-				<div class="col-sm-4">
-					<input type="text" th:field="*{lastName}" class="form-control"
-						placeholder="Entrez nom" />
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>Couleurs</h4>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="boite">Sélection</label> <select class="form-control"
+								id="sel1">
+								<option selected="selected">Tous</option>
+								<option>Gris argenté</option>
+								<option>Bleu métallisé</option>
+								<option>Noir</option>
+								<option>Blanc</option>
+								<option>Brun</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div th:if="${#fields.hasErrors('lastName')}"
-					th:errors="*{lastName}">Erreur nom</div>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Features Section -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="page-header">Options</h2>
+			</div>
+			<div class="col-md-6">
+				
 			</div>
 
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="age">Age :</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" th:field="*{age}"
-						placeholder="Entrez age" />
-				</div>
-				<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Erreur
-					âge</div>
+			<div class="col-md-6">
+				
 			</div>
+		</div>
+		<!-- /.row -->
 
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">E-mail :</label>
-				<div class="col-sm-4">
-					<input type="text" th:field="*{email}" class="form-control"
-						placeholder="Entrez email" />
-				</div>
-				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erreur
-					email</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="password">Mot de
-					passe :</label>
-				<div class="col-sm-4">
-					<input type="password" th:field="*{password}" class="form-control"
-						placeholder="Entrez mot de passe" />
-				</div>
-				<div th:if="${#fields.hasErrors('*{password}')}"
-					th:errors="*{password}">Erreur mot de passe</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-3"></div>
-				<button type="submit" value="Sign In" class="btn btn-default">Valider</button>
-			</div>
-
-		</form>
 
 		<!-- Footer -->
 		<footer>
@@ -236,13 +340,21 @@
 		</footer>
 
 	</div>
-
+	<div th:if="${param.error}">Invalid username and password.</div>
+	<div th:if="${param.logout}">You have been logged out.</div>
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
 
+	<!-- Script to Activate the Carousel -->
+	<script>
+		$('.carousel').carousel({
+			interval : 5000
+		//changes the speed
+		})
+	</script>
 	<!-- 	<script> 
 	// $('a').mouseover(function() { // $(this).dropdown('toggle'); // });
 	</script> -->
