@@ -53,14 +53,14 @@ public class webController {
 	
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-	public String createBookmar(Model model,RedirectAttributes redirectAttributes) 
+	public String createUser(Model model,RedirectAttributes redirectAttributes) 
 	{
 		model.addAttribute("user", new Users());
 		return "inscription";
 	}
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String saveNewBookmark(Users user, RedirectAttributes redirectAttributes) 
+	public String saveNewUser(Users user, RedirectAttributes redirectAttributes) 
 	{
 		user.setEnabled(1);
 		User_roles role = new User_roles();
@@ -71,6 +71,7 @@ public class webController {
 		user_rolesRepository.save(role);
 		return "redirect:/index";
 	}
+	
 	
 	
 	@RequestMapping(value = "/informations")

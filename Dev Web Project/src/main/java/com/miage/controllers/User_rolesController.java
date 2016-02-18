@@ -1,22 +1,15 @@
 package com.miage.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import com.miage.services.User_rolesService;
 
 @Controller
 public class User_rolesController extends WebMvcConfigurerAdapter {
 
-	private User_rolesService user_rolesService;
+//	private User_rolesService user_rolesService;
 
+	//TODO : mettre les controllers relatifs à un role ici.
+	
 //	@Autowired
 //	@Qualifier("User_roles")
 //	public void setUtilisateurService(User_rolesService user_rolesService) {
