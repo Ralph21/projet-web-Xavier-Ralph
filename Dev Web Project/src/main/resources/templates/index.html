@@ -119,6 +119,9 @@
 											name="password" />
 
 									</div>
+									    <input type="hidden"                        
+								        name="${_csrf.parameterName}"
+								        value="${_csrf.token}"/>
 									<div>
 										<!-- <input type="submit" value="Sign In" /> -->
 										<button type="submit" id="btnLogin" class="btn btn-default">Connexion</button>
