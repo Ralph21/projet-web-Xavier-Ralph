@@ -3,7 +3,7 @@ package com.miage.services;
 import com.miage.domain.Users;
 
 public interface UsersService {
-    Iterable<Users> listAllUtilisateurs();
+    Iterable<Users> listAllUsers();
 
     Users getUtilisateurById(Integer id);
 

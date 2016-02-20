@@ -17,9 +17,12 @@ import com.miage.domain.User_roles;
 import com.miage.domain.Users;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
+import com.miage.services.UsersService;
 
 @Controller
 public class webController {
+
+	private UsersService usersService;
 
 	
 	@Autowired
@@ -56,7 +59,11 @@ public class webController {
 //		return "inscription.html";
 //	}
 	
-
+    @RequestMapping(value = "/gestionUsers", method = RequestMethod.GET)
+    public String list(Model model){
+        model.addAttribute("users", usersService.listAllUsers());
+        return "gestionUsers";
+    }
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String createUser(Model model,RedirectAttributes redirectAttributes) 
 	{
