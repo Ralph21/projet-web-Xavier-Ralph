@@ -17,13 +17,10 @@ import com.miage.domain.User_roles;
 import com.miage.domain.Users;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
-import com.miage.services.UsersService;
+
 
 @Controller
 public class webController {
-
-	private UsersService usersService;
-
 	
 	@Autowired
 	UsersRepository usersRepository;
@@ -52,23 +49,6 @@ public class webController {
 	@RequestMapping(value = "/voiture")
 	public String AccessVoiture() {
 		return "voiture";
-	}
-	
-//	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-//	public String AccessInscription() {
-//		return "inscription.html";
-//	}
-	
-    @RequestMapping(value = "/gestionUsers", method = RequestMethod.GET)
-    public String list(Model model){
-        model.addAttribute("users", usersService.listAllUsers());
-        return "gestionUsers";
-    }
-	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-	public String createUser(Model model,RedirectAttributes redirectAttributes) 
-	{
-		model.addAttribute("user", new Users());
-		return "inscription";
 	}
 	
 	

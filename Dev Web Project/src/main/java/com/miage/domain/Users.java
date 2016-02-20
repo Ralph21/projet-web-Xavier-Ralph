@@ -26,8 +26,7 @@ public class Users {
 	@NotNull
 	@Min(18)
 	private Integer age;
-	
-	
+
 	private String username;
 
 	private int enabled;
@@ -39,15 +38,11 @@ public class Users {
 
 	private String password;
 
-	
-	
-	
 	public Users() {
 		super();
 	}
 
-	public Users(String firstName, String lastName, Integer age, String sexe,
-			String email, String password) {
+	public Users(String firstName, String lastName, Integer age, String sexe, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -74,8 +69,6 @@ public class Users {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
-	
 
 	public String getUsername() {
 		return username;
@@ -132,11 +125,10 @@ public class Users {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
-	
-    private String encodeMDP(String mdp) {
+
+	private String encodeMDP(String mdp) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return passwordEncoder.encode(mdp);
-    }
-
+	}
 
 }

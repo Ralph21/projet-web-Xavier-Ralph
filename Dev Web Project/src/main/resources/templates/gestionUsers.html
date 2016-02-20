@@ -2,8 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en"></head>
 <body>
-<tr th:each="user : ${users}">
-    <td th:text="${user.lastName}">Name</td>
-</tr>
+	<table>
+		<tr>
+			<td>Id Utilisateur</td>
+			<td>Prénom</td>
+			<td>Nom</td>
+			<td>Age</td>
+			<td>Sexe</td>
+			<td>Email</td>
+			<td>Activé</td>
+			<td>Modifier</td>
+			<td>Supprimer</td>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td th:text="${user.idUtilisateur}">Id</td>
+			<td th:text="${user.firstName}">First Name</td>
+			<td th:text="${user.age}">Age</td>
+			<td th:text="${user.sexe}">Sexe</td>
+			<td th:text="${user.lastName}">Last Name</td>
+			<td th:text="${user.email}">Email</td>
+			<td th:switch="${user.enabled}">
+				<span th:case="0">Non</span>
+				<span th:case="*">Oui</span>
+			</td>
+			<td><a th:href="@{'/remove/'+${user.idUtilisateur}}"><button
+						type="button">Supprimer</button></a></td>
+			<td><a th:href="@{'/modif?id='+${user.idUtilisateur}}"><button
+						type="button" class="btn btn-primary btn-lg active">Modifier</button></a></td>
+		</tr>
+	</table>
 </body>
 </html>
+
+<!-- <!DOCTYPE html> -->
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<!-- <head></head> -->
+<!-- <body> -->
+<!-- 	<tr> -->
+<!-- 		<td>Id Utilisateur</td> -->
+<!-- 		<td>Prénom</td> -->
+<!-- 		<td>Nom</td> -->
+<!-- 		<td>Email</td> -->
+<!-- 		<td>Activé</td> -->
+<!-- 	</tr> -->
+<!-- 	<tr th:each="user : ${users}"> -->
+<!-- 		<td th:text="${user.idUtilisateur}">Id</td> -->
+<!-- 		<td th:text="${user.firstName}">First Name</td> -->
+<!-- 		<td th:text="${user.lastName}">Last Name</td> -->
+<!-- 		<td th:text="${user.userame}">Email</td> -->
+<!-- 		<td th:switch="${user.enabled}"> -->
+<!-- 			<p th:case="0">Non</p> -->
+<!-- 			<p th:case="*">Oui</p> -->
+<!-- 		</td> -->
+<!-- 	</tr> -->
+<!-- </body> -->
