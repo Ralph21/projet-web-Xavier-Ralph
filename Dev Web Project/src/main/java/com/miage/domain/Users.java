@@ -117,6 +117,10 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = encodeMDP(password);
 	}
+	
+	public void setPasswordEncode(String password) {
+		this.password = password;
+	}
 
 	public int getEnabled() {
 		return enabled;

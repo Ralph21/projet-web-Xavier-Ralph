@@ -8,8 +8,9 @@ import com.miage.repositories.UsersRepository;
 
 @Service
 public class UsersServiceImpl implements UsersService {
+	
 	private UsersRepository usersRepository;
-
+	
 	@Autowired
 	public void setUtilisateurRepository(UsersRepository usersRepository) {
 		this.usersRepository = usersRepository;
@@ -23,6 +24,15 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public Users getUtilisateurById(Integer id) {
 		return usersRepository.findOne(id);
+	}
+	
+	
+	
+	@Override
+	public Users getUserByUserName(String userName) {
+//		Users users= this.jdbcTemplate.queryForObject("Select * from users where username = ?", new Object[] {userName}, new UsersMapper());
+//		return users;
+		return null;
 	}
 
 	@Override

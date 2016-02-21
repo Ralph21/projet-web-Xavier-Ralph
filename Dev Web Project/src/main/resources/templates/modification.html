@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Modify product</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form class="form-horizontal"  th:object="${user}" method="POST">
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="sexe">Civilité :</label>
+				<div class="col-sm-4">
+					<label for="male">Homme&nbsp;&nbsp;</label><input type="radio"
+						value="homme" th:field="*{sexe}" th:value="${user.sexe}"/> <br /> <label for="female">Femme&nbsp;&nbsp;</label><input
+						type="radio" value="femme" th:field="*{sexe}" />
+				</div>
+				<div th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}">Erreur
+					civilité</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="firstname">Prénom :</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" th:field="*{firstName}" th:value="${user.firstName}"
+						placeholder="Entrez prénom" />
+				</div>
+				<div th:if="${#fields.hasErrors('firstName')}"
+					th:errors="*{firstName}">Erreur prénom</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="lastname">Nom :</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{lastName}" class="form-control"  th:value="${user.lastName}"
+						placeholder="Entrez nom" />
+				</div>
+				<div th:if="${#fields.hasErrors('lastName')}"
+					th:errors="*{lastName}">Erreur nom</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="age">Age :</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" th:field="*{age}" th:value="${user.age}"
+						placeholder="Entrez age" />
+				</div>
+				<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Erreur
+					âge</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">E-mail :</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{email}" class="form-control" th:value="${user.email}"
+						placeholder="Entrez email" />
+				</div>
+				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erreur
+					email</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="password">Mot de passe
+					:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{password}" class="form-control" 
+						placeholder="Entrez mot de passe" />
+				</div>
+				<div th:if="${#fields.hasErrors('*{password}')}" th:errors="*{password}">Erreur
+					mot de passe</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-3"></div>
+				<button type="submit" value="Sign In" class="btn btn-default">Valider</button>
+			</div>
+
+		</form>
+
+
+</body>
+</html>

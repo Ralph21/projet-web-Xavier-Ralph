@@ -7,5 +7,7 @@ public interface UsersService {
 
     Users getUtilisateurById(Integer id);
 
+    Users getUserByUserName(String userName);
+    
     Users saveUtilisateur(Users users);
 }

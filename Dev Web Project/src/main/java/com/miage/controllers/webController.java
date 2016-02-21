@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.miage.domain.User_roles;
-import com.miage.domain.Users;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
 
@@ -50,23 +48,6 @@ public class webController {
 	public String AccessVoiture() {
 		return "voiture";
 	}
-	
-	
-
-	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String saveNewUser(Users user, RedirectAttributes redirectAttributes) 
-	{
-		user.setEnabled(1);
-		User_roles role = new User_roles();
-		role.setRole("ROLE_USER");
-		role.setUsername(user.getEmail());
-		user.setUsername(user.getEmail());
-		usersRepository.save(user);
-		user_rolesRepository.save(role);
-		return "redirect:/index";
-	}
-	
-	
 	
 	@RequestMapping(value = "/informations")
 	public String AccessInformations() {
