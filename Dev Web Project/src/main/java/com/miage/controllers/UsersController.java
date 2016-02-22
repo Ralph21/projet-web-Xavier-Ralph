@@ -82,7 +82,6 @@ public class UsersController extends WebMvcConfigurerAdapter {
     {
     	Users user = usersRepository.findOne(id);
     	model.addAttribute("user", user);
-    	
     	return "modification";
     }
 	
