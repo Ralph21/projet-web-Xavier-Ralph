@@ -1,5 +1,6 @@
 package com.miage.controllers;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +87,9 @@ public class UsersController extends WebMvcConfigurerAdapter {
     }
 	
     @RequestMapping(value = "/modification", method = RequestMethod.POST)
-    public String saveModifBookmark(@RequestParam Integer id, Users user, RedirectAttributes redirectAttributes)
+    public String saveModifUser(@RequestParam Integer id, Users user, RedirectAttributes redirectAttributes)
     {
+    	
     	Users nUser= usersRepository.findOne(id);
     	nUser.setAge(user.getAge());
     	nUser.setEmail(user.getEmail());
@@ -95,7 +97,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	nUser.setLastName(user.getLastName());
     	nUser. setPasswordEncode(user.getPassword());
     	nUser.setSexe(user.getSexe());
-    	nUser.setUsername(user.getUsername());
+    	nUser.setUsername(user.getEmail());
     	
     	usersRepository.save(nUser);
     	
@@ -104,16 +106,28 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	
 	
 	@RequestMapping(value = "/gestionInfos", method = RequestMethod.GET)
-	public String accessInfos(Model model,RedirectAttributes redirectAttributes) {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Users userMod = usersService.getUserByUserName(user.getUsername()); 
-		model.addAttribute(userMod);
-		return "gestionInfos";
+	public String accessInfos(Model model,RedirectAttributes redirectAttributes) throws SQLException {
+		User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Users userMod = usersRepository.findByUserName(usr.getUsername());
+    	model.addAttribute("userMod", userMod);
+    	return "gestionInfos";
 	}
 	
 	@RequestMapping(value = "/gestionInfos", method = RequestMethod.POST)
-	public String writeInfos() {
-		return "gestionInfos";
+	public String writeInfos(Users user, RedirectAttributes redirectAttributes) {
+		User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Users nUser = usersRepository.findByUserName(usr.getUsername());
+    	nUser.setAge(user.getAge());
+    	nUser.setEmail(user.getEmail());
+    	nUser.setFirstName(user.getFirstName());
+    	nUser.setLastName(user.getLastName());
+    	nUser. setPasswordEncode(user.getPassword());
+    	nUser.setSexe(user.getSexe());
+    	nUser.setUsername(user.getEmail());
+    	
+    	usersRepository.save(nUser);
+    	
+    	return "redirect:/index";
 	}
 	
     @RequestMapping("/remove/{id}")

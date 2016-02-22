@@ -26,15 +26,6 @@ public class UsersServiceImpl implements UsersService {
 		return usersRepository.findOne(id);
 	}
 	
-	
-	
-	@Override
-	public Users getUserByUserName(String userName) {
-//		Users users= this.jdbcTemplate.queryForObject("Select * from users where username = ?", new Object[] {userName}, new UsersMapper());
-//		return users;
-		return null;
-	}
-
 	@Override
 	public Users saveUtilisateur(Users users) {
 		return usersRepository.save(users);
