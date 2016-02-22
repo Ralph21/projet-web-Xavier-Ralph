@@ -5,14 +5,15 @@
 	<table>
 		<tr>
 			<td>Id Utilisateur</td>
-			<td>Prénom</td>
+			<td>PrÃ©nom</td>
 			<td>Nom</td>
 			<td>Age</td>
 			<td>Sexe</td>
 			<td>Email</td>
-			<td>Activé</td>
-			<td>Modifier</td>
+			<td>ActivÃ©</td>
 			<td>Supprimer</td>
+			<td>Modifier</td>
+
 		</tr>
 		<tr th:each="user : ${users}">
 			<td th:text="${user.idUtilisateur}">Id</td>
