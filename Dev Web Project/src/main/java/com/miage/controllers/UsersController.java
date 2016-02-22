@@ -134,7 +134,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
     public String deleteUser(@PathVariable("id") Integer userID,RedirectAttributes redirectAttributes)
     {
     	usersRepository.delete(userID);
-    	return "index";
+    	return "redirect:/index";
     }
 
 	@RequestMapping("utilisateur/{id}")
