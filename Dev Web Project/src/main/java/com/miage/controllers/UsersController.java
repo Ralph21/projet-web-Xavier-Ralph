@@ -101,7 +101,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	
     	usersRepository.save(nUser);
     	
-    	return "redirect:/index";
+    	return "redirect:/gestionUsers";
     }
 	
 	

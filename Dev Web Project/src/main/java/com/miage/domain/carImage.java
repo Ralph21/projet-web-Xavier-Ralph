@@ -15,4 +15,22 @@ public class carImage {
 	@NotNull
 	@Lob
 	private byte[] picture;
+
+	public Integer getIdcI() {
+		return idcI;
+	}
+
+	public void setIdcI(Integer idcI) {
+		this.idcI = idcI;
+	}
+
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+	
+	
 }
