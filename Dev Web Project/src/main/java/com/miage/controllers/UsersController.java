@@ -92,12 +92,12 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	
     	Users nUser= usersRepository.findOne(id);
     	nUser.setAge(user.getAge());
-    	nUser.setEmail(user.getEmail());
+//    	nUser.setEmail(user.getEmail());
     	nUser.setFirstName(user.getFirstName());
     	nUser.setLastName(user.getLastName());
-    	nUser. setPasswordEncode(user.getPassword());
+//    	nUser. setPasswordEncode(user.getPassword());
     	nUser.setSexe(user.getSexe());
-    	nUser.setUsername(user.getEmail());
+//    	nUser.setUsername(user.getEmail());
     	
     	usersRepository.save(nUser);
     	
@@ -118,12 +118,12 @@ public class UsersController extends WebMvcConfigurerAdapter {
 		User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Users nUser = usersRepository.findByUserName(usr.getUsername());
     	nUser.setAge(user.getAge());
-    	nUser.setEmail(user.getEmail());
+//    	nUser.setEmail(user.getEmail());
     	nUser.setFirstName(user.getFirstName());
     	nUser.setLastName(user.getLastName());
-    	nUser. setPasswordEncode(user.getPassword());
+//    	nUser. setPasswordEncode(user.getPassword());
     	nUser.setSexe(user.getSexe());
-    	nUser.setUsername(user.getEmail());
+//    	nUser.setUsername(user.getEmail());
     	
     	usersRepository.save(nUser);
     	
