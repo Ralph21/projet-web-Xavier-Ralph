@@ -1,5 +1,7 @@
 package com.miage.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.miage.domain.Car;
+import com.miage.domain.Users;
+import com.miage.repositories.CarRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
 
@@ -24,17 +29,23 @@ public class webController {
 	UsersRepository usersRepository;
 	
 	@Autowired
+	CarRepository carRepository; 
+	
+	@Autowired
 	User_rolesRepository user_rolesRepository;
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String AccessIndex(Model model,RedirectAttributes redirectAttributes) {
+		List<Car> cars = (List<Car>) carRepository.findAll();
+		model.addAttribute("cars", cars);
 		return "index";
 	}
 
 
 	@RequestMapping("/")
 	public String retourIndex(Model model,RedirectAttributes redirectAttributes) {
-		redirectAttributes.addAttribute("login");
+		List<Car> cars = (List<Car>) carRepository.findAll();
+		model.addAttribute("cars", cars);
 		return "index";
 	}
 

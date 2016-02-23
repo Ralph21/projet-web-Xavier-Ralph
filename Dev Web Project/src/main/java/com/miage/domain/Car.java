@@ -1,15 +1,16 @@
 package com.miage.domain;
 
-import java.util.Set;
 
-import javax.persistence.CascadeType;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Car {
@@ -24,9 +25,8 @@ public class Car {
 	@NotNull
 	private String model;
 
-	@NotNull
 	@Lob
-	private byte[] vignette; 
+	private byte[]  vignette;
 	
 //	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
 //	public Set<carImage>  images;
@@ -67,12 +67,22 @@ public class Car {
 //	}
 
 	public byte[] getVignette() {
+		//return Base64.encode(vignette);
 		return vignette;
 	}
 
-	public void setVignette(byte[] vignette) {
-		this.vignette = vignette;
+	public void setVignette(byte[] bVignette) {
+		this.vignette = bVignette;
+				//Base64.decode(bVignette);//   encodeBase64URLSafeString(bVignette);
 	}
-
 	
+	   public static String encode(String value) throws Exception {
+		      return  Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
+		   }
+
+		   public static String decode(String value) throws Exception {
+		      byte[] decodedValue = Base64.getDecoder().decode(value);
+		      return new String(decodedValue, StandardCharsets.UTF_8);
+		   }
+
 }

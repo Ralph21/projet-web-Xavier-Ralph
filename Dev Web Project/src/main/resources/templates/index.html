@@ -61,8 +61,13 @@
 							<li><a href="">Audi A3<br /> <img
 									src="css/images/audix5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Audi Q5<br /> <img
-									src="css/images/audix6.jpg" /></a></li>
+<!-- 							<li><a href="">Audi Q5<br /> <img -->
+<!-- 									src="css/images/audix6.jpg" /></a></li> -->
+							<li th:each="car : ${cars}">
+								<a href="" th:text="${car.model}"><br/>
+								<img class="info" th:attr="src=@{${car.vignette}}" />
+								</a>
+							</li>
 						</ul></li>
 					<!--  Le menu déroulant réservé aux ADMINS -->
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a

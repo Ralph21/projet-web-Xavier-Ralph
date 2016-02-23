@@ -1,10 +1,12 @@
 package com.miage.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.miage.domain.Car;
 import com.miage.repositories.CarRepository;
 
+@Service
 public class CarServiceImpl implements CarService {
 
 	private CarRepository carRepository;
