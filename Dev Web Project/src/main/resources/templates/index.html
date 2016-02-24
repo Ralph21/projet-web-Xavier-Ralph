@@ -63,8 +63,8 @@
 							<!-- 							<li></li> -->
 							<!-- 							<li><a href="">Audi Q5<br /> <img -->
 							<!-- 									src="css/images/audix6.jpg" /></a></li> -->
-							<li th:each="car : ${cars}"><a href=""
-								th:text="${car.generateBase64Image()}"><br /> <img
+							<li th:each="car : ${cars}">
+							<a th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br /> <img
 									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" />
 							</a></li>
 						</ul></li>

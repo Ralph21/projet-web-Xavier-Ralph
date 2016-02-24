@@ -21,12 +21,23 @@ public class Car {
 	
 	@NotNull
 	private String brand;
+	
+	private Integer power;
+	
+	private String fuel;
+	
+	private String transmission;
+	
+	private String gearbox;
+	
+	private String paint;
 
 	@NotNull
 	private String model;
 
 	@Lob
 	private byte[]  vignette;
+	
 	
 //	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
 //	public Set<carImage>  images;
@@ -79,7 +90,44 @@ public class Car {
 	    return Base64.encodeBase64String(this.getVignette());
 	}
 
+	public Integer getPower() {
+		return power;
+	}
 
+	public void setPower(Integer power) {
+		this.power = power;
+	}
 
+	public String getFuel() {
+		return fuel;
+	}
+
+	public void setFuel(String fuel) {
+		this.fuel = fuel;
+	}
+
+	public String getTransmission() {
+		return transmission;
+	}
+
+	public void setTransmission(String transmission) {
+		this.transmission = transmission;
+	}
+
+	public String getGearbox() {
+		return gearbox;
+	}
+
+	public void setGearbox(String gearbox) {
+		this.gearbox = gearbox;
+	}
+
+	public String getPaint() {
+		return paint;
+	}
+
+	public void setPaint(String paint) {
+		this.paint = paint;
+	}
 
 }
