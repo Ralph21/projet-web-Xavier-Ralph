@@ -61,8 +61,13 @@
 							<li><a href="">Audi A3<br /> <img
 									src="css/images/audix5.jpg" /></a></li>
 							<li></li>
-							<li><a href="">Audi Q5<br /> <img
-									src="css/images/audix6.jpg" /></a></li>
+<!-- 							<li><a href="">Audi Q5<br /> <img -->
+<!-- 									src="css/images/audix6.jpg" /></a></li> -->
+							<li th:each="car : ${cars}">
+								<a href="" th:text="${car.model}"><br/>
+								<img class="info" th:attr="src=@{${car.vignette}}" />
+								</a>
+							</li>
 						</ul></li>
 					<!--  Le menu déroulant réservé aux ADMINS -->
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
@@ -82,12 +87,18 @@
 							<li><a href="gestionEssais.html">Mes essais</a></li>
 							<li><a href="gestionInfos.html">Mes informations</a></li>
 						</ul></li>
+					<!--  menu Sign Up -->
+					<ul class="nav navbar-nav navbar-right"
+						th:if="not ${#authorization.expression('isAuthenticated()')}">
+						<li><a href="inscription.html"><span
+							class="glyphicon glyphicon-user"></span> Inscription</a></li>
+					</ul>
 					<!-- menu LOGIN -->
 					<ul class="nav navbar-nav navbar-right"
 						th:if="not ${#authorization.expression('isAuthenticated()')}">
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#"> Login <span
-								class="glyphicon glyphicon-log-in"></span></a>
+							data-toggle="dropdown" href="#"><span
+								class="glyphicon glyphicon-log-in"></span> Login </a>
 							<div class="dropdown-menu" style="width: 230px;">
 								<form id="formLogin" class="form container-fluid"
 									th:action="@{/index}" method="post">
@@ -95,13 +106,11 @@
 										<label for="usr"> User Name : </label> <input type="text"
 											class="form-control" id="usr"
 											placeholder="Entrer un user name" name="username" />
-
 									</div>
 									<div class="form-group">
 										<label for="pwd"> Password :</label> <input type="password"
 											class="form-control" id="pwd" placeholder="Mot de passe"
 											name="password" />
-
 									</div>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" />
@@ -118,7 +127,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right"
 						th:if="${#authorization.expression('isAuthenticated()')}">
-						<li><a th:href="@{/logout}">Déconnexion</a></li>
+						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span class="glyphicon glyphicon-off"></span></a></li>
 					</ul>
 					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -132,42 +141,10 @@
 
 	<!-- PAGE CONTENT -->
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h3 class="page-header">Gestion des utilisateurs :</h3>
-			</div>
-		</div>
-		<br />
-		<table class="table table-hover">
-			<tr>
-				<th>ID Utilisateur</th>
-				<th>Prénom</th>
-				<th>Nom</th>
-				<th>Age</th>
-				<th>Sexe</th>
-				<th>Email</th>
-				<th>Activé</th>
-				<th>Modifier</th>
-				<th>Supprimer</th>
+	
+	
 
-			</tr>
-			<tr th:each="user : ${users}">
-				<td th:text="${user.idUtilisateur}">Id</td>
-				<td th:text="${user.firstName}">First Name</td>
-				<td th:text="${user.lastName}">Last Name</td>
-				<td th:text="${user.age}">Age</td>
-				<td th:text="${user.sexe}">Sexe</td>
-				<td th:text="${user.email}">Email</td>
-				<td th:switch="${user.enabled}"><span th:case="0">Non</span> <span
-					th:case="*">Oui</span></td>
-				<td><a th:href="@{'/modification?id='+${user.idUtilisateur}}"><button
-							type="button" class="btn btn-xs btn-primary">Modifier</button></a></td>
-				<td><a th:href="@{'/remove/'+${user.idUtilisateur}}"><button
-							type="button" class="btn btn-xs btn-danger">Supprimer <span class="glyphicon glyphicon-trash"></span></button></a></td>
-			</tr>
-		</table>
-
-		<!-- Footer -->
+		<!-- FOOTER -->
 		<footer>
 			<div class="footer">
 				<p class="lf">Copyright &copy; 2016 - All Rights Reserved</p>

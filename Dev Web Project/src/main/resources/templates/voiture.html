@@ -195,6 +195,15 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">Configuration</h1>
 			</div>
+
+			<div class="col-lg-12">
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar"
+						aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
+						style="width: 10%;">10%</div>
+				</div>
+			</div>
+
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -319,15 +328,21 @@
 			<div class="col-lg-12">
 				<h2 class="page-header">Options</h2>
 			</div>
-			<div class="col-md-6">
-				
-			</div>
+			<div class="col-md-6"></div>
 
-			<div class="col-md-6">
-				
-			</div>
+			<div class="col-md-6"></div>
 		</div>
 		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-lg-12" align="right">
+				<a href="index.html"><button type="button"
+						class="btn btn-default">Annuler</button></a> <a href="summary.html"><button
+						type="button" class="btn btn-success">
+						Suivant <span class="glyphicon glyphicon-circle-arrow-right"></span>
+					</button></a>
+			</div>
+		</div>
 
 
 		<!-- Footer -->
@@ -340,14 +355,14 @@
 		</footer>
 
 	</div>
+	
 	<div th:if="${param.error}">Invalid username and password.</div>
 	<div th:if="${param.logout}">You have been logged out.</div>
+	
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-
 	<!-- Script to Activate the Carousel -->
 	<script>
 		$('.carousel').carousel({
@@ -355,10 +370,6 @@
 		//changes the speed
 		})
 	</script>
-	<!-- 	<script> 
-	// $('a').mouseover(function() { // $(this).dropdown('toggle'); // });
-	</script> -->
-
 </body>
 
 </html>
