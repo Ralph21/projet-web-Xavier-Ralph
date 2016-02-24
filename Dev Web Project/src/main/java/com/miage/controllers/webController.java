@@ -48,11 +48,10 @@ public class webController {
 		model.addAttribute("cars", cars);
 		return "index";
 	}
-
-
+	
 	@RequestMapping(value = "/contact")
 	public String AccessContact() {
-		return "contact";
+		return "test";
 	}
 	
 	@RequestMapping(value = "/voiture")

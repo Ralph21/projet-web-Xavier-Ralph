@@ -1,8 +1,6 @@
 package com.miage.domain;
 
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
+
+import org.apache.commons.codec.binary.Base64;
 
 
 @Entity
@@ -67,22 +67,19 @@ public class Car {
 //	}
 
 	public byte[] getVignette() {
-		//return Base64.encode(vignette);
 		return vignette;
 	}
 
-	public void setVignette(byte[] bVignette) {
-		this.vignette = bVignette;
-				//Base64.decode(bVignette);//   encodeBase64URLSafeString(bVignette);
+	public void setVignette(byte[] vignette) {
+        this.vignette = vignette;
 	}
 	
-	   public static String encode(String value) throws Exception {
-		      return  Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
-		   }
+	public String generateBase64Image()
+	{
+	    return Base64.encodeBase64String(this.getVignette());
+	}
 
-		   public static String decode(String value) throws Exception {
-		      byte[] decodedValue = Base64.getDecoder().decode(value);
-		      return new String(decodedValue, StandardCharsets.UTF_8);
-		   }
+
+
 
 }

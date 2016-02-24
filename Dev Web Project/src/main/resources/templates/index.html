@@ -58,16 +58,15 @@
 							<li class="divider"></li>
 							<!-- Audi -->
 							<li class="dropdown-header">Audi</li>
-							<li><a href="">Audi A3<br /> <img
-									src="css/images/audix5.jpg" /></a></li>
-							<li></li>
-<!-- 							<li><a href="">Audi Q5<br /> <img -->
-<!-- 									src="css/images/audix6.jpg" /></a></li> -->
-							<li th:each="car : ${cars}">
-								<a href="" th:text="${car.model}"><br/>
-								<img class="info" th:attr="src=@{${car.vignette}}" />
-								</a>
-							</li>
+							<!-- 							<li><a href="">Audi A3<br /> <img -->
+							<!-- 									src="css/images/audix5.jpg" /></a></li> -->
+							<!-- 							<li></li> -->
+							<!-- 							<li><a href="">Audi Q5<br /> <img -->
+							<!-- 									src="css/images/audix6.jpg" /></a></li> -->
+							<li th:each="car : ${cars}"><a href=""
+								th:text="${car.generateBase64Image()}"><br /> <img
+									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" />
+							</a></li>
 						</ul></li>
 					<!--  Le menu déroulant réservé aux ADMINS -->
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
@@ -91,7 +90,7 @@
 					<ul class="nav navbar-nav navbar-right"
 						th:if="not ${#authorization.expression('isAuthenticated()')}">
 						<li><a href="inscription.html"><span
-							class="glyphicon glyphicon-user"></span> Inscription</a></li>
+								class="glyphicon glyphicon-user"></span> Inscription</a></li>
 					</ul>
 					<!-- menu LOGIN -->
 					<ul class="nav navbar-nav navbar-right"
@@ -127,7 +126,8 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right"
 						th:if="${#authorization.expression('isAuthenticated()')}">
-						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span class="glyphicon glyphicon-off"></span></a></li>
+						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span
+								class="glyphicon glyphicon-off"></span></a></li>
 					</ul>
 					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -182,7 +182,6 @@
 
 	<!-- PAGE CONTENT -->
 	<div class="container">
-
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Bienvenue</h1>
