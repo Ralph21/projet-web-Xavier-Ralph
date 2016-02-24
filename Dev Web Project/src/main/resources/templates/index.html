@@ -65,7 +65,8 @@
 							<!-- 									src="css/images/audix6.jpg" /></a></li> -->
 							<li th:each="car : ${cars}">
 							<a th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br /> <img
-									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" />
+																				src="css/images/audix5.jpg" />
+<!-- 									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" /> -->
 							</a></li>
 						</ul></li>
 					<!--  Le menu déroulant réservé aux ADMINS -->

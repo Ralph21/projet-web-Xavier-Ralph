@@ -20,6 +20,7 @@ public class CarController {
 	@Autowired
 	CarRepository carRepository;
 	
+	@SuppressWarnings("unused")
 	private CarService carService;
 	
 	@Autowired
@@ -28,13 +29,14 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "/summary", method = RequestMethod.GET)
-	public String AccessSummary() {
+	public String AccessSummary(@RequestParam Integer id,Model model,RedirectAttributes redirectAttributes) {
+		Car car = carRepository.findOne(id);
+		model.addAttribute("car", car);
 		return "summary";
 	}
 	
 	@RequestMapping(value = "/voiture", method = RequestMethod.GET)
 	public String AccessVoiture(@RequestParam Integer id,Model model,RedirectAttributes redirectAttributes) {
-		System.out.println("test");
 		Car car = carRepository.findOne(id);
 		model.addAttribute("car", car);
 		return "voiture";
@@ -43,14 +45,15 @@ public class CarController {
 	@RequestMapping(value = "/voiture", method = RequestMethod.POST)
 	public String finalizeVoiture(@RequestParam Integer id,Car model,RedirectAttributes redirectAttributes) {
 		Car car = new Car();
-		car.setBrand(model.getBrand());
 		car.setFuel(model.getFuel());
 		car.setGearbox(model.getGearbox());
 		car.setModel(model.getModel());
 		car.setPower(model.getPower());
 		car.setTransmission(model.getTransmission());
 		car.setVignette(model.getVignette());
+		car.setPaint(model.getPaint());
+		car.setWheels(model.getWheels());
 		carRepository.save(car);
-		return "voiture";
+		return new String("redirect:/summary?id="+car.getIdCar());
 	}
 }

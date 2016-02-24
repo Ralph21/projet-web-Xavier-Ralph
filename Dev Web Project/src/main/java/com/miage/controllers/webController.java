@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.miage.domain.Car;
-import com.miage.domain.Users;
 import com.miage.repositories.CarRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;

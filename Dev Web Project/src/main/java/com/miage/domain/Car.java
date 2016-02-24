@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -19,7 +18,6 @@ public class Car {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idCar;
 	
-	@NotNull
 	private String brand;
 	
 	private Integer power;
@@ -32,9 +30,10 @@ public class Car {
 	
 	private String paint;
 
-	@NotNull
 	private String model;
 
+	private String wheels;
+	
 	@Lob
 	private byte[]  vignette;
 	
@@ -130,4 +129,14 @@ public class Car {
 		this.paint = paint;
 	}
 
+	public String getWheels() {
+		return wheels;
+	}
+
+	public void setWheels(String wheels) {
+		this.wheels = wheels;
+	}
+
+	
+	
 }

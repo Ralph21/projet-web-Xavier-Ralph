@@ -93,18 +93,6 @@
 							data-toggle="dropdown" href="#"> Login <span
 								class="glyphicon glyphicon-log-in"></span></a>
 							<div class="dropdown-menu" style="width: 230px;">
-								<!-- 								<form id="formLogin" class="form container-fluid" -->
-								<!-- 									th:action="@{/index}" method="post"> -->
-								<!-- 									<div> -->
-								<!-- 										<label for="usr"> E-mail:</label> <input class="form-control" -->
-								<!-- 											id="usr" placeholder="Entrer un email" type="text" -->
-								<!-- 											name="mail" /> <label for="pwd"> Password: </label> <input -->
-								<!-- 											class="form-control" id="pwd" placeholder="Mot de passe" -->
-								<!-- 											type="password" name="password" /> -->
-								<!-- 									</div> -->
-								<!-- 									<input type="submit" value="Sign In" id="btnLogin" -->
-								<!-- 										class="btn btn-default" /> -->
-								<!-- 								</form> -->
 								<form id="formLogin" class="form container-fluid"
 									th:action="@{/index}" method="post">
 									<div class="form-group">
@@ -215,10 +203,10 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="carburant">Sélection</label> <select
-									class="form-control" id="sel1">
-									<option selected="selected">Tous</option>
-									<option>Diesel</option>
-									<option>Essence</option>
+									class="form-control" id="sel1" th:field="*{fuel}">
+									<option selected="selected" value="Tous" >Tous</option>
+									<option value="Diesel" >Diesel</option>
+									<option value="Essence" >Essence</option>
 								</select>
 							</div>
 						</div>
@@ -232,11 +220,11 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="transmission">Sélection</label> <select
-									class="form-control" id="sel1">
-									<option selected="selected">Tous</option>
-									<option>Traction</option>
-									<option>Propulsion</option>
-									<option>Quattro</option>
+									class="form-control" id="sel1" th:field="*{transmission}">
+									<option selected="selected" value="Tous" >Tous</option>
+									<option value="Traction" >Traction</option>
+									<option value="Propulsion" >Propulsion</option>
+									<option value="Quattro" >Quattro</option>
 								</select>
 							</div>
 						</div>
@@ -250,12 +238,12 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="boite">Sélection</label> <select
-									class="form-control" id="sel1">
-									<option selected="selected">Tous</option>
-									<option>S Tronic</option>
-									<option>Automatique</option>
-									<option>5 Vitesses</option>
-									<option>6 Vitesses</option>
+									class="form-control" id="sel1" th:field="*{gearbox}">
+									<option selected="selected" value="Tous" >Tous</option>
+									<option value="S-Tronic" >S Tronic</option>
+									<option value="Automatique" >Automatique</option>
+									<option value="5 vitesses" >5 Vitesses</option>
+									<option value="6 vitesses" >6 Vitesses</option>
 								</select>
 							</div>
 						</div>
@@ -272,12 +260,11 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="carburant">Sélection</label> <select
-									class="form-control" id="sel1">
-									<option selected="selected">Tous</option>
-									<option>150ch</option>
-									<option>200ch</option>
-									<option>...</option>
+								<label for="puissance">Sélection</label> <select
+									class="form-control" id="sel1" th:field="*{power}">
+									<option selected="selected" value="0" >Tous</option>
+									<option value="150" >150ch</option>
+									<option value="200" >200ch</option>
 								</select>
 							</div>
 						</div>
@@ -290,14 +277,14 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="transmission">Sélection</label> <select
-									class="form-control" id="sel1">
-									<option selected="selected">Tous</option>
-									<option>16"</option>
-									<option>17"</option>
-									<option>18"</option>
-									<option>19"</option>
-									<option>20"</option>
+								<label for="jantes">Sélection</label> <select
+									class="form-control" id="sel1" th:field="*{wheels}">
+									<option selected="selected" value="0" >Tous</option>
+									<option value="16" >16"</option>
+									<option value="17" >17"</option>
+									<option value="18" >18"</option>
+									<option value="19" >19"</option>
+									<option value="20" >20"</option>
 								</select>
 							</div>
 						</div>

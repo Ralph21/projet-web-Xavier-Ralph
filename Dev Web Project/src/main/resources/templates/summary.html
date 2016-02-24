@@ -152,27 +152,27 @@
 					<tbody>
 						<tr>
 							<th class="active">Type carburant</th>
-							<td>ex:Diesel</td>
+							<td th:text="${car.fuel}"  ></td>
 						</tr>
 						<tr>
 							<th class="active">Transmission</th>
-							<td>ex:Traction</td>
+							<td th:text="${car.transmission}"></td>
 						</tr>
 						<tr>
 							<th class="active">Boîte de vitesses</th>
-							<td>ex:Automatique</td>
+							<td th:text="${car.gearbox}"></td>
 						</tr>
 						<tr>
 							<th class="active">Puissance</th>
-							<td>ex:150ch</td>
+							<td th:text="${car.power} + ' cv '"></td>
 						</tr>
 						<tr>
 							<th class="active">Taille jante</th>
-							<td>ex:19"</td>
+							<td th:text="${car.wheels} + ' \'\' ' "></td>
 						</tr>
 						<tr>
 							<th class="active">Couleur</th>
-							<td>ex:noir</td>
+							<td th:text="${car.paint}"></td>
 						</tr>
 					</tbody>
 				</table>
