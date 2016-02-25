@@ -11,17 +11,26 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.miage.domain.Car;
+import com.miage.domain.Option;
 import com.miage.repositories.CarRepository;
+import com.miage.repositories.OptionRepository;
 
 @Component
 public class CarLoader implements ApplicationListener<ContextRefreshedEvent>{
+	
 	private  CarRepository carRepository;
-
+	private  OptionRepository optionRepository;
+	
 	    @Autowired
-	    public void setUtilisateurRepository(CarRepository carRepository) {
+	    public void setCarRepository(CarRepository carRepository) {
 	        this.carRepository = carRepository;
 	    }
-
+	    
+	    @Autowired
+	    public void setOptionRepository(OptionRepository optionRepository){
+	    	this.optionRepository = optionRepository;
+	    }
+	   
 	    @Override
 	    public void onApplicationEvent(ContextRefreshedEvent event) {
 	    	Car a1 = new Car();
@@ -35,7 +44,15 @@ public class CarLoader implements ApplicationListener<ContextRefreshedEvent>{
 				e.printStackTrace();
 			}
 			a1.setVignette(data);
-	    	carRepository.save(a1);
+			carRepository.save(a1);
+//	    	Option option = new Option();
+//	    	option.setLibelle("Intérieur Cuir");
+//	    	optionRepository.save(option);
+//	    	Car a1s = carRepository.findOne(a1.getIdCar());
+//	    	a1s.addOption(option);
+//	    	carRepository.save(a1s);
+
+
 	    }  
 	
 }
