@@ -177,7 +177,7 @@
 				<label class="control-label col-sm-2" for="sexe">Civilité :</label>
 				<div class="col-sm-4">
 					<label for="male" style="padding-right: 3px;">Homme&nbsp;&nbsp;</label><input
-						id="male" type="radio" value="homme" th:field="*{sexe}" /> <br />
+						id="male" type="radio" value="homme" th:field="*{sexe}" th:value="${userMod.sexe}" /> <br />
 					<label for="female" style="padding-right: 5px;">Femme&nbsp;&nbsp;</label><input
 						id="female" type="radio" value="femme" th:field="*{sexe}" /><br />
 					<span id="msggender" class="msggender"></span>

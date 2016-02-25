@@ -1,5 +1,7 @@
 package com.miage.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.miage.domain.Car;
+import com.miage.domain.Equipement;
 import com.miage.repositories.CarRepository;
 import com.miage.services.CarService;
 
@@ -19,6 +22,8 @@ public class CarController {
 
 	@Autowired
 	CarRepository carRepository;
+	
+
 	
 	@SuppressWarnings("unused")
 	private CarService carService;
@@ -39,6 +44,8 @@ public class CarController {
 	public String AccessVoiture(@RequestParam Integer id,Model model,RedirectAttributes redirectAttributes) {
 		Car car = carRepository.findOne(id);
 		model.addAttribute("car", car);
+		List<Equipement> equipements = carRepository.findByCarId(id);
+		model.addAttribute("equipements", equipements);
 		return "voiture";
 	}
 	

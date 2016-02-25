@@ -9,13 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
 @Entity
-@NamedQuery(name = "Car.findByBrand",
-query = "select c from Car c where c.brand = ?1")
+@NamedQueries({
+	@NamedQuery(name = "Car.findByBrand",
+	query = "select c from Car c where c.brand = ?1"),
+	@NamedQuery(name = "Car.findByCarId",
+	query = "select c.equipements from Car c where c.id = ?1")
+})
 public class Car implements Serializable{
 
 	/**
