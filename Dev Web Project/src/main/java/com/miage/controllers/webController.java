@@ -35,16 +35,20 @@ public class webController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String AccessIndex(Model model,RedirectAttributes redirectAttributes) {
-		List<Car> cars = (List<Car>) carRepository.findAll();
-		model.addAttribute("cars", cars);
+		List<Car> audi = (List<Car>) carRepository.findByBrand("Audi");
+		model.addAttribute("audi", audi);
+		List<Car> vw = (List<Car>) carRepository.findByBrand("Volkswagen");
+		model.addAttribute("vw", vw);
 		return "index";
 	}
 
 
 	@RequestMapping("/")
 	public String retourIndex(Model model,RedirectAttributes redirectAttributes) {
-		List<Car> cars = (List<Car>) carRepository.findAll();
-		model.addAttribute("cars", cars);
+		List<Car> audi = (List<Car>) carRepository.findByBrand("Audi");
+		model.addAttribute("audi", audi);
+		List<Car> vw = (List<Car>) carRepository.findByBrand("Volkswagen");
+		model.addAttribute("vw", vw);
 		return "index";
 	}
 	
