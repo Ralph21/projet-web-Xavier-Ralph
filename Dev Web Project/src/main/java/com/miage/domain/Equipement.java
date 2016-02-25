@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Option implements Serializable{
+public class Equipement implements Serializable{
 
 	/**
 	 * 
@@ -17,20 +17,19 @@ public class Option implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer idOption;
+	private Integer idEquipement;
 	
 	String libelle;
 
-	public Option() {
-		super();
+	public Equipement() {
 	}
 
-	public Integer getIdOption() {
-		return idOption;
+	public Integer getIdEquipement() {
+		return idEquipement;
 	}
 
-	public void setIdOption(Integer idOption) {
-		this.idOption = idOption;
+	public void setIdEquipement(Integer idEquipement) {
+		this.idEquipement = idEquipement;
 	}
 
 	public String getLibelle() {

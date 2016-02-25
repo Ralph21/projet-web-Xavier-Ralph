@@ -1,3 +1,4 @@
+package com.miage.loaders;
 //package com.miage.loaders;
 //
 //import org.springframework.beans.factory.annotation.Autowired;

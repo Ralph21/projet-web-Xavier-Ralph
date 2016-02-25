@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 
-public class carImage {
+public class CarImage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
