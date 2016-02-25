@@ -319,39 +319,40 @@
 				<div class="col-lg-1"></div>
 				<div class="col-lg-3">
 					<span class="checkbox" th:each="equipement : ${equipements}">
-							<label th:text="{equipement.libelle}"></label>
-<!-- 						<input type="checkbox" th:value="{equipement.libelle}"/> -->
+						<label class="checkbox" th:field="*{selectedEquipements}">
+							<input type="checkbox"  th:text="${equipement.libelle}"  th:field="*{acutalEquipements}"/>
+						</label>
 					</span>
-<!-- 					<label class="checkbox"> <input type="checkbox" -->
-<!-- 						id="inlineCheckbox1" value="option1" /> Phares Xénon Plus -->
-<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-<!-- 						id="inlineCheckbox2" value="option2" /> Toit ouvrant -->
-<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-<!-- 						id="inlineCheckbox3" value="option3" /> Intérieur cuir -->
-<!-- 					</label> -->
+					<!-- 					<label class="checkbox"> <input type="checkbox" -->
+					<!-- 						id="inlineCheckbox1" value="option1" /> Phares Xénon Plus -->
+					<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
+					<!-- 						id="inlineCheckbox2" value="option2" /> Toit ouvrant -->
+					<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
+					<!-- 						id="inlineCheckbox3" value="option3" /> Intérieur cuir -->
+					<!-- 					</label> -->
 
 				</div>
-				<div class="col-lg-3">
-					<label class="checkbox"> <input type="checkbox"
-						id="inlineCheckbox1" value="option4" /> Volant multifonctions
-					</label> <label class="checkbox"> <input type="checkbox"
-						id="inlineCheckbox2" value="option5" /> Sound system
-					</label> <label class="checkbox"> <input type="checkbox"
-						id="inlineCheckbox3" value="option6" /> Console GPS
-					</label>
-				</div>
-				<div class="col-lg-3">
-					<label class="checkbox"> <input type="checkbox"
-						id="inlineCheckbox1" value="option7" /> Caméra de recul
-					</label> <label class="checkbox"> <input type="checkbox"
-						id="inlineCheckbox2" value="option8" /> Sièges chauffants
-					</label> <label class="checkbox"> <input type="checkbox"
-						id="inlineCheckbox3" value="option9" /> Kit main libre
-					</label>
-				</div>
+<!-- 				<div class="col-lg-3"> -->
+<!-- 					<label class="checkbox"> <input type="checkbox" -->
+<!-- 						id="inlineCheckbox1" value="option4" /> Volant multifonctions -->
+<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
+<!-- 						id="inlineCheckbox2" value="option5" /> Sound system -->
+<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
+<!-- 						id="inlineCheckbox3" value="option6" /> Console GPS -->
+<!-- 					</label> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-lg-3"> -->
+<!-- 					<label class="checkbox"> <input type="checkbox" -->
+<!-- 						id="inlineCheckbox1" value="option7" /> Caméra de recul -->
+<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
+<!-- 						id="inlineCheckbox2" value="option8" /> Sièges chauffants -->
+<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
+<!-- 						id="inlineCheckbox3" value="option9" /> Kit main libre -->
+<!-- 					</label> -->
+<!-- 				</div> -->
 			</div>
 			<!-- /.row -->
-			<br/>
+			<br />
 			<div class="row">
 				<div class="col-lg-4">
 					<img class="img-thumbnail" src="css/images/boite.jpg" />
@@ -363,7 +364,7 @@
 					<img class="img-thumbnail" src="css/images/phare.png" />
 				</div>
 			</div>
-			<br/>
+			<br />
 			<div class="row">
 				<div class="col-lg-12" align="right">
 					<a href="index.html"><button type="button"

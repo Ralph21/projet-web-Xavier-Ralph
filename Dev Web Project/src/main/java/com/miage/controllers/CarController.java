@@ -43,14 +43,14 @@ public class CarController {
 	@RequestMapping(value = "/voiture", method = RequestMethod.GET)
 	public String AccessVoiture(@RequestParam Integer id,Model model,RedirectAttributes redirectAttributes) {
 		Car car = carRepository.findOne(id);
+		List<Equipement> equipements = (List<Equipement>) carRepository.findByCarId(id);
 		model.addAttribute("car", car);
-		List<Equipement> equipements = carRepository.findByCarId(id);
 		model.addAttribute("equipements", equipements);
 		return "voiture";
 	}
 	
 	@RequestMapping(value = "/voiture", method = RequestMethod.POST)
-	public String finalizeVoiture(@RequestParam Integer id,Car model,RedirectAttributes redirectAttributes) {
+	public String finalizeVoiture(@RequestParam Integer id,Car model, RedirectAttributes redirectAttributes) {
 		Car car = new Car();
 		car.setFuel(model.getFuel());
 		car.setGearbox(model.getGearbox());
