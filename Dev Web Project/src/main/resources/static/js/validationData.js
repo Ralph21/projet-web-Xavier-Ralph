@@ -1,43 +1,50 @@
+/**
+ * fonction qui vérifie si les deux mot de passes
+ * rentrés par le USER lors de l'inscription 
+ * sont bien identiques
+ */
 function checkPass() {
-	// Store the password field objects into variables ...
 	var pass1 = document.getElementById('pass1');
 	var pass2 = document.getElementById('pass2');
-	// Store the Confimation Message Object ...
 	var message = document.getElementById('confirmMessage');
-	// Set the colors we will be using ...
 	var goodColor = "#66cc66";
 	var badColor = "#ff6666";
-	// Compare the values in the password field
-	// and the confirmation field
+
 	if (pass1.value == pass2.value) {
-		// The passwords match.
-		// Set the color to the good color and inform
-		// the user that they have entered the correct password
 		pass2.style.backgroundColor = goodColor;
 		message.style.color = goodColor;
 		message.innerHTML = "Mot de passe correct"
 	} else {
-		// The passwords do not match.
-		// Set the color to the bad color and
-		// notify the user.
 		pass2.style.backgroundColor = badColor;
 		message.style.color = badColor;
 		message.innerHTML = "Mot de passe incorrect"
 	}
 }
 
+/**
+ * vérifie que le mot de passe est conforme aux règles
+ */
 function checkPassword(str) {
-	// at least one number, one lowercase and one uppercase letter
-	// at least six characters
+	// au moins :
+	//un nombre
+	//une minuscule
+	//une majuscule
+	//6 caractères
 	var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 	return re.test(str);
 }
 
+/**
+ * vérifie que le nom est conforme aux règles
+ */
 function checkName(str) {
 	var re = /.{2,30}/;
 	return re.test(str);
 }
 
+/**
+ * vérifie que l'âge est conforme aux règles
+ */
 function checkAge(str) {
 	var re = /(?=.*\d)/;
 	return re.test(str);
@@ -74,7 +81,7 @@ function checkForm() {
 	//firstname -> >=2 and <=30
 	if (!checkName(firstname.value) || firstname.value.length>30) {
 		msg1name.style.color = badColor;
-		msg1name.innerHTML = "Prénom non valide";
+		msg1name.innerHTML = "Entre 2 et 30 caractères";
 		firstname.focus();
 		return false;
 	} else {
@@ -83,7 +90,7 @@ function checkForm() {
 	//lastname -> >=2 and <=30
 	if (!checkName(name.value) || name.value.length>30) {
 		msgname.style.color = badColor;
-		msgname.innerHTML = "Nom non valide";
+		msgname.innerHTML = "Entre 2 et 30 caractères";
 		name.focus();
 		return false;
 	} else {
@@ -92,7 +99,7 @@ function checkForm() {
 	//age -> mandatory and >=18 and has to be a number
 	if (age.value== "" || age.value<18 || !checkAge(age.value)) {
 		msgage.style.color = badColor;
-		msgage.innerHTML = "Age non valide";
+		msgage.innerHTML = "L'âge doit être un nombre et la personne doit être majeur";
 		age.focus();
 		return false;
 	} else {
@@ -110,7 +117,11 @@ function checkForm() {
 	//password -> at least one Uppercase letter, at least one lowercase letter, at least one number and at least 8 caracters
 	if (!checkPassword(pass1.value)) {
 		message.style.color = badColor;
-		message.innerHTML = "Mot de passe non valide";
+		message.innerHTML = "Le mot de passe doit respecter les règles suivantes :<br />"   +
+				"- au moins 8 caractères<br />" +
+				"- au moins une minuscule<br />" +
+				"- au moins une majuscule<br />" +
+				"- au moins un chiffre<br />";
 		pass1.focus();
 		return false;
 	} else {
