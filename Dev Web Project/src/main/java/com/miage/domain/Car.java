@@ -1,17 +1,21 @@
 package com.miage.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-
-import org.apache.commons.codec.binary.Base64;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 @Entity
+@NamedQuery(name = "Car.findByBrand",
+query = "select c from Car c where c.brand = ?1")
 public class Car implements Serializable{
 
 	/**
@@ -39,12 +43,14 @@ public class Car implements Serializable{
 
 	private String wheels;
 
-	@Lob
-	private byte[] vignette;
-//
-//	@OneToMany(fetch = FetchType.EAGER)
-//	protected List<Option> options = new ArrayList<Option>();	
+//	@Lob
+//	private byte[] vignette;
+	
+	private String vignette;
 
+	@OneToMany(fetch=FetchType.EAGER)
+    private List<Equipement> equipements =new ArrayList<Equipement>();
+	
 	// @OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
 	// public Set<carImage> images;
 
@@ -83,20 +89,31 @@ public class Car implements Serializable{
 	// this.images = images;
 	// }
 
-	public byte[] getVignette() {
+//	public byte[] getVignette() {
+//		return vignette;
+//	}
+//
+//	public void setVignette(byte[] vignette) {
+//		this.vignette = vignette;
+//	}
+//
+//	public String generateBase64Image() {
+//		return Base64.encodeBase64String(this.getVignette());
+//	}
+
+	
+	
+	
+	public Integer getPower() {
+		return power;
+	}
+
+	public String getVignette() {
 		return vignette;
 	}
 
-	public void setVignette(byte[] vignette) {
+	public void setVignette(String vignette) {
 		this.vignette = vignette;
-	}
-
-	public String generateBase64Image() {
-		return Base64.encodeBase64String(this.getVignette());
-	}
-
-	public Integer getPower() {
-		return power;
 	}
 
 	public void setPower(Integer power) {
