@@ -210,7 +210,7 @@
 				<div th:if="${#fields.hasErrors('lastName')}"
 					th:errors="*{lastName}">Erreur nom</div>
 			</div>
-			
+
 			<!-- AGE -->
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="age">Âge :</label>
@@ -220,6 +220,19 @@
 				</div>
 				<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Erreur
 					âge</div>
+			</div>
+
+			<!-- EMAIL -->
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">E-mail :</label>
+				<div class="col-sm-4">
+					<input id="email" type="text" th:field="*{email}"
+						class="form-control" 
+						placeholder="Entrez votre e-mail" /><span id="msgmail"
+						class="msgmail"></span>
+				</div>
+				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erreur
+					email</div>
 			</div>
 
 			<!-- BOUTTONS -->
