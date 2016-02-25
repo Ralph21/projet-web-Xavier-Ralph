@@ -50,7 +50,7 @@ public class webController {
 	
 	@RequestMapping(value = "/contact")
 	public String AccessContact() {
-		return "test";
+		return "contact";
 	}
 	
 	@RequestMapping(value = "/voiture")

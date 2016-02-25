@@ -25,6 +25,11 @@ public class User_rolesLoader implements ApplicationListener<ContextRefreshedEve
 		    	administrateur.setUtilisateur(1);
 		    	administrateur.setUsername("ralph.gaume@gmail.com");
 		    	user_rolesRepository.save(administrateur);
+		    	
+/*		    	administrateur.setUtilisateur(2);
+		    	administrateur.setUsername("xavier.com");
+		    	user_rolesRepository.save(administrateur);*/
+		    	
 //		        Users ralph = new Users();
 //		        ralph.setAge(24);
 //		        ralph.setFirstName("Ralph");

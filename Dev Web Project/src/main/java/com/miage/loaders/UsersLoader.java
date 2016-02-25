@@ -31,15 +31,17 @@ public class UsersLoader implements ApplicationListener<ContextRefreshedEvent>{
 	        ralph.setPassword("ralph");
 	        ralph.setEnabled(1);
 	        usersRepository.save(ralph);
-//
-//	        Users xavier = new Users();
-//	        xavier.setAge(24);
-//	        xavier.setFirstName("Xavier");
-//	        xavier.setLastName("Simon");
-//	        xavier.setEmail("xavier.simon@gmail.com");
-//	        xavier.setSexe("Homme");
-//	        xavier.setPassword(encodeMDP("xavier"));
-//	        usersRepository.save(xavier);
+
+/*	        Users xavier = new Users();
+	        xavier.setAge(24);
+	        xavier.setFirstName("Xavier");
+	        xavier.setLastName("Simon");
+	        xavier.setEmail("xavier.com");
+	        xavier.setSexe("Homme");
+	        xavier.setUsername("xavier.com");
+	        xavier.setPassword("xavier");
+	        xavier.setEnabled(1);
+	        usersRepository.save(xavier);*/
 
 	    }
 	    
