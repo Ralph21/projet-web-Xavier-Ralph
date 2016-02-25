@@ -19,18 +19,18 @@ import com.miage.repositories.OptionRepository;
 public class CarLoader implements ApplicationListener<ContextRefreshedEvent>{
 	
 	private  CarRepository carRepository;
-	private  OptionRepository optionRepository;
+//	private  OptionRepository optionRepository;
 	
 	    @Autowired
 	    public void setCarRepository(CarRepository carRepository) {
 	        this.carRepository = carRepository;
 	    }
 	    
-	    @Autowired
-	    public void setOptionRepository(OptionRepository optionRepository){
-	    	this.optionRepository = optionRepository;
-	    }
-	   
+//	    @Autowired
+//	    public void setOptionRepository(OptionRepository optionRepository){
+//	    	this.optionRepository = optionRepository;
+//	    }
+//	   
 	    @Override
 	    public void onApplicationEvent(ContextRefreshedEvent event) {
 	    	Car a1 = new Car();

@@ -45,9 +45,9 @@ public class Car implements Serializable{
 
 	@Lob
 	private byte[] vignette;
-
-	@OneToMany(fetch = FetchType.EAGER)
-	protected List<Option> options = new ArrayList<Option>();	
+//
+//	@OneToMany(fetch = FetchType.EAGER)
+//	protected List<Option> options = new ArrayList<Option>();	
 
 	// @OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
 	// public Set<carImage> images;
@@ -147,15 +147,15 @@ public class Car implements Serializable{
 		this.wheels = wheels;
 	}
 
-	public void addOption(Option option) {
-		this.options.add(option);
-	}
-	
-	public List<Option> getOptions(){
-		return this.options;
-	}
-	
-	public void delOption(Option option){
-		this.options.remove(option);
-	}
+//	public void addOption(Option option) {
+//		this.options.add(option);
+//	}
+//	
+//	public List<Option> getOptions(){
+//		return this.options;
+//	}
+//	
+//	public void delOption(Option option){
+//		this.options.remove(option);
+//	}
 }
