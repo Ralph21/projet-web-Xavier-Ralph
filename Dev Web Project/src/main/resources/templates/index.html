@@ -4,18 +4,19 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
+<!-- META -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="PROJECT DEV WEB" />
 <meta name="author" content="Xavier SIMON / Ralph GAUME" />
 
+<!-- CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="css/images/icon_red.png" />
@@ -63,10 +64,9 @@
 							<!-- 							<li></li> -->
 							<!-- 							<li><a href="">Audi Q5<br /> <img -->
 							<!-- 									src="css/images/audix6.jpg" /></a></li> -->
-							<li th:each="car : ${cars}">
-							<a th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br /> <img
-																				src="css/images/audix5.jpg" />
-<!-- 									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" /> -->
+							<li th:each="car : ${cars}"><a
+								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
+									<img src="css/images/audix5.jpg" /> <!-- 									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" /> -->
 							</a></li>
 						</ul></li>
 					<!--  Le menu déroulant réservé aux ADMINS -->
@@ -75,8 +75,11 @@
 							class="caret"></b>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-left">
-							<li><a href="gestionUsers.html">Gestion Utilisateurs</a></li>
-							<li><a href="gestionInfos.html">Informations Admin.</a></li>
+							<li><a href="gestionInfos.html"><span
+									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li><a href="gestionUsers.html"><span
+									class="glyphicon glyphicon-th-list"></span> Gestion des
+									utilisateurs</a></li>
 						</ul></li>
 					<!--  Le menu déroulant réservé aux users (clients) -->
 					<li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a
@@ -84,8 +87,9 @@
 							class="caret"></b>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-left">
-							<li><a href="gestionEssais.html">Mes essais</a></li>
-							<li><a href="gestionInfos.html">Mes informations</a></li>
+							<li><a href="gestionInfos.html"><span
+									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li><a href="gestionEssais.html"><span class="glyphicon glyphicon-shopping-cart"></span> Mes réservations</a></li>
 						</ul></li>
 					<!--  menu Sign Up -->
 					<ul class="nav navbar-nav navbar-right"
@@ -103,14 +107,16 @@
 								<form id="formLogin" class="form container-fluid"
 									th:action="@{/index}" method="post">
 									<div class="form-group">
-										<label for="usr"> User Name : </label> <input type="text"
-											class="form-control" id="usr"
-											placeholder="Entrer un user name" name="username" />
+										<label for="usr"><span
+											class="glyphicon glyphicon-envelope"></span> E-mail </label><input
+											type="text" class="form-control" id="usr"
+											placeholder="Adresse mail" name="username"></input>
 									</div>
 									<div class="form-group">
-										<label for="pwd"> Password :</label> <input type="password"
-											class="form-control" id="pwd" placeholder="Mot de passe"
-											name="password" />
+										<label for="pwd"><span
+											class="glyphicon glyphicon-lock"></span> Mot de passe</label> <input
+											type="password" class="form-control" id="pwd"
+											placeholder="Mot de passe" name="password" />
 									</div>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" />
