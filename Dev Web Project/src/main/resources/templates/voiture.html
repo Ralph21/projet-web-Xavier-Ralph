@@ -319,8 +319,8 @@
 				<div class="col-lg-1"></div>
 				<div class="col-lg-3">
 					<span class="checkbox" th:each="equipement : ${equipements}">
-						<label class="checkbox" th:field="*{selectedEquipements}">
-							<input type="checkbox"  th:text="${equipement.libelle}"  th:field="*{acutalEquipements}"/>
+						<label class="checkbox" th:field="*{equipements}">
+							<input type="checkbox"  th:text="${equipement.libelle}"/>
 						</label>
 					</span>
 					<!-- 					<label class="checkbox"> <input type="checkbox" -->

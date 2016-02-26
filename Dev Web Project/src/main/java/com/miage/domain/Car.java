@@ -48,7 +48,6 @@ public class Car implements Serializable{
 
 	private String wheels;
 
-//	List<String> acutalEquipements = new ArrayList<String>();
 	
 //	@Lob
 //	private byte[] vignette;
@@ -169,15 +168,7 @@ public class Car implements Serializable{
 		this.wheels = wheels;
 	}
 
-//	public List<String> getAcutalEquipements() {
-//		return acutalEquipements;
-//	}
-//
-//	public void setAcutalEquipements(List<String> acutalEquipements) {
-//		this.acutalEquipements = acutalEquipements;
-//	}
-//	
-	
+
 //	public void addOption(Option option) {
 //		this.options.add(option);
 //	}
