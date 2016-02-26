@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 25 Février 2016 à 17:47
+-- Généré le :  Ven 26 Février 2016 à 11:10
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `car` (
   `vignette` varchar(255) DEFAULT NULL,
   `wheels` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_car`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `car`
@@ -48,7 +48,8 @@ INSERT INTO `car` (`id_car`, `brand`, `fuel`, `gearbox`, `model`, `paint`, `powe
 (1, 'Audi', NULL, NULL, 'A3', NULL, NULL, NULL, 'css/images/audix5.jpg', NULL),
 (2, 'Audi', NULL, NULL, 'Q5', NULL, NULL, NULL, 'css/images/audix6.jpg', NULL),
 (3, 'Volkswagen', NULL, NULL, 'Golf', NULL, NULL, NULL, 'css/images/vwx5.jpg', NULL),
-(4, 'Volkswagen', NULL, NULL, 'Tiguan', NULL, NULL, NULL, 'css/images/vwx6.jpg', NULL);
+(4, 'Volkswagen', NULL, NULL, 'Tiguan', NULL, NULL, NULL, 'css/images/vwx6.jpg', NULL),
+(5, NULL, 'Diesel', 'Automatique', NULL, 'Bleu métallisé', 150, 'Traction', NULL, '18');
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,14 @@ CREATE TABLE IF NOT EXISTS `car_equipements` (
   KEY `FK_g4lc29bwe7an4vlxt25998teh` (`car_idCar`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `car_equipements`
+--
+
+INSERT INTO `car_equipements` (`car_idCar`, `equipements_idEquipement`) VALUES
+(1, 1),
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -73,7 +82,15 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   `id_equipement` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_equipement`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `equipement`
+--
+
+INSERT INTO `equipement` (`id_equipement`, `libelle`) VALUES
+(1, 'Sièges cuir'),
+(2, 'climatisation 50 zones');
 
 -- --------------------------------------------------------
 
@@ -132,8 +149,8 @@ INSERT INTO `user_roles` (`id_role`, `role`, `username`, `utilisateur_id`) VALUE
 -- Contraintes pour la table `car_equipements`
 --
 ALTER TABLE `car_equipements`
-  ADD CONSTRAINT `FK_g4lc29bwe7an4vlxt25998teh` FOREIGN KEY (`car_idCar`) REFERENCES `car` (`id_car`),
-  ADD CONSTRAINT `FK_411pmu08vct71vtqksps6shaw` FOREIGN KEY (`equipements_idEquipement`) REFERENCES `equipement` (`id_equipement`);
+  ADD CONSTRAINT `FK_411pmu08vct71vtqksps6shaw` FOREIGN KEY (`equipements_idEquipement`) REFERENCES `equipement` (`id_equipement`),
+  ADD CONSTRAINT `FK_g4lc29bwe7an4vlxt25998teh` FOREIGN KEY (`car_idCar`) REFERENCES `car` (`id_car`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

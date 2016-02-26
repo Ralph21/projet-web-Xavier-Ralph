@@ -60,6 +60,7 @@ public class CarController {
 		car.setVignette(model.getVignette());
 		car.setPaint(model.getPaint());
 		car.setWheels(model.getWheels());
+		car.setEquipements(model.getEquipements());
 		carRepository.save(car);
 		return new String("redirect:/summary?id="+car.getIdCar());
 	}

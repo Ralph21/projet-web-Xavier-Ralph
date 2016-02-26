@@ -168,6 +168,14 @@ public class Car implements Serializable{
 		this.wheels = wheels;
 	}
 
+	public List<Equipement> getEquipements() {
+		return equipements;
+	}
+
+	public void setEquipements(List<Equipement> equipements) {
+		this.equipements = equipements;
+	}
+
 
 //	public void addOption(Option option) {
 //		this.options.add(option);

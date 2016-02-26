@@ -183,7 +183,9 @@
 					<tbody>
 						<tr>
 							<th class="active">Options</th>
-							<td>ex:liste</td>
+							<span  th:foreach="${equipement : car.equipements}">
+							<td th:text="${equipement.libelle}"></td>
+							</span>
 						</tr>
 					</tbody>
 				</table>
