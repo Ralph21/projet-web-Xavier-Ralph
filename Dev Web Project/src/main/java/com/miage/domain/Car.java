@@ -48,7 +48,7 @@ public class Car implements Serializable{
 
 	private String wheels;
 
-	
+	private boolean base;
 //	@Lob
 //	private byte[] vignette;
 	
@@ -176,6 +176,15 @@ public class Car implements Serializable{
 		this.equipements = equipements;
 	}
 
+	public boolean isBase() {
+		return base;
+	}
+
+	public void setBase(boolean base) {
+		this.base = base;
+	}
+
+	
 
 //	public void addOption(Option option) {
 //		this.options.add(option);

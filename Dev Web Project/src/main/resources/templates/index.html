@@ -54,17 +54,18 @@
 						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-header" th:if="${not #lists.isEmpty(vw)}">Volkswagen</li>
-							<li th:each="car : ${vw}"><a
-								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
-									<img th:src="@{${car.vignette}}" />
+							<li th:each="car : ${vw}">
+								<a th:if="${car.base}" th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}">
+								<br />
+								<img th:if="${car.base}" th:src="@{${car.vignette}}" />
 							</a></li>
 							<li class="divider"></li>
 							<!-- Audi -->
 							<li class="dropdown-header" th:if="${not #lists.isEmpty(audi)}">Audi</li>
-							<li th:each="car : ${audi}"><a
-								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
+							<li th:each="car : ${audi}">
+							<a th:if="${car.base}" th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
 <!-- 									<img th:src="${car.vignette}" /> -->
-									<img th:src="@{${car.vignette}}" />
+									<img th:if="${car.base}" th:src="@{${car.vignette}}" />
 							</a></li>
 						</ul></li>
 

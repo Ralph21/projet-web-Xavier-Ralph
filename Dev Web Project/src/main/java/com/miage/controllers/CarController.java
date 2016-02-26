@@ -53,6 +53,7 @@ public class CarController {
 	public String finalizeVoiture(@RequestParam Integer id,Car model, RedirectAttributes redirectAttributes) {
 		Car car = new Car();
 		car.setFuel(model.getFuel());
+		car.setBrand(model.getBrand());
 		car.setGearbox(model.getGearbox());
 		car.setModel(model.getModel());
 		car.setPower(model.getPower());
@@ -60,7 +61,8 @@ public class CarController {
 		car.setVignette(model.getVignette());
 		car.setPaint(model.getPaint());
 		car.setWheels(model.getWheels());
-		car.setEquipements(model.getEquipements());
+		//car.setEquipements(model.getEquipements());
+		car.setBase(false);
 		carRepository.save(car);
 		return new String("redirect:/summary?id="+car.getIdCar());
 	}
