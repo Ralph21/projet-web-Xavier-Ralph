@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 26 Février 2016 à 11:10
+-- Généré le :  Sam 27 Février 2016 à 17:40
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -37,19 +37,19 @@ CREATE TABLE IF NOT EXISTS `car` (
   `transmission` varchar(255) DEFAULT NULL,
   `vignette` varchar(255) DEFAULT NULL,
   `wheels` varchar(255) DEFAULT NULL,
+  `base` bit(1) NOT NULL,
   PRIMARY KEY (`id_car`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Contenu de la table `car`
 --
 
-INSERT INTO `car` (`id_car`, `brand`, `fuel`, `gearbox`, `model`, `paint`, `power`, `transmission`, `vignette`, `wheels`) VALUES
-(1, 'Audi', NULL, NULL, 'A3', NULL, NULL, NULL, 'css/images/audix5.jpg', NULL),
-(2, 'Audi', NULL, NULL, 'Q5', NULL, NULL, NULL, 'css/images/audix6.jpg', NULL),
-(3, 'Volkswagen', NULL, NULL, 'Golf', NULL, NULL, NULL, 'css/images/vwx5.jpg', NULL),
-(4, 'Volkswagen', NULL, NULL, 'Tiguan', NULL, NULL, NULL, 'css/images/vwx6.jpg', NULL),
-(5, NULL, 'Diesel', 'Automatique', NULL, 'Bleu métallisé', 150, 'Traction', NULL, '18');
+INSERT INTO `car` (`id_car`, `brand`, `fuel`, `gearbox`, `model`, `paint`, `power`, `transmission`, `vignette`, `wheels`, `base`) VALUES
+(1, 'Audi', NULL, NULL, 'A3', NULL, NULL, NULL, '../static/css/images/audix5.jpg', NULL, b'1'),
+(2, 'Audi', NULL, NULL, 'Q5', NULL, NULL, NULL, '../static/css/images/audix6.jpg', NULL, b'1'),
+(3, 'Volkswagen', NULL, NULL, 'Golf', NULL, NULL, NULL, '../static/css/images/vwx5.jpg', NULL, b'1'),
+(4, 'Volkswagen', NULL, NULL, 'Tiguan', NULL, NULL, NULL, '../static/css/images/vwx6.jpg', NULL, b'1');
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   `id_equipement` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_equipement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Contenu de la table `equipement`
@@ -91,6 +91,22 @@ CREATE TABLE IF NOT EXISTS `equipement` (
 INSERT INTO `equipement` (`id_equipement`, `libelle`) VALUES
 (1, 'Sièges cuir'),
 (2, 'climatisation 50 zones');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reservations`
+--
+
+CREATE TABLE IF NOT EXISTS `reservations` (
+  `id_reservation` int(11) NOT NULL AUTO_INCREMENT,
+  `car_idCar` int(11) DEFAULT NULL,
+  `user_idUtilisateur` int(11) DEFAULT NULL,
+  `date_reservation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_reservation`),
+  KEY `FK_5nve680i13bwayauqxslo6m7x` (`car_idCar`),
+  KEY `FK_ptxpyntgo9v03ax0739lupwxj` (`user_idUtilisateur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -151,6 +167,13 @@ INSERT INTO `user_roles` (`id_role`, `role`, `username`, `utilisateur_id`) VALUE
 ALTER TABLE `car_equipements`
   ADD CONSTRAINT `FK_411pmu08vct71vtqksps6shaw` FOREIGN KEY (`equipements_idEquipement`) REFERENCES `equipement` (`id_equipement`),
   ADD CONSTRAINT `FK_g4lc29bwe7an4vlxt25998teh` FOREIGN KEY (`car_idCar`) REFERENCES `car` (`id_car`);
+
+--
+-- Contraintes pour la table `reservations`
+--
+ALTER TABLE `reservations`
+  ADD CONSTRAINT `FK_5nve680i13bwayauqxslo6m7x` FOREIGN KEY (`car_idCar`) REFERENCES `car` (`id_car`),
+  ADD CONSTRAINT `FK_ptxpyntgo9v03ax0739lupwxj` FOREIGN KEY (`user_idUtilisateur`) REFERENCES `users` (`id_utilisateur`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
