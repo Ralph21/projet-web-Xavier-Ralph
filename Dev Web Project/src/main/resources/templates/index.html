@@ -16,6 +16,7 @@
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
+<link href="css/inner_addon.css" rel="stylesheet" />
 
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -54,19 +55,17 @@
 						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-header" th:if="${not #lists.isEmpty(vw)}">Volkswagen</li>
-							<li th:each="car : ${vw}">
-								<a th:if="${car.base}" th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}">
-								<br />
-								<img th:if="${car.base}" th:src="@{${car.vignette}}" />
+							<li th:each="car : ${vw}"><a th:if="${car.base}"
+								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}">
+									<br /> <img th:if="${car.base}" th:src="@{${car.vignette}}" />
 							</a></li>
 							<li class="divider"></li>
 							<!-- Audi -->
 							<li class="dropdown-header" th:if="${not #lists.isEmpty(audi)}">Audi</li>
-							<li th:each="car : ${audi}">
-							<a th:if="${car.base}" th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
-<!-- 									<img th:src="${car.vignette}" /> -->
-									<img th:if="${car.base}" th:src="@{${car.vignette}}" />
-							</a></li>
+							<li th:each="car : ${audi}"><a th:if="${car.base}"
+								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
+									<!-- 									<img th:src="${car.vignette}" /> --> <img
+									th:if="${car.base}" th:src="@{${car.vignette}}" /> </a></li>
 						</ul></li>
 
 					<!--  DROPDOWN ADMIN -->
@@ -110,23 +109,27 @@
 							<div class="dropdown-menu" style="width: 230px;">
 								<form id="formLogin" class="form container-fluid"
 									th:action="@{/index}" method="post">
+									<label><small>Déjà membre? Connectez vous :</small><br /></label>
 									<div class="form-group">
-										<label for="usr"><span
-											class="glyphicon glyphicon-envelope"></span> E-mail </label><input
-											type="text" class="form-control" id="usr"
-											placeholder="Adresse mail" name="username"></input>
+										<div class="left-inner-addon">
+											<i class="glyphicon glyphicon-envelope"></i> <input
+												type="text" class="form-control" id="usr" name="username"
+												placeholder="E-mail" />
+										</div>
 									</div>
 									<div class="form-group">
-										<label for="pwd"><span
-											class="glyphicon glyphicon-lock"></span> Mot de passe</label> <input
-											type="password" class="form-control" id="pwd"
-											placeholder="Mot de passe" name="password" />
+										<div class="left-inner-addon">
+											<i class="glyphicon glyphicon-lock"></i> <input
+												type="password" class="form-control" id="pwd"
+												placeholder="Mot de passe" name="password" />
+										</div>
 									</div>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" />
 									<div>
 										<!-- <input type="submit" value="Sign In" /> -->
-										<button type="submit" id="btnLogin" class="btn btn-default">Connexion</button>
+										<button type="submit" id="btnLogin"
+											class="btn btn-success-outline">Connexion</button>
 									</div>
 								</form>
 								<div class="container-fluid">
