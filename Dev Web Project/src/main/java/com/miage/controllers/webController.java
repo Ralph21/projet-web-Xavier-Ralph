@@ -62,11 +62,6 @@ public class webController {
 		return "voiture";
 	}
 	
-	@RequestMapping(value = "/test")
-	public String AccessTest() {
-		return "test";
-	}
-	
 	@RequestMapping(value = "/informations")
 	public String AccessInformations() {
 		return "informations";

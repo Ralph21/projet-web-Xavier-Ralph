@@ -55,7 +55,12 @@ public class CarController {
 	@RequestMapping(value = "/summary", method = RequestMethod.POST)
 	public String valideReservation(@RequestParam Integer id,@ModelAttribute Reservations reservation, Model model,RedirectAttributes redirectAttributes) {
 		reservationRepository.save(reservation);
-		return "redirect:/index";
+		return "redirect:/validation";
+	}
+	
+	@RequestMapping(value = "/validation")
+	public String validation() {
+		return "validation";
 	}
 	
 	

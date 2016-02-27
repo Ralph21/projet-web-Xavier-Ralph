@@ -135,7 +135,8 @@
 
 	<!-- Page Content -->
 	<div class="container">
-		<form method="POST" th:object="${reservation}">
+		<form method="POST" th:object="${reservation}"
+			onsubmit="return checkForm();">
 			<div class="row">
 
 				<div class="col-lg-12">
@@ -215,7 +216,8 @@
 						<i class="glyphicon glyphicon-calendar"></i> <input
 							th:field="*{dateReservation}" class="form-control"
 							id="datepicker" type="text"
-							placeholder="Cliquer pour sélectionner un date" />
+							placeholder="Cliquer pour sélectionner un date" /><br /> <span
+							id="msg" class="msg"></span>
 					</div>
 				</div>
 			</div>
@@ -246,13 +248,12 @@
 
 	<!-- 	<div th:if="${param.error}">Invalid username and password.</div> -->
 	<!-- 	<div th:if="${param.logout}">You have been logged out.</div> -->
-	<!-- jQuery -->
+	<!-- SCRIPT -->
 	<script src="js/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/bootstrap-datepicker.min.js"></script>
-
+	<script src="js/validationDate.js"></script>
 	<script>
 		$('#sandbox-container input').datepicker({}).on('changeDate',
 				function(e) {

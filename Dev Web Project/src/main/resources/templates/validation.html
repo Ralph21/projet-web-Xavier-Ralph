@@ -17,10 +17,6 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
 <link href="css/inner_addon.css" rel="stylesheet" />
-<link href="css/bootstrap-datepicker3.css" rel="stylesheet" />
-
-
-
 
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -28,6 +24,7 @@
 </head>
 
 <body>
+
 
 	<!--  BARRE DE NAVIGATION -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -115,23 +112,18 @@
 									th:action="@{/index}" method="post">
 									<label><small>Déjà membre? Connectez vous :</small><br /></label>
 									<div class="form-group">
-
-
 										<div class="left-inner-addon">
-											<i class="glyphicon glyphicon-envelope"></i> <input
-												type="search" class="form-control" placeholder="E-mail" />
+											<i class="fa fa-envelope-o fa-fw"></i> <input type="text"
+												class="form-control" id="usr" name="username"
+												placeholder="E-mail" />
 										</div>
-
-										<!-- 	<input type="text" class="form-control" id="usr"
-											placeholder="Adresse mail" name="username"></input> -->
 									</div>
 									<div class="form-group">
-
 										<div class="left-inner-addon">
-											<i class="glyphicon glyphicon-lock"></i> <input type="search"
-												class="form-control" placeholder="Mot de passe" />
+											<i class="fa fa-key fa-fw"></i> <input type="password"
+												class="form-control" id="pwd" placeholder="Mot de passe"
+												name="password" />
 										</div>
-
 									</div>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" />
@@ -163,24 +155,87 @@
 	<!-- /.barre navigation -->
 
 
-
-
-
-	<!-- PAGE CONTENT -->
+	<!-- Page Content -->
 	<div class="container">
 		<div class="row">
+
 			<div class="col-lg-12">
-				<h1 class="page-header">Bienvenue</h1>
-			</div>
+				<h1 class="page-header">
+					Félicitation, <small>votre réservation a été enregistrée</small>
+				</h1>
 
-			<div class="span5 col-md-5" id="sandbox-container">
-				<input type="text" class="form-control" />
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar"
+						aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+						style="width: 100%;">100%</div>
+				</div>
 			</div>
-
+			<div class="col-lg-1"></div>
+			<div class="col-lg-4 col-md-4 col-xs-6 thumb">
+				<img class="img-thumbnail img-responsive img-center"
+					src="css/images/vwx9.jpg" />
+			</div>
+			<div class="col-lg-2"></div>
+			<div class="col-lg-4 col-md-4 col-xs-6 thumb">
+				<img class="img-thumbnail img-responsive img-center"
+					src="css/images/audix7.jpg" />
+			</div>
+			<div class="col-lg-2"></div>
 		</div>
 
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="page-header">Services</h2>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="panel panel-default text-center">
+					<div class="panel-heading">
+						<span class="fa-stack fa-5x"> <i
+							class="fa fa-circle fa-stack-2x text-info"></i> <i
+							class="fa fa-user fa-stack-1x fa-inverse"></i>
+						</span>
+					</div>
+					<div class="panel-body">
+						<h4>Mon profil</h4>
+						<p>Vous pouvez consulter votre profil...</p>
+						<a href="gestionInfos.html" class="btn btn-primary-outline">Profil</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="panel panel-default text-center">
+					<div class="panel-heading">
+						<span class="fa-stack fa-5x"> <i
+							class="fa fa-circle fa-stack-2x text-info"></i> <i
+							class="fa fa-list-ul fa-stack-1x fa-inverse"></i>
+						</span>
+					</div>
+					<div class="panel-body">
+						<h4>Mes réservations</h4>
+						<p>Vous pouvez consulter et gérer vos réservations...</p>
+						<a href="gestionEssais.html" class="btn btn-primary-outline">Réservations</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="panel panel-default text-center">
+					<div class="panel-heading">
+						<span class="fa-stack fa-5x"> <i
+							class="fa fa-circle fa-stack-2x text-info"></i> <i
+							class="fa fa-fax fa-stack-1x fa-inverse"></i>
+						</span>
+					</div>
+					<div class="panel-body">
+						<h4>Nous contactez</h4>
+						<p>Vous pouvez nous contacter...</p>
+						<a href="contact.html" class="btn btn-primary-outline">Nos
+							coordonnées</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<!-- FOOTER -->
+		<!-- Footer -->
 		<footer>
 			<div class="footer">
 				<p class="lf">Copyright &copy; 2016 - All Rights Reserved</p>
@@ -188,24 +243,14 @@
 				<div style="clear: both;"></div>
 			</div>
 		</footer>
-	</div>
-	<!-- ./page content -->
 
+	</div>
 
 	<!-- 	<div th:if="${param.error}">Invalid username and password.</div> -->
 	<!-- 	<div th:if="${param.logout}">You have been logged out.</div> -->
-
 	<!-- SCRIPT -->
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
 
-	<script>
-		$('#sandbox-container input').datepicker({}).on('changeDate',
-				function(e) {
-					$(this).datepicker('hide');
-				});
-	</script>
 </body>
 </html>
