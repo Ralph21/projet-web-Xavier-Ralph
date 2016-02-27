@@ -16,6 +16,7 @@
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
+<link href="css/table.css" rel="stylesheet" />
 
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -156,35 +157,46 @@
 			</div>
 		</div>
 		<br />
-		<table class="table table-hover">
-			<tr>
-				<th>ID Utilisateur</th>
-				<th>Prénom</th>
-				<th>Nom</th>
-				<th>Âge</th>
-				<th>Sexe</th>
-				<th>E-mail</th>
-				<th>Activé</th>
-				<th>Modifier</th>
-				<th>Supprimer</th>
-
-			</tr>
-			<tr th:each="user : ${users}">
-				<td th:text="${user.idUtilisateur}">Id</td>
-				<td th:text="${user.firstName}">First Name</td>
-				<td th:text="${user.lastName}">Last Name</td>
-				<td th:text="${user.age}">Age</td>
-				<td th:text="${user.sexe}">Sexe</td>
-				<td th:text="${user.email}">Email</td>
-				<td th:switch="${user.enabled}"><span th:case="0">Non</span> <span
-					th:case="*">Oui</span></td>
-				<td><a th:href="@{'/modification?id='+${user.idUtilisateur}}"><button
-							type="button" class="btn btn-xs btn-primary">Modifier</button></a></td>
-				<td><a th:href="@{'/remove/'+${user.idUtilisateur}}"><button
-							type="button" class="btn btn-xs btn-danger">
-							Supprimer <span class="glyphicon glyphicon-trash"></span>
-						</button></a></td>
-			</tr>
+		<div class="form-group pull-right">
+			<input type="text" class="search form-control"
+				placeholder="Rechercher..." />
+		</div>
+		<span class="counter pull-right"></span> <br />
+		<table class="table table-hover results">
+			<thead>
+				<tr>
+					<th>ID Utilisateur</th>
+					<th>Prénom</th>
+					<th>Nom</th>
+					<th>Âge</th>
+					<th>Sexe</th>
+					<th>E-mail</th>
+					<th>Activé</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+				<tr class="warning no-result">
+					<td colspan="4"><i class="fa fa-warning"></i> Aucun résultat</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.idUtilisateur}">Id</td>
+					<td th:text="${user.firstName}">First Name</td>
+					<td th:text="${user.lastName}">Last Name</td>
+					<td th:text="${user.age}">Age</td>
+					<td th:text="${user.sexe}">Sexe</td>
+					<td th:text="${user.email}">Email</td>
+					<td th:switch="${user.enabled}"><span th:case="0">Non</span> <span
+						th:case="*">Oui</span></td>
+					<td><a th:href="@{'/modification?id='+${user.idUtilisateur}}"><button
+								type="button" class="btn btn-xs btn-primary">Modifier</button></a></td>
+					<td><a th:href="@{'/remove/'+${user.idUtilisateur}}"><button
+								type="button" class="btn btn-xs btn-danger">
+								Supprimer <span class="glyphicon glyphicon-trash"></span>
+							</button></a></td>
+				</tr>
+			</tbody>
 		</table>
 
 		<!-- Footer -->
@@ -195,15 +207,16 @@
 				<div style="clear: both;"></div>
 			</div>
 		</footer>
+
 	</div>
 
 
 	<!-- 	<div th:if="${param.error}">Invalid username and password.</div> -->
 	<!-- 	<div th:if="${param.logout}">You have been logged out.</div> -->
-	
+
 	<!-- SCRIPT -->
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-
+	<script src="js/table.js"></script>
 </body>
 </html>

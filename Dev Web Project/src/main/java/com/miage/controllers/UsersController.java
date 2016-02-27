@@ -113,6 +113,11 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	return "gestionInfos";
 	}
 	
+	@RequestMapping(value = "/gestionEssais", method = RequestMethod.GET)
+	public String accessEssais() {		
+    	return "gestionEssais";
+	}
+	
 	@RequestMapping(value = "/gestionInfos", method = RequestMethod.POST)
 	public String writeInfos(Users user, RedirectAttributes redirectAttributes) {
 		User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -16,6 +16,7 @@
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <link href="css/modern-business.css" rel="stylesheet" />
+<link href="css/table.css" rel="stylesheet" />
 
 <title>VA</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -26,6 +27,7 @@
 
 	<!--  BARRE DE NAVIGATION -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -34,65 +36,68 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<!-- logo -->
+				<!-- LOGO -->
 				<h1 id="logo">
 					<a href="index.html"> <span class="min"> <span
 							class="white">Volkswagen</span><span class="red">&nbsp;&amp;&nbsp;Audi</span></span>
 					</a>
 				</h1>
 			</div>
+			<!-- navbar-header -->
+
+			<!-- navbar-collapse -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<!-- menu déroulant des véhicules -->
+
+					<!-- VEHICULES -->
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
-							<!-- Volkswagen -->
-							<li class="dropdown-header">Volkswagen</li>
-							<li><a href="voiture.html">Volkswagen Golf<br /> <img
-									src="css/images/vwx5.jpg" /></a></li>
-							<li></li>
-							<li><a href="">Volkswagen Tiguan<br /> <img
-									src="css/images/vwx6.jpg" /></a></li>
-							<li></li>
+							<li class="dropdown-header" th:if="${not #lists.isEmpty(vw)}">Volkswagen</li>
+							<li th:each="car : ${vw}"><a
+								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
+									<img th:src="@{${car.vignette}}" /> </a></li>
 							<li class="divider"></li>
 							<!-- Audi -->
-							<li class="dropdown-header">Audi</li>
-							<li><a href="">Audi A3<br /> <img
-									src="css/images/audix5.jpg" /></a></li>
-							<li></li>
-<!-- 							<li><a href="">Audi Q5<br /> <img -->
-<!-- 									src="css/images/audix6.jpg" /></a></li> -->
-							<li th:each="car : ${cars}">
-								<a href="" th:text="${car.model}"><br/>
-								<img class="info" th:attr="src=@{${car.vignette}}" />
-								</a>
-							</li>
+							<li class="dropdown-header" th:if="${not #lists.isEmpty(audi)}">Audi</li>
+							<li th:each="car : ${audi}"><a
+								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
+									<!-- 									<img th:src="${car.vignette}" /> --> <img
+									th:src="@{${car.vignette}}" /> </a></li>
 						</ul></li>
-					<!--  Le menu déroulant réservé aux ADMINS -->
+
+					<!--  DROPDOWN ADMIN -->
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
 						href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b
 							class="caret"></b>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-left">
-							<li><a href="gestionUsers.html">Gestion Utilisateurs</a></li>
-							<li><a href="gestionInfos.html">Informations Admin.</a></li>
+							<li><a href="gestionInfos.html"><span
+									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li><a href="gestionUsers.html"><span
+									class="glyphicon glyphicon-th-list"></span> Gestion des
+									utilisateurs</a></li>
 						</ul></li>
-					<!--  Le menu déroulant réservé aux users (clients) -->
+
+					<!--  DROPDOWN COSTUMER -->
 					<li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a
 						href="#" class="dropdown-toggle" data-toggle="dropdown">Compte<b
 							class="caret"></b>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-left">
-							<li><a href="gestionEssais.html">Mes essais</a></li>
-							<li><a href="gestionInfos.html">Mes informations</a></li>
+							<li><a href="gestionInfos.html"><span
+									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li><a href="gestionEssais.html"><span
+									class="glyphicon glyphicon-shopping-cart"></span> Mes
+									réservations</a></li>
 						</ul></li>
-					<!--  menu Sign Up -->
+
+					<!--  SIGN UP -->
 					<ul class="nav navbar-nav navbar-right"
 						th:if="not ${#authorization.expression('isAuthenticated()')}">
 						<li><a href="inscription.html"><span
-							class="glyphicon glyphicon-user"></span> Inscription</a></li>
+								class="glyphicon glyphicon-user"></span> Inscription</a></li>
 					</ul>
 					<!-- menu LOGIN -->
 					<ul class="nav navbar-nav navbar-right"
@@ -104,14 +109,16 @@
 								<form id="formLogin" class="form container-fluid"
 									th:action="@{/index}" method="post">
 									<div class="form-group">
-										<label for="usr"> User Name : </label> <input type="text"
-											class="form-control" id="usr"
-											placeholder="Entrer un user name" name="username" />
+										<label for="usr"><span
+											class="glyphicon glyphicon-envelope"></span> E-mail </label><input
+											type="text" class="form-control" id="usr"
+											placeholder="Adresse mail" name="username"></input>
 									</div>
 									<div class="form-group">
-										<label for="pwd"> Password :</label> <input type="password"
-											class="form-control" id="pwd" placeholder="Mot de passe"
-											name="password" />
+										<label for="pwd"><span
+											class="glyphicon glyphicon-lock"></span> Mot de passe</label> <input
+											type="password" class="form-control" id="pwd"
+											placeholder="Mot de passe" name="password" />
 									</div>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" />
@@ -128,7 +135,8 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right"
 						th:if="${#authorization.expression('isAuthenticated()')}">
-						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span class="glyphicon glyphicon-off"></span></a></li>
+						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span
+								class="glyphicon glyphicon-off"></span></a></li>
 					</ul>
 					<li><a href="informations.html">Informations</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -138,14 +146,65 @@
 		</div>
 		<!-- /.container -->
 	</nav>
+	<!-- /.barre navigation -->
 
 
 	<!-- PAGE CONTENT -->
 	<div class="container">
-	
-	
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="page-header">Gestion des réservations :</h3>
+			</div>
+		</div>
+		<br />
+		<div class="form-group pull-right">
+			<input type="text" class="search form-control"
+				placeholder="Rechercher..." />
+		</div>
 
-		<!-- FOOTER -->
+		<span class="counter pull-right"></span> <br />
+		<table class="table table-hover results">
+			<thead>
+				<tr>
+					<th>ID réservation</th>
+					<th>Marque</th>
+					<th>Modèle</th>
+					<th>Date essaie</th>
+					<th>Aperçu</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+				<tr class="warning no-result">
+					<td colspan="4"><i class="fa fa-warning"></i> Aucun résultat</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.idUtilisateur}">Id</td>
+					<td th:text="${user.firstName}">First Name</td>
+					<td th:text="${user.lastName}">Last Name</td>
+					<td th:text="${user.age}">Age</td>
+					<td th:text="${user.sexe}">Sexe</td>
+					<td th:text="${user.email}">Email</td>
+					<td th:switch="${user.enabled}"><span th:case="0">Non</span> <span
+						th:case="*">Oui</span></td>
+					<td><a th:href="@{'/apercu?id='+${user.idUtilisateur}}"><button
+								type="button" class="btn btn-xs btn-primary">
+								Aperçu <span class="glyphicon glyphicon-zoom-in"></span>
+							</button></a></td>
+					<td><a th:href="@{'/modification?id='+${user.idUtilisateur}}"><button
+								type="button" class="btn btn-xs btn-warning">
+								Modifier <span class="glyphicon glyphicon-edit"></span>
+							</button></a></td>
+					<td><a th:href="@{'/remove/'+${user.idUtilisateur}}"><button
+								type="button" class="btn btn-xs btn-danger">
+								Supprimer <span class="glyphicon glyphicon-trash"></span>
+							</button></a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- Footer -->
 		<footer>
 			<div class="footer">
 				<p class="lf">Copyright &copy; 2016 - All Rights Reserved</p>
@@ -153,16 +212,17 @@
 				<div style="clear: both;"></div>
 			</div>
 		</footer>
+
 	</div>
 
 
 	<!-- 	<div th:if="${param.error}">Invalid username and password.</div> -->
 	<!-- 	<div th:if="${param.logout}">You have been logged out.</div> -->
-	<!-- jQuery -->
+
+	<!-- SCRIPT -->
 	<script src="js/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-	<!-- Script to Activate the Carousel -->
+	<script src="js/table.js"></script>
 
 </body>
 </html>
