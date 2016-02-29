@@ -169,9 +169,10 @@
 			<thead>
 				<tr>
 					<th>ID réservation</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')"> E-mail</th> 
 					<th>Marque</th>
 					<th>Modèle</th>
-					<th>Date essaie</th>
+					<th>Date essai</th>
 					<th>Aperçu</th>
 					<th>Modifier</th>
 					<th>Supprimer</th>
@@ -182,24 +183,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="user : ${users}">
-					<td th:text="${user.idUtilisateur}">Id</td>
-					<td th:text="${user.firstName}">First Name</td>
-					<td th:text="${user.lastName}">Last Name</td>
-					<td th:text="${user.age}">Age</td>
-					<td th:text="${user.sexe}">Sexe</td>
-					<td th:text="${user.email}">Email</td>
-					<td th:switch="${user.enabled}"><span th:case="0">Non</span> <span
-						th:case="*">Oui</span></td>
-					<td><a th:href="@{'/apercu?id='+${user.idUtilisateur}}"><button
+				<tr th:each="reservation : ${reservations}">
+					<td th:text="${reservation.idReservation}">Id réservation</td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${reservation.user.email}">E-mail</td>
+					<td th:text="${reservation.car.brand}">Marque</td>
+					<td th:text="${reservation.car.model}">Modèle</td>
+					<td th:text="${reservation.dateReservation}">Date essai</td>
+					<td><a th:href="@{'/apercu?id='+${reservation.idReservation}}"><button
 								type="button" class="btn btn-xs btn-primary">
 								Aperçu <span class="glyphicon glyphicon-zoom-in"></span>
 							</button></a></td>
-					<td><a th:href="@{'/modification?id='+${user.idUtilisateur}}"><button
+					<td><a th:href="@{'/modificationReservation?id='+${reservation.idReservation}}"><button
 								type="button" class="btn btn-xs btn-warning">
 								Modifier <span class="glyphicon glyphicon-edit"></span>
 							</button></a></td>
-					<td><a th:href="@{'/remove/'+${user.idUtilisateur}}"><button
+					<td><a th:href="@{'/removeReservation/'+${reservation.idReservation}}"><button
 								type="button" class="btn btn-xs btn-danger">
 								Supprimer <span class="glyphicon glyphicon-trash"></span>
 							</button></a></td>

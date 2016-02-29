@@ -17,8 +17,11 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.miage.domain.Reservations;
 import com.miage.domain.User_roles;
 import com.miage.domain.Users;
+import com.miage.repositories.CarRepository;
+import com.miage.repositories.ReservationsRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
 import com.miage.services.UsersService;
@@ -34,6 +37,12 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	
 	@Autowired
 	User_rolesRepository user_rolesRepository;
+	
+	@Autowired
+	ReservationsRepository reservationsRepository;
+	
+	@Autowired
+	CarRepository carRepository;
 	
 	private UsersService usersService;
 
@@ -114,7 +123,18 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	}
 	
 	@RequestMapping(value = "/gestionEssais", method = RequestMethod.GET)
-	public String accessEssais() {		
+	public String accessEssais(Model model) {		
+		User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Users userMod = usersRepository.findByUserName(usr.getUsername());
+    	List<Reservations> reservations = reservationsRepository.findReservations(userMod.getIdUtilisateur());
+    	model.addAttribute("reservations", reservations);
+    	return "gestionEssais";
+	}
+	
+	@RequestMapping(value = "/gestionEssaisAdm", method = RequestMethod.GET)
+	public String accessEssaisAdm(Model model) {
+    	List<Reservations> reservations = (List<Reservations>) reservationsRepository.findAll();
+    	model.addAttribute("reservations", reservations);
     	return "gestionEssais";
 	}
 	
@@ -142,6 +162,16 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	return "redirect:/gestionUsers";
     }
 
+    @RequestMapping("/removeReservation/{id}")
+    public String deleteReservation(@PathVariable("id") Integer reservationId,RedirectAttributes redirectAttributes)
+    {
+    	Reservations reservation = reservationsRepository.findOne(reservationId);
+    	reservationsRepository.delete(reservationId);
+    	carRepository.delete(reservation.getCar().getIdCar());
+    	return "redirect:/gestionEssais";
+    }
+
+    
 	@RequestMapping("utilisateur/{id}")
 	public String showProduct(@PathVariable Integer id, Model model) {
 		model.addAttribute("utilisateur", usersService.getUtilisateurById(id));

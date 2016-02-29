@@ -5,9 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Reservations.findReservations",
+	query = "select r from Reservations r where r.user.idUtilisateur = ?1"),
+	@NamedQuery(name= "Reservations.findCars",
+	query = "select r.car from Reservations r where r.user.idUtilisateur = ?1")
+})
 public class Reservations implements Serializable {
 
 	/**
