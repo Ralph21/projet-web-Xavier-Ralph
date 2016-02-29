@@ -69,7 +69,7 @@
 							<li><a href="/voiture?id=2">Q5<br /> <img width="200"
 									height="80" src="css/images/audix9.jpg" /></a></li>
 						</ul></li>
-						<!-- ./vehicules -->
+					<!-- ./vehicules -->
 
 					<!--  DROPDOWN ADMIN -->
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
@@ -88,7 +88,7 @@
 									class="glyphicon glyphicon-user"></span> Mon profil
 							</a></li>
 						</ul></li>
-						<!-- :/dropdown admin -->
+					<!-- :/dropdown admin -->
 
 					<!--  DROPDOWN COSTUMER -->
 					<li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a
@@ -102,7 +102,7 @@
 									class="glyphicon glyphicon-shopping-cart"></span> Mes
 									réservations</a></li>
 						</ul></li>
-						<!-- ./dropdown costumer -->
+					<!-- ./dropdown costumer -->
 
 					<!--  SIGN UP -->
 					<ul class="nav navbar-nav navbar-right"
@@ -110,7 +110,7 @@
 						<li><a href="inscription.html"><span
 								class="glyphicon glyphicon-user"></span> Inscription</a></li>
 					</ul>
-					
+
 					<!-- MENU LOGIN -->
 					<ul class="nav navbar-nav navbar-right"
 						th:if="not ${#authorization.expression('isAuthenticated()')}">
@@ -118,7 +118,7 @@
 							data-toggle="dropdown" href="#"><span
 								class="glyphicon glyphicon-log-in"></span> Login </a>
 							<div class="dropdown-menu" style="width: 240px;">
-								
+
 								<!-- FORM LOGIN -->
 								<form id="formLogin" class="form container-fluid"
 									th:action="@{/index}" method="post">
@@ -159,7 +159,7 @@
 							</div></li>
 					</ul>
 					<!-- ./menu login -->
-					
+
 					<ul class="nav navbar-nav navbar-right"
 						th:if="${#authorization.expression('isAuthenticated()')}">
 						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span
@@ -174,7 +174,6 @@
 		<!-- /.container -->
 	</nav>
 	<!-- /.barre navigation -->
-
 
 	<!-- HEADER - CAROUSSEL -->
 	<header id="myCarousel" class="carousel slide">

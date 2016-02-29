@@ -29,6 +29,7 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
 		<div class="container">
+			<!-- NAVBAR HEADER -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#bs-example-navbar-collapse-1">
@@ -43,9 +44,9 @@
 					</a>
 				</h1>
 			</div>
-			<!-- navbar-header -->
+			<!-- ./navbar-header -->
 
-			<!-- navbar-collapse -->
+			<!-- NAVBAR COLLAPSE -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
@@ -54,27 +55,21 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
-							<!-- Volkswagen -->
 							<li class="dropdown-header">Volkswagen</li>
-							<li><a href="voiture.html">Volkswagen Golf<br /> <img
-									src="css/images/vwx5.jpg" /></a></li>
-							<li></li>
-							<li><a href="">Volkswagen Tiguan<br /> <img
-									src="css/images/vwx6.jpg" /></a></li>
-							<li></li>
+							<!-- VW -->
+							<li><a href="/voiture?id=3">Golf<br /> <img width="200"
+									height="80" src="css/images/vwx10.jpg" /></a></li>
+							<li><a href="/voiture?id=4">Tiguan<br /> <img
+									width="200" height="80" src="css/images/vwx11.jpg" /></a></li>
 							<li class="divider"></li>
-							<!-- Audi -->
+							<!-- AUDI -->
 							<li class="dropdown-header">Audi</li>
-							<!-- 							<li><a href="">Audi A3<br /> <img -->
-							<!-- 									src="css/images/audix5.jpg" /></a></li> -->
-							<!-- 							<li></li> -->
-							<!-- 							<li><a href="">Audi Q5<br /> <img -->
-							<!-- 									src="css/images/audix6.jpg" /></a></li> -->
-							<li th:each="car : ${cars}"><a
-								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
-									<img src="css/images/audix5.jpg" /> <!-- 									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" /> -->
-							</a></li>
+							<li><a href="/voiture?id=1">A3<br /> <img width="200"
+									height="80" src="css/images/audix5.png" /></a></li>
+							<li><a href="/voiture?id=2">Q5<br /> <img width="200"
+									height="80" src="css/images/audix9.jpg" /></a></li>
 						</ul></li>
+					<!-- ./vehicules -->
 
 					<!--  DROPDOWN ADMIN -->
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
@@ -82,12 +77,18 @@
 							class="caret"></b>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-left">
-							<li><a href="gestionInfos.html"><span
-									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li class="dropdown-header">Gestion administrateur</li>
 							<li><a href="gestionUsers.html"><span
 									class="glyphicon glyphicon-th-list"></span> Gestion des
 									utilisateurs</a></li>
+							<li><a href="gestionEssaisAdm.html"><span
+									class="glyphicon glyphicon-th"></span> Gestion des réservations</a></li>
+							<li class="divider"></li>
+							<li><a href="gestionInfos.html"> <span
+									class="glyphicon glyphicon-user"></span> Mon profil
+							</a></li>
 						</ul></li>
+					<!-- :/dropdown admin -->
 
 					<!--  DROPDOWN COSTUMER -->
 					<li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a
@@ -101,6 +102,7 @@
 									class="glyphicon glyphicon-shopping-cart"></span> Mes
 									réservations</a></li>
 						</ul></li>
+					<!-- ./dropdown costumer -->
 
 					<!--  SIGN UP -->
 					<ul class="nav navbar-nav navbar-right"
@@ -108,40 +110,56 @@
 						<li><a href="inscription.html"><span
 								class="glyphicon glyphicon-user"></span> Inscription</a></li>
 					</ul>
-					<!-- menu LOGIN -->
+
+					<!-- MENU LOGIN -->
 					<ul class="nav navbar-nav navbar-right"
 						th:if="not ${#authorization.expression('isAuthenticated()')}">
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#"><span
 								class="glyphicon glyphicon-log-in"></span> Login </a>
-							<div class="dropdown-menu" style="width: 230px;">
+							<div class="dropdown-menu" style="width: 240px;">
+
+								<!-- FORM LOGIN -->
 								<form id="formLogin" class="form container-fluid"
 									th:action="@{/index}" method="post">
+									<label><small>Déjà membre? Connectez vous :</small><br /></label>
 									<div class="form-group">
-										<label for="usr"><span
-											class="glyphicon glyphicon-envelope"></span> E-mail </label><input
-											type="text" class="form-control" id="usr"
-											placeholder="Adresse mail" name="username"></input>
+										<div class="left-inner-addon">
+											<i class="fa fa-envelope-o fa-fw"></i> <input type="text"
+												class="form-control" id="usr" name="username"
+												placeholder="E-mail" />
+										</div>
 									</div>
 									<div class="form-group">
-										<label for="pwd"><span
-											class="glyphicon glyphicon-lock"></span> Mot de passe</label> <input
-											type="password" class="form-control" id="pwd"
-											placeholder="Mot de passe" name="password" />
+										<div class="left-inner-addon">
+											<i class="fa fa-key fa-fw"></i> <input type="password"
+												class="form-control" id="pwd" placeholder="Mot de passe"
+												name="password" />
+										</div>
 									</div>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" />
 									<div>
 										<!-- <input type="submit" value="Sign In" /> -->
-										<button type="submit" id="btnLogin" class="btn btn-default">Connexion</button>
+										<button type="submit" id="btnLogin"
+											class="btn btn-success-outline">
+											Connexion <i class="fa fa-arrow-circle-right"></i>
+										</button>
 									</div>
 								</form>
+								<!-- ./form -->
 								<div class="container-fluid">
-									<br /> <a class="small" href="inscription.html">Nouveau
-										client ? Créez un compte</a>
+									<br /> <a href="#myModal" role="button" class="small"
+										data-toggle="modal">Mot de passe oublié ?</a>
+								</div>
+								<div class="container-fluid">
+									<small>Nouveau client ?</small> <a class="small"
+										href="inscription.html"> Créez un compte</a>
 								</div>
 							</div></li>
 					</ul>
+					<!-- ./menu login -->
+
 					<ul class="nav navbar-nav navbar-right"
 						th:if="${#authorization.expression('isAuthenticated()')}">
 						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span
@@ -287,7 +305,47 @@
 		</footer>
 
 	</div>
-	<!-- PAGE CONTENT -->
+	<!-- ./PAGE CONTENT -->
+
+	<!-- POP-UP mail -->
+	<div id="myModal" class="modal fade" aria-labelledby="myModalLabel"
+		aria-hidden="true" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Header -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title">Rentrez votre adresse e-mail :</h4>
+				</div>
+				<!-- FORM -->
+				<form id="contactform" role="form" onsubmit="return checkPopUp();">
+					<div class="modal-body" id="myModalBody">
+						<div class="form-group">
+							<label for="emailid">E-mail :</label>
+							<div class="left-inner-addon">
+								<i class="fa fa-envelope"></i><input type="text" id="emailPopUp"
+									placeholder="Entrez votre e-mail" class="form-control" />
+							</div>
+							<span id="msgerror" class="msgerror"></span>
+						</div>
+						<p>Un e-mail contenant un code vous sera envoyer à votre
+							adresse mail.</p>
+					</div>
+					<!-- FOOTER -->
+					<div class="modal-footer">
+						<button class="btn btn-default" data-dismiss="modal"
+							aria-hidden="true">Annuler</button>
+						<button type="submit" class="btn btn-success-outline">
+							Envoyer <i class="fa fa-paper-plane"></i>
+						</button>
+					</div>
+				</form>
+				<!-- FORM -->
+			</div>
+		</div>
+	</div>
+	<!-- ./popup mail -->
 
 	<!-- SCRIPT -->
 	<script src="js/jquery.js"></script>
