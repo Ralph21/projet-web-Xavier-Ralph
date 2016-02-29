@@ -9,6 +9,7 @@ import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +84,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	}
 	
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String saveNewUser(Users user, RedirectAttributes redirectAttributes) 
+	public String saveNewUser(Users user, RedirectAttributes redirectAttributes) throws AddressException, MessagingException 
 	{
 		user.setEnabled(1);
 		User_roles role = new User_roles();
@@ -92,6 +93,29 @@ public class UsersController extends WebMvcConfigurerAdapter {
 		user.setUsername(user.getEmail());
 		usersRepository.save(user);
 		user_rolesRepository.save(role);
+		//Envoi d'un email à l'admin du site
+		//pour lui donner le message de l'internaute
+		Properties props = System.getProperties();
+	    props.put("mail.smtps.host","smtp.gmail.com");
+	    props.put("mail.smtps.auth","true");
+	    Session session = Session.getInstance(props, null);
+	    Message msg = new MimeMessage(session);
+	    
+	    //de la part de
+	    msg.setFrom(new InternetAddress("contact.rgxs@gmail.com"));;
+	    msg.setRecipients(Message.RecipientType.TO,
+	    InternetAddress.parse(user.getEmail(), false));//mail_c --> destinataire. Ici, formulaire de contact
+	    msg.setSubject("Inscription N°"+System.currentTimeMillis());
+	    msg.setText("Bonjour " + user.getFirstName() +" "+ user.getLastName() + " vous êtes bien inscrit.");
+	    msg.setHeader("X-Mailer", "Bonjour");
+	    Date d = new Date();
+	    msg.setSentDate(d);
+	    SMTPTransport t =
+	        (SMTPTransport)session.getTransport("smtps");
+	    t.connect("smtp.gmail.com", "contact.rgxs@gmail.com", "projetxavralph");
+	    t.sendMessage(msg, msg.getAllRecipients());
+	    System.out.println("Response: " + t.getLastServerResponse());
+	    t.close();
 		return "redirect:/index";
 	}
 	
@@ -187,7 +211,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	return "gestionEssais";
 	}
 	
-	@RequestMapping(value="/testMail")//,== method=RequestMethod.POST)
+	@RequestMapping(value="/testMail",method=RequestMethod.GET)
 	public String mail() throws MessagingException{
 
 		System.out.println("envoi d'un mail");
@@ -201,9 +225,9 @@ public class UsersController extends WebMvcConfigurerAdapter {
         Message msg = new MimeMessage(session);
         
         //de la part de
-        msg.setFrom(new InternetAddress("ralph.gaume@gmail.com"));;
+        msg.setFrom(new InternetAddress("contact.rgxs@gmail.com"));;
         msg.setRecipients(Message.RecipientType.TO,
-        InternetAddress.parse("contact.rgxs@gmail.com", false));//mail_c --> destinataire. Ici, formulaire de contact
+        InternetAddress.parse("ralph.gaume@gmail.com", false));//mail_c --> destinataire. Ici, formulaire de contact
         msg.setSubject("Formulaire de contact"+System.currentTimeMillis());
         msg.setText("Message de :  Voici son message : ");
         msg.setHeader("X-Mailer", "Coucou");
