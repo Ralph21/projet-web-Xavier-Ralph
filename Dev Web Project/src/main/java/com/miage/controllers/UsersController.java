@@ -68,24 +68,35 @@ public class UsersController extends WebMvcConfigurerAdapter {
     
     
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-	public String createUser(Model model,RedirectAttributes redirectAttributes) 
+	public String createUser(Model model, RedirectAttributes redirectAttributes) 
 	{
 		model.addAttribute("user", new Users());
 		return "inscription";
 	}
+
 	
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String saveNewUser(Users user, RedirectAttributes redirectAttributes) 
+	public String saveNewUser(Users user, RedirectAttributes redirectAttributes,Model model) 
 	{
-		user.setEnabled(1);
-		User_roles role = new User_roles();
-		role.setRole("ROLE_USER");
-		role.setUsername(user.getEmail());
-		user.setUsername(user.getEmail());
-		usersRepository.save(user);
-		user_rolesRepository.save(role);
-		return "redirect:/index";
+		String path = "/inscription";
+		if(usersRepository.count(user.getEmail())==0)
+		{
+			user.setEnabled(1);
+			User_roles role = new User_roles();
+			role.setRole("ROLE_USER");
+			role.setUsername(user.getEmail());
+			user.setUsername(user.getEmail());
+			usersRepository.save(user);
+			user_rolesRepository.save(role);
+			path = "redirect:/index";
+		}
+		else{
+			model.addAttribute("user", new Users());
+		}
+		return path;
 	}
+	
+	
 	
     @RequestMapping(value = "/modification", method = RequestMethod.GET)
     public String modifierUser(@RequestParam Integer id, Model model,RedirectAttributes redirectAttributes)
