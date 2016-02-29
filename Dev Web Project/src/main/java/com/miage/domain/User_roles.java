@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "User_roles.findRoleByUID",
+query = "select r from User_roles r where r.utilisateurId = ?1")
 public class User_roles {
 	
 	@Id

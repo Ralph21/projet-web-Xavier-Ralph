@@ -213,7 +213,8 @@
 					<div class="panel-body">
 						<h4>Mes réservations</h4>
 						<p>Vous pouvez consulter et gérer vos réservations...</p>
-						<a href="gestionEssais.html" class="btn btn-primary-outline">Réservations</a>
+						<a sec:authorize="hasRole('ROLE_USER')" href="gestionEssais.html" class="btn btn-primary-outline">Réservations</a>
+						<a sec:authorize="hasRole('ROLE_ADMIN')" href="gestionEssaisAdm.html" class="btn btn-primary-outline">Réservations</a>
 					</div>
 				</div>
 			</div>

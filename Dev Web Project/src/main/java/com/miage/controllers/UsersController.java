@@ -20,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -107,18 +108,12 @@ public class UsersController extends WebMvcConfigurerAdapter {
     @RequestMapping(value = "/modification", method = RequestMethod.POST)
     public String saveModifUser(@RequestParam Integer id, Users user, RedirectAttributes redirectAttributes)
     {
-    	
     	Users nUser= usersRepository.findOne(id);
     	nUser.setAge(user.getAge());
-//    	nUser.setEmail(user.getEmail());
     	nUser.setFirstName(user.getFirstName());
     	nUser.setLastName(user.getLastName());
-//    	nUser. setPasswordEncode(user.getPassword());
     	nUser.setSexe(user.getSexe());
-//    	nUser.setUsername(user.getEmail());
-    	
     	usersRepository.save(nUser);
-    	
     	return "redirect:/gestionUsers";
     }
 	
@@ -140,7 +135,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	return "gestionEssais";
 	}
 	
-	@RequestMapping(value="/testMail")//, method=RequestMethod.POST)
+	@RequestMapping(value="/testMail")//,== method=RequestMethod.POST)
 	public String mail() throws MessagingException{
 
 		System.out.println("envoi d'un mail");
@@ -168,32 +163,6 @@ public class UsersController extends WebMvcConfigurerAdapter {
         t.sendMessage(msg, msg.getAllRecipients());
         System.out.println("Response: " + t.getLastServerResponse());
         t.close();
-        
-//		//Envoi d'un email à l'admin du site
-//		//pour lui donner le message de l'internaute
-//		Properties props2 = System.getProperties();
-//	    props.put("mail.smtps.host","smtp.gmail.com");
-//	    props.put("mail.smtps.auth","true");
-//	    Session session2 = Session.getInstance(props2, null);
-//	    Message msg2 = new MimeMessage(session2);
-//	    
-//	    //de la part de
-//	    msg2.setFrom(new InternetAddress(mail_c));;
-//	    msg2.setRecipients(Message.RecipientType.TO,
-//	    InternetAddress.parse(mail_c, false));//mail_c --> destinataire. Ici, formulaire de contact
-//	    msg2.setSubject("Formulaire de contact"+System.currentTimeMillis());
-//	    msg2.setText("M, Mme Nous vous recontacterons prochainement. A bientôt sur notre site !");
-//	    msg2.setHeader("X-Mailer", "Coucou");
-//	    Date d2 = new Date();
-//	    msg2.setSentDate(d2);
-//	    SMTPTransport t2 =
-//	        (SMTPTransport)session.getTransport("smtps");
-//	    t2.connect("smtp.gmail.com", "contact.rgxs@gmail.com", "projetxavralph");
-//	    t2.sendMessage(msg2, msg2.getAllRecipients());
-//	    System.out.println("Response: " + t2.getLastServerResponse());
-//	    t2.close();
-//		
-		//je redirige mon utilisateur sur /liste après traitement
 		return "redirect:/index";
 	}
 	
@@ -209,15 +178,10 @@ public class UsersController extends WebMvcConfigurerAdapter {
 		User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Users nUser = usersRepository.findByUserName(usr.getUsername());
     	nUser.setAge(user.getAge());
-//    	nUser.setEmail(user.getEmail());
     	nUser.setFirstName(user.getFirstName());
     	nUser.setLastName(user.getLastName());
-//    	nUser. setPasswordEncode(user.getPassword());
     	nUser.setSexe(user.getSexe());
-//    	nUser.setUsername(user.getEmail());
-    	
     	usersRepository.save(nUser);
-    	
     	return "redirect:/index";
 	}
 	
@@ -234,7 +198,21 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	Reservations reservation = reservationsRepository.findOne(reservationId);
     	reservationsRepository.delete(reservationId);
     	carRepository.delete(reservation.getCar().getIdCar());
-    	return "redirect:/gestionEssais";
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	String role = user_rolesRepository.findRoleByUID(usersRepository.findByUserName(userDetails.getUsername()).getIdUtilisateur()).getRole();
+    	if(role.equalsIgnoreCase("ROLE_ADMIN")) {
+    		return "redirect:/gestionEssaisAdm";
+    	} else {
+    		return "redirect:/gestionEssais";
+    	}
+    }
+    
+    @RequestMapping("/apercu")
+    public String apercuReservation(@RequestParam Integer id, Model model)
+    {
+    	Reservations reservation = reservationsRepository.findOne(id);
+    	model.addAttribute("reservation", reservation);
+    	return "apercu";
     }
 
     

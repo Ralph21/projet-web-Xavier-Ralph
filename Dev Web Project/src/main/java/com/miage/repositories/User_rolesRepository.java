@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.miage.domain.User_roles;
 
 public interface User_rolesRepository extends CrudRepository<User_roles, Integer> {
+	
+	User_roles findRoleByUID(Integer uid);
 
 }
