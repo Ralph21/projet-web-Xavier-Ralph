@@ -210,7 +210,8 @@
 				<div class="col-sm-4">
 					<input id="name" type="text" th:field="*{lastName}"
 						class="form-control" th:value="${user.lastName}"
-						placeholder="Entrez votre nom" /><span id="msgname" class="msgname"></span>
+						placeholder="Entrez votre nom" /><span id="msgname"
+						class="msgname"></span>
 				</div>
 				<div th:if="${#fields.hasErrors('lastName')}"
 					th:errors="*{lastName}">Erreur nom</div>
@@ -231,7 +232,10 @@
 			<!-- BOUTON -->
 			<div class="form-group">
 				<div class="col-sm-3"></div>
-				<button type="submit" value="Sign In" class="btn btn-success-outline">Valider</button>
+				<button type="submit" value="Sign In"
+					class="btn btn-success-outline">
+					<i class="fa fa-check-square-o"></i> Valider
+				</button>
 				<a href="gestionUsers.html">
 					<button type="button" value="Cancel" class="btn btn-default">Annuler</button>
 				</a>

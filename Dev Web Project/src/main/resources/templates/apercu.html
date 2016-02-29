@@ -213,11 +213,15 @@
 		<div class="row">
 			<div class="col-lg-12" align="right">
 				<a sec:authorize="hasRole('ROLE_USER')" href="gestionEssais.html"><button
-						type="button" class="btn btn-default">Page précédente</button></a> <a
-					sec:authorize="hasRole('ROLE_ADMIN')" href="gestionEssais.html"><button
-						type="button" class="btn btn-default">Page précédente</button></a> <a
-					href="index.html"><button type="button" class="btn btn-default">Page
-						d'acceuil</button></a>
+						type="button" class="btn btn-success-outline">
+						<i class="fa fa-arrow-circle-left"></i> Page précédente
+					</button></a> <a sec:authorize="hasRole('ROLE_ADMIN')" href="gestionEssais.html"><button
+						type="button" class="btn btn-success-outline">
+						<i class="fa fa-arrow-circle-left"></i> Page précédente
+					</button></a> <a href="index.html"><button type="button"
+						class="btn btn-primary-outline">
+						<i class="fa fa-home"></i> Page d'acceuil
+					</button></a>
 			</div>
 		</div>
 
@@ -240,11 +244,6 @@
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/validationDate.js"></script>
-	<script>
-		$('#sandbox-container input').datepicker({}).on('changeDate',
-				function(e) {
-					$(this).datepicker('hide');
-				});
-	</script>
+
 </body>
 </html>
