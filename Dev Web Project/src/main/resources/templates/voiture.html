@@ -143,22 +143,19 @@
 		<div class="carousel-inner">
 			<div class="item active">
 				<div class="fill"
-					style="background-image: url('css/images/vwx1.jpeg');"></div>
-				<!-- <div class="carousel-caption">
-                    <h2>Caption 1</h2>
-                </div> -->
+					style="background-image: url('css/images/designx1.jpg');"></div>
 			</div>
 			<div class="item">
 				<div class="fill"
-					style="background-image: url('css/images/audix1.jpg');"></div>
+					style="background-image: url('css/images/designx2.jpg');"></div>
 			</div>
 			<div class="item">
 				<div class="fill"
-					style="background-image: url('css/images/vwx4.jpg');"></div>
+					style="background-image: url('css/images/designx3.jpg');"></div>
 			</div>
 			<div class="item">
 				<div class="fill"
-					style="background-image: url('css/images/audix3.jpeg');"></div>
+					style="background-image: url('css/images/designx5.jpg');"></div>
 			</div>
 		</div>
 
@@ -325,8 +322,9 @@
 				<div class="col-lg-1"></div>
 				<div class="col-lg-3">
 					<div class="checkbox" th:each="equipement : ${car.equipements}">
-						<label> 
-						<input type="checkbox" name="equipements" th:value="${equipement.idEquipement}" th:text="${equipement.libelle}" th:field="*{equipements}"/>
+						<label> <input type="checkbox" name="equipements"
+							th:value="${equipement.idEquipement}"
+							th:text="${equipement.libelle}" th:field="*{equipements}" />
 						</label>
 					</div>
 					<!-- 					<span class="checkbox" th:each="equipement, rowStat : ${equipements}"> -->

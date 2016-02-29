@@ -74,14 +74,16 @@
 							class="caret"></b>
 					</a>
 						<ul class="dropdown-menu dropdown-menu-left">
-							<li><a href="gestionInfos.html"><span
-									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li class="dropdown-header">Gestion administrateur</li>
 							<li><a href="gestionUsers.html"><span
 									class="glyphicon glyphicon-th-list"></span> Gestion des
 									utilisateurs</a></li>
 							<li><a href="gestionEssaisAdm.html"><span
-									class="glyphicon glyphicon-th-list"></span> Gestion des
-									essais</a></li>
+									class="glyphicon glyphicon-th"></span> Gestion des réservations</a></li>
+							<li class="divider"></li>
+							<li><a href="gestionInfos.html"> <span
+									class="glyphicon glyphicon-user"></span> Mon profil
+							</a></li>
 						</ul></li>
 
 					<!--  DROPDOWN COSTUMER -->
@@ -115,16 +117,16 @@
 									<label><small>Déjà membre? Connectez vous :</small><br /></label>
 									<div class="form-group">
 										<div class="left-inner-addon">
-											<i class="fa fa-envelope-o fa-fw"></i> <input
-												type="text" class="form-control" id="usr" name="username"
+											<i class="fa fa-envelope-o fa-fw"></i> <input type="text"
+												class="form-control" id="usr" name="username"
 												placeholder="E-mail" />
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="left-inner-addon">
-											<i class="fa fa-key fa-fw"></i> <input
-												type="password" class="form-control" id="pwd"
-												placeholder="Mot de passe" name="password" />
+											<i class="fa fa-key fa-fw"></i> <input type="password"
+												class="form-control" id="pwd" placeholder="Mot de passe"
+												name="password" />
 										</div>
 									</div>
 									<input type="hidden" name="${_csrf.parameterName}"
