@@ -50,6 +50,24 @@ function checkAge(str) {
 	return re.test(str);
 }
 
+function checkPopUp()
+{
+	var email = document.getElementById('emailPopUp');
+	var message = document.getElementById('msgerror');
+	var goodColor = "#66cc66";
+	var badColor = "#ff6666";
+	
+	//email is mandatory
+	if (email.value== "") {
+		message.style.color = badColor;
+		message.innerHTML = "E-mail obligatoire";
+		email.focus();
+		return false;
+	} else {
+		message.innerHTML = "";
+	}
+	return true;
+}
 
 function checkForm() {
 
