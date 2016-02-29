@@ -63,7 +63,6 @@ public class CarController {
 		return "validation";
 	}
 	
-	
 	@RequestMapping(value = "/voiture", method = RequestMethod.GET)
 	public String AccessVoiture(@RequestParam Integer id,Model model,RedirectAttributes redirectAttributes) {
 		Car car = carRepository.findOne(id);

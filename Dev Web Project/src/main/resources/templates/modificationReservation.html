@@ -173,8 +173,8 @@
 	<div class="container">
 
 
-		<form th:object="${car}" method="POST" onsubmit="return checkForm();">
-			<!-- Problème de token null avec spring security de m... -->
+		<form th:object="${reservation.car}" method="POST" onsubmit="return checkForm();">
+			<!-- Problème de token null avec spring security-->
 			<input type="hidden" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" />
 			<div class="row">
@@ -308,8 +308,8 @@
 				</div>
 			</div>
 			<!-- 			Hidden in order to transmitt values -->
-			<input type="hidden" th:value="${car.brand}" th:field="*{brand}" />
-			<input type="hidden" th:value="${car.model}" th:field="*{model}" />
+			<input type="hidden" th:value="${reservation.car.brand}" th:field="*{brand}" />
+			<input type="hidden" th:value="${reservation.car.model}" th:field="*{model}" />
 
 
 			<!-- /.row -->
@@ -321,46 +321,15 @@
 				</div>
 				<div class="col-lg-1"></div>
 				<div class="col-lg-3">
-					<div class="checkbox" th:each="equipement : ${car.equipements}">
+					<div class="checkbox" th:each="equipement : ${reservation.car.equipements}">
 						<label> <input type="checkbox" name="equipements"
 							th:value="${equipement.idEquipement}"
 							th:text="${equipement.libelle}" th:field="*{equipements}" />
 						</label>
 					</div>
-					<!-- 					<span class="checkbox" th:each="equipement, rowStat : ${equipements}"> -->
-					<!-- 						<label class="checkbox" > -->
-					<!-- 							<input type="checkbox"  th:value="${equipement.idEquipement}" th:text="${equipement.libelle}" th:field="*{ets[__${rowStat.index}__].label}" /> -->
-					<!-- 						</label> -->
-					<!-- 					</span> -->
-					<!-- 					<label class="checkbox"> <input type="checkbox" -->
-					<!-- 						id="inlineCheckbox1" value="option1" /> Phares Xénon Plus -->
-					<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-					<!-- 						id="inlineCheckbox2" value="option2" /> Toit ouvrant -->
-					<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-					<!-- 						id="inlineCheckbox3" value="option3" /> Intérieur cuir -->
-					<!-- 					</label> -->
-
 				</div>
-				<!-- 				<div class="col-lg-3"> -->
-				<!-- 					<label class="checkbox"> <input type="checkbox" -->
-				<!-- 						id="inlineCheckbox1" value="option4" /> Volant multifonctions -->
-				<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-				<!-- 						id="inlineCheckbox2" value="option5" /> Sound system -->
-				<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-				<!-- 						id="inlineCheckbox3" value="option6" /> Console GPS -->
-				<!-- 					</label> -->
-				<!-- 				</div> -->
-				<!-- 				<div class="col-lg-3"> -->
-				<!-- 					<label class="checkbox"> <input type="checkbox" -->
-				<!-- 						id="inlineCheckbox1" value="option7" /> Caméra de recul -->
-				<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-				<!-- 						id="inlineCheckbox2" value="option8" /> Sièges chauffants -->
-				<!-- 					</label> <label class="checkbox"> <input type="checkbox" -->
-				<!-- 						id="inlineCheckbox3" value="option9" /> Kit main libre -->
-				<!-- 					</label> -->
-				<!-- 				</div> -->
-			</div>
 			<!-- /.row -->
+			<br />
 			<br />
 			<div class="row">
 				<div class="col-lg-4">
@@ -373,11 +342,12 @@
 					<img class="img-thumbnail" src="css/images/phare.png" />
 				</div>
 			</div>
+			</div>
 			<br />
 			<div class="row">
 				<div class="col-lg-12" align="right">
 					<a href="index.html"><button type="button"
-							class="btn btn-default">Annuler</button></a> <a href="summary.html"><button
+							class="btn btn-default">Annuler</button></a> <a href="summaryModif.html"><button
 							type="submit" class="btn btn-success">
 							Suivant <span class="glyphicon glyphicon-circle-arrow-right"></span>
 						</button></a>

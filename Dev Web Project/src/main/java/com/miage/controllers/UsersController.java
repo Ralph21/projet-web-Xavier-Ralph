@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.miage.domain.Equipement;
 import com.miage.domain.Reservations;
 import com.miage.domain.User_roles;
 import com.miage.domain.Users;
@@ -56,7 +57,6 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	
 	private UsersService usersService;
 
-	//TODO : mettre controllers relatifs à un user ici.
 	
 	@Autowired
 	public void setUtilisateurService(UsersService usersService) {
@@ -117,7 +117,21 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	return "redirect:/gestionUsers";
     }
 	
+	@RequestMapping(value= "/modificationReservation", method = RequestMethod.GET)
+	public String modifierReservation(@RequestParam Integer id, Model model){
+		Reservations reservation = reservationsRepository.findOne(id);
+		List<Equipement> equipements = carRepository.findByModel(reservation.getCar().getModel());
+		reservation.getCar().setEquipements(equipements);
+		model.addAttribute("reservation", reservation);
+    	return "modificationReservation";
+	}
 	
+	@RequestMapping(value= "/modificationReservation", method = RequestMethod.POST)
+	public String saveReservation(Model model){
+    	return "summary";
+	}
+	
+    
 	@RequestMapping(value = "/gestionInfos", method = RequestMethod.GET)
 	public String accessInfos(Model model,RedirectAttributes redirectAttributes) throws SQLException {
 		User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

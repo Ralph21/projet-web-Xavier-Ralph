@@ -11,5 +11,6 @@ public interface CarRepository extends CrudRepository<Car, Integer>{
 	List<Car> findByBrand(String brand);
 	
 	List<Equipement> findByCarId(Integer id);
-	
+
+	List<Equipement> findByModel(String model);
 }

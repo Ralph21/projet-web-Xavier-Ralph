@@ -19,7 +19,9 @@ import javax.persistence.OneToMany;
 	@NamedQuery(name = "Car.findByBrand",
 	query = "select c from Car c where c.brand = ?1"),
 	@NamedQuery(name = "Car.findByCarId",
-	query = "select c.equipements from Car c where c.id = ?1")
+	query = "select c.equipements from Car c where c.id = ?1"),
+	@NamedQuery(name = "Car.findByModel",
+	query = "select c.equipements from Car c where c.model = ?1 and c.base = 1")
 })
 public class Car implements Serializable{
 
