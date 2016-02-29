@@ -1,20 +1,28 @@
 package com.miage.controllers;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.miage.domain.Reservations;
@@ -25,6 +33,7 @@ import com.miage.repositories.ReservationsRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
 import com.miage.services.UsersService;
+import com.sun.mail.smtp.SMTPTransport;
 
 
 @Controller
@@ -68,35 +77,24 @@ public class UsersController extends WebMvcConfigurerAdapter {
     
     
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-	public String createUser(Model model, RedirectAttributes redirectAttributes) 
+	public String createUser(Model model,RedirectAttributes redirectAttributes) 
 	{
 		model.addAttribute("user", new Users());
 		return "inscription";
 	}
-
 	
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String saveNewUser(Users user, RedirectAttributes redirectAttributes,Model model) 
+	public String saveNewUser(Users user, RedirectAttributes redirectAttributes) 
 	{
-		String path = "/inscription";
-		if(usersRepository.count(user.getEmail())==0)
-		{
-			user.setEnabled(1);
-			User_roles role = new User_roles();
-			role.setRole("ROLE_USER");
-			role.setUsername(user.getEmail());
-			user.setUsername(user.getEmail());
-			usersRepository.save(user);
-			user_rolesRepository.save(role);
-			path = "redirect:/index";
-		}
-		else{
-			model.addAttribute("user", new Users());
-		}
-		return path;
+		user.setEnabled(1);
+		User_roles role = new User_roles();
+		role.setRole("ROLE_USER");
+		role.setUsername(user.getEmail());
+		user.setUsername(user.getEmail());
+		usersRepository.save(user);
+		user_rolesRepository.save(role);
+		return "redirect:/index";
 	}
-	
-	
 	
     @RequestMapping(value = "/modification", method = RequestMethod.GET)
     public String modifierUser(@RequestParam Integer id, Model model,RedirectAttributes redirectAttributes)
@@ -140,6 +138,63 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	List<Reservations> reservations = reservationsRepository.findReservations(userMod.getIdUtilisateur());
     	model.addAttribute("reservations", reservations);
     	return "gestionEssais";
+	}
+	
+	@RequestMapping(value="/testMail")//, method=RequestMethod.POST)
+	public String mail() throws MessagingException{
+
+		System.out.println("envoi d'un mail");
+		
+		//Envoi d'un email à l'admin du site
+			//pour lui donner le message de l'internaute
+		Properties props = System.getProperties();
+        props.put("mail.smtps.host","smtp.gmail.com");
+        props.put("mail.smtps.auth","true");
+        Session session = Session.getInstance(props, null);
+        Message msg = new MimeMessage(session);
+        
+        //de la part de
+        msg.setFrom(new InternetAddress("ralph.gaume@gmail.com"));;
+        msg.setRecipients(Message.RecipientType.TO,
+        InternetAddress.parse("contact.rgxs@gmail.com", false));//mail_c --> destinataire. Ici, formulaire de contact
+        msg.setSubject("Formulaire de contact"+System.currentTimeMillis());
+        msg.setText("Message de :  Voici son message : ");
+        msg.setHeader("X-Mailer", "Coucou");
+        Date d = new Date();
+        msg.setSentDate(d);
+        SMTPTransport t =
+            (SMTPTransport)session.getTransport("smtps");
+        t.connect("smtp.gmail.com", "contact.rgxs@gmail.com", "projetxavralph");
+        t.sendMessage(msg, msg.getAllRecipients());
+        System.out.println("Response: " + t.getLastServerResponse());
+        t.close();
+        
+//		//Envoi d'un email à l'admin du site
+//		//pour lui donner le message de l'internaute
+//		Properties props2 = System.getProperties();
+//	    props.put("mail.smtps.host","smtp.gmail.com");
+//	    props.put("mail.smtps.auth","true");
+//	    Session session2 = Session.getInstance(props2, null);
+//	    Message msg2 = new MimeMessage(session2);
+//	    
+//	    //de la part de
+//	    msg2.setFrom(new InternetAddress(mail_c));;
+//	    msg2.setRecipients(Message.RecipientType.TO,
+//	    InternetAddress.parse(mail_c, false));//mail_c --> destinataire. Ici, formulaire de contact
+//	    msg2.setSubject("Formulaire de contact"+System.currentTimeMillis());
+//	    msg2.setText("M, Mme Nous vous recontacterons prochainement. A bientôt sur notre site !");
+//	    msg2.setHeader("X-Mailer", "Coucou");
+//	    Date d2 = new Date();
+//	    msg2.setSentDate(d2);
+//	    SMTPTransport t2 =
+//	        (SMTPTransport)session.getTransport("smtps");
+//	    t2.connect("smtp.gmail.com", "contact.rgxs@gmail.com", "projetxavralph");
+//	    t2.sendMessage(msg2, msg2.getAllRecipients());
+//	    System.out.println("Response: " + t2.getLastServerResponse());
+//	    t2.close();
+//		
+		//je redirige mon utilisateur sur /liste après traitement
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "/gestionEssaisAdm", method = RequestMethod.GET)
@@ -188,10 +243,5 @@ public class UsersController extends WebMvcConfigurerAdapter {
 		model.addAttribute("utilisateur", usersService.getUtilisateurById(id));
 		return "utilisateursListe";
 	}
-	
-    @RequestMapping(value = "/formulaireCode")
-    public String controlCode(){
-        return "formulaireCode";
-    }
 
 }
