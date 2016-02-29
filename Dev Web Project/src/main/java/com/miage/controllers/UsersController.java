@@ -1,6 +1,7 @@
 package com.miage.controllers;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -21,16 +22,19 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.miage.domain.Car;
 import com.miage.domain.Equipement;
 import com.miage.domain.Reservations;
 import com.miage.domain.User_roles;
 import com.miage.domain.Users;
 import com.miage.repositories.CarRepository;
+import com.miage.repositories.EquipementRepository;
 import com.miage.repositories.ReservationsRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
@@ -54,6 +58,9 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	
 	@Autowired
 	CarRepository carRepository;
+	
+	@Autowired
+	EquipementRepository equipementRepository;
 	
 	private UsersService usersService;
 
@@ -126,11 +133,51 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	return "modificationReservation";
 	}
 	
-	@RequestMapping(value= "/modificationReservation", method = RequestMethod.POST)
-	public String saveReservation(Model model){
-    	return "summary";
+	@RequestMapping(value = "/modificationReservation", method = RequestMethod.POST)
+	public String finalizeVoiture(@RequestParam Integer id,@ModelAttribute Reservations base, RedirectAttributes redirectAttributes) {
+		Reservations reservationMod = reservationsRepository.findOne(id);
+		Reservations nReservation = new Reservations();
+		nReservation.setUser(reservationMod.getUser());
+		Car car = new Car();
+		car.setFuel(base.getCar().getFuel());
+		car.setBrand(base.getCar().getBrand());
+		car.setGearbox(base.getCar().getGearbox());
+		car.setModel(base.getCar().getModel());
+		car.setPower(base.getCar().getPower());
+		car.setTransmission(base.getCar().getTransmission());
+		car.setVignette(base.getCar().getVignette());
+		car.setPaint(base.getCar().getPaint());
+		car.setWheels(base.getCar().getWheels());
+		ArrayList<Equipement> choisis = new ArrayList<>();
+		for(Equipement equipement : base.getCar().getEquipements()){
+			Equipement e = new Equipement();
+			e.setLibelle(equipement.getLibelle());
+			equipementRepository.save(e);
+			choisis.add(e);
+		}
+		car.setEquipements(choisis);
+		car.setBase(false);
+		carRepository.save(car);
+		nReservation.setCar(car);
+		reservationsRepository.save(nReservation);
+		reservationsRepository.delete(reservationMod.getIdReservation());
+		return new String("redirect:/summaryMod?id="+nReservation.getIdReservation());
 	}
 	
+	@RequestMapping(value = "/summaryMod", method = RequestMethod.GET)
+	public String AccessSummaryMod(@RequestParam Integer id,Model model,RedirectAttributes redirectAttributes) {
+		Reservations  reservation = reservationsRepository.findOne(id);
+		reservationsRepository.delete(reservation.getIdReservation());
+		model.addAttribute("car", reservation.getCar());
+		model.addAttribute("reservation", reservation);
+		return "summaryMod";
+	}
+	
+	@RequestMapping(value = "/summaryMod", method = RequestMethod.POST)
+	public String valideReservationMod(@RequestParam Integer id,@ModelAttribute Reservations reservation, Model model,RedirectAttributes redirectAttributes) {
+		reservationsRepository.save(reservation);
+		return "redirect:/validation";
+	}
     
 	@RequestMapping(value = "/gestionInfos", method = RequestMethod.GET)
 	public String accessInfos(Model model,RedirectAttributes redirectAttributes) throws SQLException {
