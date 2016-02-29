@@ -51,18 +51,12 @@ public class Car implements Serializable{
 	private String wheels;
 
 	private boolean base;
-//	@Lob
-//	private byte[] vignette;
-	
-
 
 	private String vignette;
 
 	@OneToMany(fetch=FetchType.EAGER)
     private List<Equipement> equipements =new ArrayList<Equipement>();
-	
-	// @OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
-	// public Set<carImage> images;
+
 
 	public Car() {
 	}
@@ -90,29 +84,6 @@ public class Car implements Serializable{
 	public void setModel(String model) {
 		this.model = model;
 	}
-
-	// public Set<carImage> getImages() {
-	// return images;
-	// }
-	//
-	// public void setImages(Set<carImage> images) {
-	// this.images = images;
-	// }
-
-//	public byte[] getVignette() {
-//		return vignette;
-//	}
-//
-//	public void setVignette(byte[] vignette) {
-//		this.vignette = vignette;
-//	}
-//
-//	public String generateBase64Image() {
-//		return Base64.encodeBase64String(this.getVignette());
-//	}
-
-	
-	
 	
 	public Integer getPower() {
 		return power;

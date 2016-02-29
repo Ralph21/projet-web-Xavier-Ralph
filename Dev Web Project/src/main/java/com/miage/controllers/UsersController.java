@@ -38,7 +38,6 @@ import com.miage.repositories.EquipementRepository;
 import com.miage.repositories.ReservationsRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
-import com.miage.services.UsersService;
 import com.sun.mail.smtp.SMTPTransport;
 
 
@@ -61,14 +60,6 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	
 	@Autowired
 	EquipementRepository equipementRepository;
-	
-	private UsersService usersService;
-
-	
-	@Autowired
-	public void setUtilisateurService(UsersService usersService) {
-		this.usersService = usersService;
-	}
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -279,7 +270,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
     
 	@RequestMapping("utilisateur/{id}")
 	public String showProduct(@PathVariable Integer id, Model model) {
-		model.addAttribute("utilisateur", usersService.getUtilisateurById(id));
+		model.addAttribute("utilisateur", user_rolesRepository.findOne(id));
 		return "utilisateursListe";
 	}
 

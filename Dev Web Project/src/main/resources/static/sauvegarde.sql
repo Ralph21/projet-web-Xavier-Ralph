@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 27 Février 2016 à 17:40
+-- Généré le :  Lun 29 Février 2016 à 20:59
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `car` (
   `wheels` varchar(255) DEFAULT NULL,
   `base` bit(1) NOT NULL,
   PRIMARY KEY (`id_car`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
 --
 -- Contenu de la table `car`
@@ -70,7 +70,15 @@ CREATE TABLE IF NOT EXISTS `car_equipements` (
 
 INSERT INTO `car_equipements` (`car_idCar`, `equipements_idEquipement`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(1, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(4, 8),
+(4, 9),
+(4, 10);
 
 -- --------------------------------------------------------
 
@@ -82,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   `id_equipement` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_equipement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
 
 --
 -- Contenu de la table `equipement`
@@ -90,7 +98,25 @@ CREATE TABLE IF NOT EXISTS `equipement` (
 
 INSERT INTO `equipement` (`id_equipement`, `libelle`) VALUES
 (1, 'Sièges cuir'),
-(2, 'climatisation 50 zones');
+(2, 'climatisation bi-zones'),
+(3, 'toit ouvrant'),
+(4, 'feux full-led'),
+(5, 'feux xénon'),
+(6, 'pack s-line'),
+(7, 'double sortie d''échappement'),
+(8, 'double sortie d''échappement'),
+(9, 'rétroviseurs rabattables '),
+(10, 'pack luxe'),
+(59, 'Sièges cuir'),
+(60, 'Sièges cuir'),
+(61, 'Sièges cuir'),
+(62, 'climatisation 50 zones'),
+(63, 'Sièges cuir'),
+(64, 'Sièges cuir'),
+(65, 'Sièges cuir'),
+(66, 'climatisation 50 zones'),
+(67, 'Sièges cuir'),
+(68, 'climatisation 50 zones');
 
 -- --------------------------------------------------------
 
@@ -106,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   PRIMARY KEY (`id_reservation`),
   KEY `FK_5nve680i13bwayauqxslo6m7x` (`car_idCar`),
   KEY `FK_ptxpyntgo9v03ax0739lupwxj` (`user_idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 -- --------------------------------------------------------
 
