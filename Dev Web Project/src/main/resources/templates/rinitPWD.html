@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<!-- META -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="PROJECT DEV WEB" />
+<meta name="author" content="Xavier SIMON / Ralph GAUME" />
+
+<!-- CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link href="css/modern-business.css" rel="stylesheet" />
+<link href="css/inner_addon.css" rel="stylesheet" />
+
+<title>VA</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="css/images/icon_red.png" />
+</head>
+
+<body>
+
+	<!--  BARRE DE NAVIGATION -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!-- LOGO -->
+				<h1 id="logo">
+					<a href="index.html"> <span class="min"> <span
+							class="white">Volkswagen</span><span class="red">&nbsp;&amp;&nbsp;Audi</span></span>
+					</a>
+				</h1>
+			</div>
+			<!-- navbar-header -->
+
+			<!-- navbar-collapse -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+
+					<!-- VEHICULES -->
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Véhicules <b class="caret"></b></a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<!-- Volkswagen -->
+							<li class="dropdown-header">Volkswagen</li>
+							<li><a href="voiture.html">Volkswagen Golf<br /> <img
+									src="css/images/vwx5.jpg" /></a></li>
+							<li></li>
+							<li><a href="">Volkswagen Tiguan<br /> <img
+									src="css/images/vwx6.jpg" /></a></li>
+							<li></li>
+							<li class="divider"></li>
+							<!-- Audi -->
+							<li class="dropdown-header">Audi</li>
+							<!-- 							<li><a href="">Audi A3<br /> <img -->
+							<!-- 									src="css/images/audix5.jpg" /></a></li> -->
+							<!-- 							<li></li> -->
+							<!-- 							<li><a href="">Audi Q5<br /> <img -->
+							<!-- 									src="css/images/audix6.jpg" /></a></li> -->
+							<li th:each="car : ${cars}"><a
+								th:href="@{'/voiture?id='+${car.idCar}}" th:text="${car.model}"><br />
+									<img src="css/images/audix5.jpg" /> <!-- 									th:src="@{'data:image/jpeg;charset=utf-8;base64,'+${car.generateBase64Image()}}" /> -->
+							</a></li>
+						</ul></li>
+
+					<!--  DROPDOWN ADMIN -->
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b
+							class="caret"></b>
+					</a>
+						<ul class="dropdown-menu dropdown-menu-left">
+							<li><a href="gestionInfos.html"><span
+									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li><a href="gestionUsers.html"><span
+									class="glyphicon glyphicon-th-list"></span> Gestion des
+									utilisateurs</a></li>
+						</ul></li>
+
+					<!--  DROPDOWN COSTUMER -->
+					<li sec:authorize="hasRole('ROLE_USER')" class="dropdown"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Compte<b
+							class="caret"></b>
+					</a>
+						<ul class="dropdown-menu dropdown-menu-left">
+							<li><a href="gestionInfos.html"><span
+									class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+							<li><a href="gestionEssais.html"><span
+									class="glyphicon glyphicon-shopping-cart"></span> Mes
+									réservations</a></li>
+						</ul></li>
+
+					<!--  SIGN UP -->
+					<ul class="nav navbar-nav navbar-right"
+						th:if="not ${#authorization.expression('isAuthenticated()')}">
+						<li><a href="inscription.html"><span
+								class="glyphicon glyphicon-user"></span> Inscription</a></li>
+					</ul>
+					<!-- menu LOGIN -->
+					<ul class="nav navbar-nav navbar-right"
+						th:if="not ${#authorization.expression('isAuthenticated()')}">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#"><span
+								class="glyphicon glyphicon-log-in"></span> Login </a>
+							<div class="dropdown-menu" style="width: 230px;">
+								<form id="formLogin" class="form container-fluid"
+									th:action="@{/index}" method="post">
+									<div class="form-group">
+										<label for="usr"><span
+											class="glyphicon glyphicon-envelope"></span> E-mail </label><input
+											type="text" class="form-control" id="usr"
+											placeholder="Adresse mail" name="username"></input>
+									</div>
+									<div class="form-group">
+										<label for="pwd"><span
+											class="glyphicon glyphicon-lock"></span> Mot de passe</label> <input
+											type="password" class="form-control" id="pwd"
+											placeholder="Mot de passe" name="password" />
+									</div>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+									<div>
+										<!-- <input type="submit" value="Sign In" /> -->
+										<button type="submit" id="btnLogin" class="btn btn-default">Connexion</button>
+									</div>
+								</form>
+								<div class="container-fluid">
+									<br /> <a class="small" href="inscription.html">Nouveau
+										client ? Créez un compte</a>
+								</div>
+							</div></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right"
+						th:if="${#authorization.expression('isAuthenticated()')}">
+						<li><a th:href="@{/logout}">Déconnexion&nbsp; <span
+								class="glyphicon glyphicon-off"></span></a></li>
+					</ul>
+					<li><a href="informations.html">Informations</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- /.barre navigation -->
+
+
+	<!-- PAGE CONTENT -->
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="page-header">
+					Re-initialiser votre mot de passe :
+				</h2>
+			</div>
+		</div>
+
+		<!-- FORMULAIRE -->
+		<form class="form-horizontal" th:object="${user}" method="POST"
+			onsubmit="return checkForm();">
+			<!-- pour éviter le problème de token null avec spring security -->
+			<input type="hidden" th:name="${_csrf.parameterName}"
+				th:value="${_csrf.token}" />
+
+			<!-- MOT DE PASSE -->
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="password">Mot de
+					passe :</label>
+				<div class="col-sm-4">
+					<input id="pass1" type="password" th:field="*{password}"
+						class="form-control" placeholder="Entrez votre mot de passe" /><span
+						id="msgpwd" class="msgpwd"></span>
+				</div>
+				<div th:if="${#fields.hasErrors('*{password}')}"
+					th:errors="*{password}">Erreur mot de passe</div>
+			</div>
+
+			<!-- CONFIRMATION MDP -->
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="password">Vérification
+					:</label>
+				<div class="col-sm-4">
+					<input id="pass2" type="password" class="form-control"
+						placeholder="Confirmez votre mot de passe"
+						onkeyup="checkPass(); return false;" /><span id="confirmMessage"
+						class="confirmMessage"></span>
+				</div>
+			</div>
+
+			<!-- BOUTTONS -->
+			<div class="form-group">
+				<div class="col-sm-3"></div>
+				<button type="submit" value="Sign In"
+					class="btn btn-success-outline">Valider</button>
+				<a href="index.html">
+					<button type="button" value="Cancel" class="btn btn-default">Annuler</button>
+				</a>
+			</div>
+		</form>
+		<!-- ./formulaire -->
+
+		<!-- Footer -->
+		<footer>
+			<div class="footer">
+				<p class="lf">Copyright &copy; 2016 - All Rights Reserved</p>
+				<p class="rf">Design by Ralph GAUME / Xavier SIMON</p>
+				<div style="clear: both;"></div>
+			</div>
+		</footer>
+
+	</div>
+	<!-- PAGE CONTENT -->
+
+	<!-- SCRIPT -->
+	<script src="js/jquery.js"></script>
+	<script src="js/validationData.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

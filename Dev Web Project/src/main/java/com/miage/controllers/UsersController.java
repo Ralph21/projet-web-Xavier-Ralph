@@ -177,5 +177,10 @@ public class UsersController extends WebMvcConfigurerAdapter {
 		model.addAttribute("utilisateur", usersService.getUtilisateurById(id));
 		return "utilisateursListe";
 	}
+	
+    @RequestMapping(value = "/formulaireCode")
+    public String controlCode(){
+        return "formulaireCode";
+    }
 
 }
