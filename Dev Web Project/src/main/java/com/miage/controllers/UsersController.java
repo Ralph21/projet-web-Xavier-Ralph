@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -12,30 +13,32 @@ import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.miage.domain.Car;
 import com.miage.domain.Equipement;
+import com.miage.domain.PWDRetriever;
 import com.miage.domain.Reservations;
 import com.miage.domain.User_roles;
 import com.miage.domain.Users;
 import com.miage.repositories.CarRepository;
 import com.miage.repositories.EquipementRepository;
+import com.miage.repositories.PWDRetrieverRepository;
 import com.miage.repositories.ReservationsRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
@@ -61,6 +64,9 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	
 	@Autowired
 	EquipementRepository equipementRepository;
+	
+	@Autowired
+	PWDRetrieverRepository pwdRetrieverRepository;
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -93,18 +99,14 @@ public class UsersController extends WebMvcConfigurerAdapter {
 		user.setUsername(user.getEmail());
 		usersRepository.save(user);
 		user_rolesRepository.save(role);
-		//Envoi d'un email à l'admin du site
-		//pour lui donner le message de l'internaute
 		Properties props = System.getProperties();
 	    props.put("mail.smtps.host","smtp.gmail.com");
 	    props.put("mail.smtps.auth","true");
 	    Session session = Session.getInstance(props, null);
 	    Message msg = new MimeMessage(session);
-	    
-	    //de la part de
 	    msg.setFrom(new InternetAddress("contact.rgxs@gmail.com"));;
 	    msg.setRecipients(Message.RecipientType.TO,
-	    InternetAddress.parse(user.getEmail(), false));//mail_c --> destinataire. Ici, formulaire de contact
+	    InternetAddress.parse(user.getEmail(), false));
 	    msg.setSubject("Inscription N°"+System.currentTimeMillis());
 	    msg.setText("Bonjour " + user.getFirstName() +" "+ user.getLastName() + " vous êtes bien inscrit.");
 	    msg.setHeader("X-Mailer", "Bonjour");
@@ -114,18 +116,85 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	        (SMTPTransport)session.getTransport("smtps");
 	    t.connect("smtp.gmail.com", "contact.rgxs@gmail.com", "projetxavralph");
 	    t.sendMessage(msg, msg.getAllRecipients());
-	    System.out.println("Response: " + t.getLastServerResponse());
 	    t.close();
 		return "redirect:/index";
 	}
 	
-    @RequestMapping(value = "/modification", method = RequestMethod.GET)
+
+	
+    @RequestMapping(value="/motdepasse", method=RequestMethod.GET)
+    public String getEmail(Model model,RedirectAttributes redirectAttributes) {
+        model.addAttribute("pwdRetriever", new PWDRetriever());
+        return "motdepasse";
+    }
+
+    @RequestMapping(value="/motdepasse", method=RequestMethod.POST)
+    public String validateStuff(Model model,@ModelAttribute PWDRetriever pwdRetriever, RedirectAttributes redirectAttributes) throws AddressException, MessagingException {
+    	
+    	long range = 1234567L;
+    	Random r = new Random();
+    	long code = (long)(r.nextDouble()*range);
+
+		Properties props = System.getProperties();
+	    props.put("mail.smtps.host","smtp.gmail.com");
+	    props.put("mail.smtps.auth","true");
+	    Session session = Session.getInstance(props, null);
+	    Message msg = new MimeMessage(session);
+	    msg.setFrom(new InternetAddress("contact.rgxs@gmail.com"));;
+	    msg.setRecipients(Message.RecipientType.TO,
+	    InternetAddress.parse(pwdRetriever.getEmail(), false));
+	    msg.setSubject("Changement N°"+System.currentTimeMillis());
+	    msg.setText("Bonjour  vous avez oublié votre mot de passe. \n Veuillez utiliser ce code pour réinitialiser votre mot de passe : " + code);
+	    msg.setHeader("X-Mailer", "Bonjour");
+	    Date d = new Date();
+	    msg.setSentDate(d);
+	    SMTPTransport t =
+	        (SMTPTransport)session.getTransport("smtps");
+	    t.connect("smtp.gmail.com", "contact.rgxs@gmail.com", "projetxavralph");
+	    t.sendMessage(msg, msg.getAllRecipients());
+	    t.close();
+	    
+	    PWDRetriever npwd = new PWDRetriever();
+	    npwd.setEmail(pwdRetriever.getEmail());
+	    npwd.setTempCode(code);
+	    pwdRetrieverRepository.save(npwd);
+	    model.addAttribute("retriever", npwd);
+	    return "rinitPWD";
+    }
+//    
+//	@RequestMapping(value = "/rinitPWD", method = RequestMethod.GET)
+//	public String chPWD(Model model, RedirectAttributes redirectAttributes) {;
+//		
+//		return "rinitPWD";
+//	}
+//	
+	@RequestMapping(value = "/rinitPWD", method = RequestMethod.POST)
+	public String valideCODE(Model model,RedirectAttributes redirectAttributes, PWDRetriever pwdRetriever) {
+		System.out.println(pwdRetriever.getCheckCode());
+		//Users user = usersRepository.findByUserName(pwdRetriever.getEmail());
+//		if(pwdRetriever.getCheckCode()==pwdRetriever.getTempCode()) {
+//			System.out.println(pwdRetriever.getMdp());
+//			user.setPassword(pwdRetriever.getMdp());
+//			pwdRetrieverRepository.delete(pwdRetriever);
+//			usersRepository.save(user);
+			return "redirect:/index";
+//		} else {
+//		    model.addAttribute("pwdr", pwdRetriever);
+//	        return "rinitPWD";
+//		}
+	}
+	
+    
+	
+	@RequestMapping(value = "/modification", method = RequestMethod.GET)
     public String modifierUser(@RequestParam Integer id, Model model,RedirectAttributes redirectAttributes)
     {
     	Users user = usersRepository.findOne(id);
     	model.addAttribute("user", user);
     	return "modification";
     }
+	
+    
 	
     @RequestMapping(value = "/modification", method = RequestMethod.POST)
     public String saveModifUser(@RequestParam Integer id, Users user, RedirectAttributes redirectAttributes)
@@ -211,36 +280,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
     	return "gestionEssais";
 	}
 	
-	@RequestMapping(value="/testMail",method=RequestMethod.GET)
-	public String mail() throws MessagingException{
 
-		System.out.println("envoi d'un mail");
-		
-		//Envoi d'un email à l'admin du site
-			//pour lui donner le message de l'internaute
-		Properties props = System.getProperties();
-        props.put("mail.smtps.host","smtp.gmail.com");
-        props.put("mail.smtps.auth","true");
-        Session session = Session.getInstance(props, null);
-        Message msg = new MimeMessage(session);
-        
-        //de la part de
-        msg.setFrom(new InternetAddress("contact.rgxs@gmail.com"));;
-        msg.setRecipients(Message.RecipientType.TO,
-        InternetAddress.parse("ralph.gaume@gmail.com", false));//mail_c --> destinataire. Ici, formulaire de contact
-        msg.setSubject("Formulaire de contact"+System.currentTimeMillis());
-        msg.setText("Message de :  Voici son message : ");
-        msg.setHeader("X-Mailer", "Coucou");
-        Date d = new Date();
-        msg.setSentDate(d);
-        SMTPTransport t =
-            (SMTPTransport)session.getTransport("smtps");
-        t.connect("smtp.gmail.com", "contact.rgxs@gmail.com", "projetxavralph");
-        t.sendMessage(msg, msg.getAllRecipients());
-        System.out.println("Response: " + t.getLastServerResponse());
-        t.close();
-		return "redirect:/index";
-	}
 	
 	@RequestMapping(value = "/gestionEssaisAdm", method = RequestMethod.GET)
 	public String accessEssaisAdm(Model model) {

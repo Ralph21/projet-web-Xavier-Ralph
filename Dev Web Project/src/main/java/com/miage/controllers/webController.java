@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.miage.domain.Car;
+import com.miage.domain.PWDRetriever;
 import com.miage.repositories.CarRepository;
 import com.miage.repositories.User_rolesRepository;
 import com.miage.repositories.UsersRepository;
@@ -43,12 +44,15 @@ public class webController {
 	}
 
 
+
 	@RequestMapping("/")
 	public String retourIndex(Model model,RedirectAttributes redirectAttributes) {
 		List<Car> audi = (List<Car>) carRepository.findByBrand("Audi");
 		model.addAttribute("audi", audi);
 		List<Car> vw = (List<Car>) carRepository.findByBrand("Volkswagen");
 		model.addAttribute("vw", vw);
+		PWDRetriever pwdRetriever = new PWDRetriever();
+		model.addAttribute("pwdRetriever", pwdRetriever);
 		return "index";
 	}
 	
@@ -67,6 +71,7 @@ public class webController {
 		return "informations";
 	}
 	
+
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
