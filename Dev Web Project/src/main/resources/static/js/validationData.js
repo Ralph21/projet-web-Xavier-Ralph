@@ -21,6 +21,25 @@ function checkPass() {
 	}
 }
 
+function checkEMail() {
+	var mail = document.getElementById('email');
+	var msgmail = document.getElementById('msgmail');
+	var goodColor = "#66cc66";
+	var badColor = "#ff6666";
+	
+	//email is mandatory
+	if (mail.value== "") {
+		msgmail.style.color = badColor;
+		msgmail.innerHTML = "Email obligatoire";
+		mail.focus();
+		return false;
+	} else {
+		msgmail.innerHTML = "";
+	}
+	return true;
+}
+
+
 /**
  * vérifie que le mot de passe est conforme aux règles
  */
@@ -62,6 +81,42 @@ function checkPopUp()
 		message.style.color = badColor;
 		message.innerHTML = "E-mail obligatoire";
 		email.focus();
+		return false;
+	} else {
+		message.innerHTML = "";
+	}
+	return true;
+}
+
+function checkFormReinit() {
+
+	var pass1 = document.getElementById('pass1');
+	var pass2 = document.getElementById('pass2');
+	var message = document.getElementById('msgpwd');
+	var code = document.getElementById('code');
+	var msgcode = document.getElementById('msgcode');
+
+	var goodColor = "#66cc66";
+	var badColor = "#ff6666";
+
+	//code is mandatory
+	if (code.value== "") {
+		msgcode.style.color = badColor;
+		msgcode.innerHTML = "Code obligatoire";
+		code.focus();
+		return false;
+	} else {
+		msgcode.innerHTML = "";
+	}
+	//password -> at least one Uppercase letter, at least one lowercase letter, at least one number and at least 8 caracters
+	if (!checkPassword(pass1.value)) {
+		message.style.color = badColor;
+		message.innerHTML = "Le mot de passe doit respecter les règles suivantes :<br />"   +
+				"- au moins 8 caractères<br />" +
+				"- au moins une minuscule<br />" +
+				"- au moins une majuscule<br />" +
+				"- au moins un chiffre<br />";
+		pass1.focus();
 		return false;
 	} else {
 		message.innerHTML = "";

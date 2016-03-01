@@ -144,7 +144,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	    msg.setRecipients(Message.RecipientType.TO,
 	    InternetAddress.parse(pwdRetriever.getEmail(), false));
 	    msg.setSubject("Changement N°"+System.currentTimeMillis());
-	    msg.setText("Bonjour  vous avez oublié votre mot de passe. \n Veuillez utiliser ce code pour réinitialiser votre mot de passe : " + code);
+	    msg.setText("Bonjour,\n\nvous avez oublié votre mot de passe. \nVeuillez utiliser ce code pour réinitialiser votre mot de passe : " + code);
 	    msg.setHeader("X-Mailer", "Bonjour");
 	    Date d = new Date();
 	    msg.setSentDate(d);
