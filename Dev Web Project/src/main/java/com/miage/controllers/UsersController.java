@@ -108,7 +108,7 @@ public class UsersController extends WebMvcConfigurerAdapter {
 	    msg.setRecipients(Message.RecipientType.TO,
 	    InternetAddress.parse(user.getEmail(), false));
 	    msg.setSubject("Inscription N°"+System.currentTimeMillis());
-	    msg.setText("Bonjour " + user.getFirstName() +" "+ user.getLastName() + " vous êtes bien inscrit.");
+	    msg.setText("Bonjour " + user.getFirstName() +" "+ user.getLastName() + " vous êtes bien inscrit sur le site Volkswagen & Audi.");
 	    msg.setHeader("X-Mailer", "Bonjour");
 	    Date d = new Date();
 	    msg.setSentDate(d);

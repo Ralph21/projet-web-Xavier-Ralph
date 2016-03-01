@@ -149,8 +149,8 @@
 								</form>
 								<!-- ./form -->
 								<div class="container-fluid">
-									<br /> <a href="#myModal" role="button" class="small"
-										data-toggle="modal">Mot de passe oublié ?</a>
+									<br /> <a class="small" href="motdepasse.html">Mot de
+										passe oublié ?</a>
 								</div>
 								<div class="container-fluid">
 									<small>Nouveau client ?</small> <a class="small"
@@ -220,12 +220,12 @@
 
 		<!-- FORM -->
 		<form th:object="${car}" method="POST" onsubmit="return checkForm();">
-		
+
 			<!-- Problème de token null avec spring security de m... -->
 			<input type="hidden" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" />
-				
-			<!-- ROW -->	
+
+			<!-- ROW -->
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Configuration</h1>
@@ -361,7 +361,7 @@
 				</div>
 			</div>
 			<!-- ./row2 -->
-			
+
 			<!-- 			Hidden in order to transmitt values -->
 			<input type="hidden" th:value="${car.brand}" th:field="*{brand}" />
 			<input type="hidden" th:value="${car.model}" th:field="*{model}" />
@@ -382,7 +382,7 @@
 				</div>
 			</div>
 			<!-- /.feature section -->
-			
+
 			<br />
 			<div class="row">
 				<div class="col-lg-4">

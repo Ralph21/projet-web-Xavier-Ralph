@@ -147,8 +147,8 @@
 								</form>
 								<!-- ./form -->
 								<div class="container-fluid">
-									<br /> <a href="#myModal" role="button" class="small"
-										data-toggle="modal">Mot de passe oublié ?</a>
+									<br /> <a class="small" href="motdepasse.html">Mot de
+										passe oublié ?</a>
 								</div>
 								<div class="container-fluid">
 									<small>Nouveau client ?</small> <a class="small"
@@ -247,46 +247,6 @@
 		</footer>
 	</div>
 	<!-- ./page content -->
-
-	<!-- POP-UP mail -->
-	<div id="myModal" class="modal fade" aria-labelledby="myModalLabel"
-		aria-hidden="true" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- Header -->
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title">Rentrez votre adresse e-mail :</h4>
-				</div>
-				<!-- FORM -->
-				<form id="contactform" role="form" onsubmit="return checkPopUp();">
-					<div class="modal-body" id="myModalBody">
-						<div class="form-group">
-							<label for="emailid">E-mail :</label>
-							<div class="left-inner-addon">
-								<i class="fa fa-envelope"></i><input type="text" id="emailPopUp"
-									placeholder="Entrez votre e-mail" class="form-control" />
-							</div>
-							<span id="msgerror" class="msgerror"></span>
-						</div>
-						<p>Un e-mail contenant un code vous sera envoyer à votre
-							adresse mail.</p>
-					</div>
-					<!-- FOOTER -->
-					<div class="modal-footer">
-						<button class="btn btn-default" data-dismiss="modal"
-							aria-hidden="true">Annuler</button>
-						<button type="submit" class="btn btn-success-outline">
-							Envoyer <i class="fa fa-paper-plane"></i>
-						</button>
-					</div>
-				</form>
-				<!-- FORM -->
-			</div>
-		</div>
-	</div>
-	<!-- ./popup mail -->
 
 	<!-- SCRIPT -->
 	<script src="js/jquery.js"></script>

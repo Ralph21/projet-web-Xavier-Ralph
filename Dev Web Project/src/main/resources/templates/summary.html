@@ -151,8 +151,8 @@
 								</form>
 								<!-- ./form -->
 								<div class="container-fluid">
-									<br /> <a href="#myModal" role="button" class="small"
-										data-toggle="modal">Mot de passe oublié ?</a>
+									<br /> <a class="small" href="motdepasse.html">Mot de
+										passe oublié ?</a>
 								</div>
 								<div class="container-fluid">
 									<small>Nouveau client ?</small> <a class="small"
@@ -179,7 +179,7 @@
 
 	<!-- Page Content -->
 	<div class="container">
-	
+
 		<!-- FORM -->
 		<form method="POST" th:object="${reservation}"
 			onsubmit="return checkForm();">
@@ -202,11 +202,11 @@
 			<input type="hidden" th:value="${reservation.user}"
 				th:field="*{user}" /> <input type="hidden"
 				th:value="${reservation.car}" th:field="*{car}" />
-				
+
 			<!-- pour éviter le problème de token null avec spring security -->
 			<input type="hidden" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" />
-				
+
 			<div class="row">
 				<div class="col-lg-4">
 					<table class="table table-hover">
@@ -294,7 +294,7 @@
 
 	<!-- 	<div th:if="${param.error}">Invalid username and password.</div> -->
 	<!-- 	<div th:if="${param.logout}">You have been logged out.</div> -->
-	
+
 	<!-- SCRIPT -->
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
